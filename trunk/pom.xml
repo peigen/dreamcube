@@ -1,68 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.dreamcube</groupId>
-  <artifactId>dreamcube</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>dreamcube Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-	  	<groupId>org.springframework</groupId>
-		<artifactId>spring</artifactId>
-		<version>2.5.6</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>
-		<version>2.5.6</version>
-	</dependency>
-	<dependency>
-		<groupId>velocity</groupId>
-		<artifactId>velocity</artifactId>
-		<version>1.4</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.ibatis</groupId>
-	    <artifactId>ibatis2-common</artifactId>
-	    <version>2.1.7.597</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.ibatis</groupId>
-	    <artifactId>ibatis2-dao</artifactId>
-	    <version>2.1.7.597</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.ibatis</groupId>
-	    <artifactId>ibatis2-sqlmap</artifactId>
-	    <version>2.1.7.597</version>
-	</dependency>
-  </dependencies>
-  <build>
-    <finalName>dreamcube</finalName>
-    <plugins>
-	    <plugin>
-	      <artifactId>maven-compiler-plugin</artifactId>
-	      <configuration>
-	        <source>1.6</source>
-	        <target>1.6</target>
-	      </configuration>
-	    </plugin>
-	    <plugin>
-	      <groupId>org.mortbay.jetty</groupId>
-	      <artifactId>maven-jetty-plugin</artifactId>
-	      <version>6.0.1</version>
-	      <configuration>
-	        <scanIntervalSeconds>10</scanIntervalSeconds>
-	      </configuration>
-	    </plugin>
-	  </plugins>
-  </build>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>dreamcube</name>
+	<groupId>com.dreamcube</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<description>
+Centrepoint is a basic but useful application that sets up a
+dashboard of project information from Maven, Archiva and
+Continuum.
+</description>
+	<properties>
+		<slf4j.version>1.4.3</slf4j.version>
+		<spring.maven.artifact.version>2.5.6</spring.maven.artifact.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.maven.artifact.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.maven.artifact.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.maven.artifact.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.maven.artifact.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibatis</groupId>
+			<artifactId>ibatis2-common</artifactId>
+			<version>2.1.7.597</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibatis</groupId>
+			<artifactId>ibatis2-dao</artifactId>
+			<version>2.1.7.597</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibatis</groupId>
+			<artifactId>ibatis2-sqlmap</artifactId>
+			<version>2.1.7.597</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl104-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.spring-json</groupId>
+			<artifactId>spring-json</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+			<version>2.3</version>
+		</dependency>
+
+
+		<!-- test scoped dependencies -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.maven.artifact.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-mock</artifactId>
+			<version>1.2.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<resources>
+			<!-- standard Maven folder -->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<!-- plus root folder -->
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>plugin.xml</include>
+					<include>META-INF/*</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.0.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- ================================================ -->
+	<!--            Repository Configuration              -->
+	<!-- ================================================ -->
+
+	<!--
+		><repositories> <repository> <id>holly-thinkpad-releases</id>
+		<name>holly-thinkpad-releases</name>
+		<url>http://localhost:8081/artifactory/repo</url> </repository>
+		</repositories> <pluginRepositories> <pluginRepository>
+		<id>holly-thinkpad-plugin</id> <name>maven repo</name>
+		<url>http://localhost:8081/artifactory/repo</url> </pluginRepository>
+
+		</pluginRepositories>
+	-->
+	<repositories>
+		<repository>
+			<id>http://mvnrepository.com/</id>
+			<name>http://mvnrepository.com/</name>
+			<url>http://mvnrepository.com/artifact</url>
+		</repository>
+		<repository>
+			<id>http://repo1.maven.org/maven2</id>
+			<name>http://repo1.maven.org/maven2</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+	</repositories>
+	<modules>
+		<module>dreamcube-enrollment-web</module>
+		<module>dreamcube-enrollment-biz</module>
+		<module>dreamcube-enrollment-dal</module>
+		<module>dreamcube-assemble</module>
+	</modules>
 </project>
