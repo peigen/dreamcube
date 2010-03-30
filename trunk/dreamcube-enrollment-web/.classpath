@@ -18,6 +18,8 @@
       <attribute value="jar:file:/home/holly/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
+  <classpathentry kind="src" path="/dreamcube-enrollment-biz"/>
+  <classpathentry kind="src" path="/dreamcube-enrollment-dal"/>
   <classpathentry kind="var" path="M2_REPO/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6.jar" sourcepath="M2_REPO/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1-sources.jar"/>
