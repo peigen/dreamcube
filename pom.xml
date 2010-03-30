@@ -18,7 +18,11 @@ Continuum.
 	</properties>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>${spring.maven.artifact.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -208,7 +212,7 @@ Continuum.
 			<name>http://repository.codehaus.org/org/codehaus/mojo</name>
 			<url>http://repository.codehaus.org/org/codehaus/mojo</url>
 		</repository>
-		
+
 	</repositories>
 	<modules>
 		<module>dreamcube-enrollment-web</module>
