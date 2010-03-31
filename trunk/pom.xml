@@ -88,7 +88,7 @@ Continuum.
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.0.5</version>
+			<version>5.1.9</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.spring-json</groupId>
@@ -215,6 +215,13 @@ Continuum.
 			<id>http://repository.codehaus.org/org/codehaus/mojo</id>
 			<name>http://repository.codehaus.org/org/codehaus/mojo</name>
 			<url>http://repository.codehaus.org/org/codehaus/mojo</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<url>http://10.2.4.31:8080/artifactory/repo</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 
 	</repositories>

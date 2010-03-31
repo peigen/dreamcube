@@ -5,7 +5,7 @@ svn checkout https://yayavsi.googlecode.com/svn/trunk/ yayavsi --username peigen
 
 密码：EP4XY5hd9Nd3
 
-mvn clean
+mvn clean package jetty:run-war
 mvn package
 mvn jetty:run-war
 
