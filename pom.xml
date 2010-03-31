@@ -101,6 +101,14 @@
 			<classifier>jdk15</classifier>
 			<version>2.3</version>
 		</dependency>
+		
+		
+		<!-- dreamcube -->
+		<dependency>
+			<groupId>com.dreamcube.core</groupId>
+			<artifactId>dreamcube-core-domain-enrollment</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 
 
 		<!-- test scoped dependencies -->
@@ -230,5 +238,6 @@
 		<module>dreamcube-enrollment-biz</module>
 		<module>dreamcube-dal</module>
 		<module>dreamcube-assemble</module>
+		<module>dreamcube-core-domain-enrollment</module>
 	</modules>
 </project>
