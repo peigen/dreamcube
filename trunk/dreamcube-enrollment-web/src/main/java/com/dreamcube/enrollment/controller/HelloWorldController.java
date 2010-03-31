@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Hello world!
  *
  */
-@Controller(value="/enrollment/helloworld.htm")
+@Controller()
 public class HelloWorldController {
 	
 	/**
@@ -19,7 +19,7 @@ public class HelloWorldController {
 	 * @param modelMap
 	 * @return vm
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/enrollment/helloworld.htm",method = RequestMethod.GET)
 	public String doGet(ModelMap modelMap){
 		modelMap.addAttribute("time", new Date());
 		return "helloWord.vm";
