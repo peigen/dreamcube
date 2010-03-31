@@ -228,7 +228,7 @@ Continuum.
 	<modules>
 		<module>dreamcube-enrollment-web</module>
 		<module>dreamcube-enrollment-biz</module>
-		<module>dreamcube-enrollment-dal</module>
+		<module>dreamcube-dal</module>
 		<module>dreamcube-assemble</module>
 	</modules>
 </project>
