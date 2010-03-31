@@ -8,10 +8,10 @@
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<description>
-Centrepoint is a basic but useful application that sets up a
-dashboard of project information from Maven, Archiva and
-Continuum.
-</description>
+	Centrepoint is a basic but useful application that sets up a
+	dashboard of project information from Maven, Archiva and
+	Continuum.
+	</description>
 	<properties>
 		<slf4j.version>1.4.3</slf4j.version>
 		<spring.maven.artifact.version>2.5.6</spring.maven.artifact.version>
