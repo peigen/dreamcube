@@ -19,7 +19,7 @@ import com.dreamcube.core.enrollment.enums.DCUserRole;
  * @version $Id: DCUser.java,v 0.1 2010-3-31 下午01:37:28 peigen Exp $
  */
 
-public abstract class DCUser {
+public abstract class DCUser { 
 
     private int        id;
 
@@ -247,6 +247,7 @@ public abstract class DCUser {
     }
 
     public String toString() {
+    	
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }
