@@ -8,24 +8,34 @@
 		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:dreamcube-assemble-config.properties</value>
+		</property>
+	</bean>
+
 	<context:component-scan base-package="com.dreamcube.enrollment" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<property name="cache" value="true" />
-		<property name="prefix" value="" />
 		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="prefix" value=""></property>
 		<property name="order" value="1"></property>
 		<property name="contentType" value="text/html; charset=GBK"></property>
-		<property name="toolboxConfigLocation" value="WEB-INF/config/velocity-toolbox.xml"></property>
-		<property name="suffix" value=".vm" />
+		<!--
+			<property name="toolboxConfigLocation"
+			value="${webapp_path}/WEB-INF/config/velocity-toolbox.xml"></property>
+		-->
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
 	</bean>
 
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="/WEB-INF/velocityTemplates/" />
+		<property name="resourceLoaderPath"
+			value="file:${webapp_path}/WEB-INF/velocityTemplates/" />
 		<property name="velocityProperties">
 			<props>
 				<prop key="input.encoding">GBK</prop>
@@ -35,19 +45,13 @@
 		</property>
 	</bean>
 
+
 	<bean name="viewNameTranslator"
 		class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">
-		<property name="suffix">
-			<value>.vm</value>
-		</property>
 	</bean>
 
 	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-		<property name="alwaysUseFullPath" value="true" />
-	</bean>
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean
-		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="alwaysUseFullPath" value="true" />
-	</bean>
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 </beans>
