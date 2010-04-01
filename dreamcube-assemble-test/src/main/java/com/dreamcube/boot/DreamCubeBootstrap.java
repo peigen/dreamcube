@@ -33,31 +33,49 @@ public class DreamCubeBootstrap {
 	public DreamCubeBootstrap() {
 	}
 
+	/**
+	 * 配置端口，依赖工程等需要的东西
+	 * 
+	 * @throws IOException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
 	public void preConfig() throws IOException, SecurityException,
 			NoSuchMethodException, IllegalArgumentException,
 			IllegalAccessException, InvocationTargetException {
+		// 读取配置文件
 		Properties properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream(
 				"dreamcubeconfig.properties"));
-		serverPort = Integer.valueOf(properties.getProperty("jetty_port"));
-		String projectHome = properties.getProperty("project_home");
-		String projectModule = properties.getProperty("project_modules");
-
 		URL propertiesURL = this.getClass().getClassLoader().getResource(
 				"dreamcubeconfig.properties");
 		System.out.println(propertiesURL.toExternalForm());
 
+		// 获取需要启动的端口
+		serverPort = Integer.valueOf(properties.getProperty("jetty_port"));
+		// 总工程的路径
+		String projectHome = properties.getProperty("project_home");
+		// 需要加载的module
+		String projectModule = properties.getProperty("project_modules");
+		// 将工程module加载到类路径
 		subProjectPath = toSubjectPathURLs(projectHome, projectModule);
 		URLClassLoader classLoader = (URLClassLoader) this.getClass()
 				.getClassLoader();
+		// 设置classloader的类路径
 		Method addURLMethod = URLClassLoader.class.getDeclaredMethod("addURL",
 				new Class[] { URL.class });
 		addURLMethod.setAccessible(true);
 		for (URL url : subProjectPath) {
 			addURLMethod.invoke(classLoader, url);
 		}
-		springContextLocation = new File(properties.getProperty("project_home")
-				+ "/dreamcube-assemble/src/main/webapp/WEB-INF/dreamcube-servlet.xml").toURI().toURL().toExternalForm();
+		// 读取springd的context路径
+		springContextLocation = new File(
+				properties.getProperty("project_home")
+						+ "/dreamcube-assemble/src/main/webapp/WEB-INF/dreamcube-servlet.xml")
+				.toURI().toURL().toExternalForm();
 	}
 
 	/**
@@ -83,6 +101,17 @@ public class DreamCubeBootstrap {
 		return subProjectPath;
 	}
 
+	/**
+	 * 初始化init方法
+	 * 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
 	public void init() throws IOException, ClassNotFoundException,
 			SecurityException, IllegalArgumentException, NoSuchMethodException,
 			IllegalAccessException, InvocationTargetException {
@@ -103,6 +132,9 @@ public class DreamCubeBootstrap {
 		servletHandler.addServletMapping(servletMapping);
 	}
 
+	/**
+	 * 启动方法
+	 */
 	public void start() {
 		try {
 			init();
