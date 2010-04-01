@@ -17,7 +17,7 @@
 	  	<!-- dreamcube -->
 	  	<dependency>
 	  		<groupId>com.dreamcube</groupId>
-	  		<artifactId>dreamcube-enrollment-coredomain</artifactId>
+	  		<artifactId>dreamcube-enrollment-core-domain</artifactId>
 	  		<version>1.0-SNAPSHOT</version>
 	  	</dependency>
 		<dependency>

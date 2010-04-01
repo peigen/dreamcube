@@ -17,7 +17,7 @@ import org.mortbay.jetty.servlet.ServletMapping;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * ���幤�̵Ĳ�����
+ * 整体工程的测试类
  * 
  * @author holly Mar 31, 2010
  * 
@@ -34,7 +34,7 @@ public class DreamCubeBootstrap {
 	}
 
 	/**
-	 * ���ö˿ڣ��������̵���Ҫ�Ķ���
+	 * 配置端口，依赖工程等需要的东西
 	 * 
 	 * @throws IOException
 	 * @throws SecurityException
@@ -46,7 +46,7 @@ public class DreamCubeBootstrap {
 	public void preConfig() throws IOException, SecurityException,
 			NoSuchMethodException, IllegalArgumentException,
 			IllegalAccessException, InvocationTargetException {
-		// ��ȡ�����ļ�
+		// 读取配置文件
 		Properties properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream(
 				"dreamcubeconfig.properties"));
@@ -54,24 +54,24 @@ public class DreamCubeBootstrap {
 				"dreamcubeconfig.properties");
 		System.out.println(propertiesURL.toExternalForm());
 
-		// ��ȡ��Ҫ�����Ķ˿�
+		// 获取需要启动的端口
 		serverPort = Integer.valueOf(properties.getProperty("jetty_port"));
-		// �ܹ��̵�·��
+		// 总工程的路径
 		String projectHome = properties.getProperty("project_home");
-		// ��Ҫ���ص�module
+		// 需要加载的module
 		String projectModule = properties.getProperty("project_modules");
-		// ������module���ص���·��
+		// 将工程module加载到类路径
 		subProjectPath = toSubjectPathURLs(projectHome, projectModule);
 		URLClassLoader classLoader = (URLClassLoader) this.getClass()
 				.getClassLoader();
-		// ����classloader����·��
+		// 设置classloader的类路径
 		Method addURLMethod = URLClassLoader.class.getDeclaredMethod("addURL",
 				new Class[] { URL.class });
 		addURLMethod.setAccessible(true);
 		for (URL url : subProjectPath) {
 			addURLMethod.invoke(classLoader, url);
 		}
-		// ��ȡspringd��context·��
+		// 读取springd的context路径
 		springContextLocation = new File(
 				properties.getProperty("project_home")
 						+ "/dreamcube-assemble/src/main/webapp/WEB-INF/dreamcube-servlet.xml")
@@ -102,7 +102,7 @@ public class DreamCubeBootstrap {
 	}
 
 	/**
-	 * ��ʼ��init����
+	 * 初始化init方法
 	 * 
 	 * @throws IOException
 	 * @throws ClassNotFoundException
@@ -133,7 +133,7 @@ public class DreamCubeBootstrap {
 	}
 
 	/**
-	 * ��������
+	 * 启动方法
 	 */
 	public void start() {
 		try {
