@@ -9,10 +9,10 @@
 	</parent>
 
 	<groupId>com.dreamcube</groupId>
-	<artifactId>dreamcube-enrollment-coredomain</artifactId>
+	<artifactId>dreamcube-enrollment-core-domain</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>dreamcube-enrollment-coredomain</name>
+	<name>dreamcube-enrollment-core-domain</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>

@@ -233,6 +233,6 @@
 		<module>dreamcube-dal</module>
 		<module>dreamcube-assemble</module>
 		<module>dreamcube-assemble-test</module>
-		<module>dreamcube-enrollment-coredomain</module>
+		<module>dreamcube-enrollment-core-domain</module>
 	</modules>
 </project>
