@@ -103,12 +103,6 @@
 		</dependency>
 
 
-		<!-- dreamcube -->
-		<dependency>
-			<groupId>com.dreamcube.core</groupId>
-			<artifactId>dreamcube-core-domain-enrollment</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
 
 
 		<!-- test scoped dependencies -->
