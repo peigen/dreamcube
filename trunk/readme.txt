@@ -9,3 +9,6 @@ mvn clean package jetty:run-war
 mvn package
 mvn jetty:run-war
 
+运行：DreamCubeBootstrap.java
+访问：
+http://127.0.0.1:8080/dreamcube/enrollment/helloworld.html
