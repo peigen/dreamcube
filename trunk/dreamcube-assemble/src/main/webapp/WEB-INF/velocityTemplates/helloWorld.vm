@@ -1,6 +1,2 @@
-<html>
-	<head></head>
-	<body>
-	 	hello world! current time is $time
-	</body>
-</html>
+
+	 	<strong>hello world! </strong>current time is $time

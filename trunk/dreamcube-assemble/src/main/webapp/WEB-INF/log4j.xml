@@ -57,6 +57,10 @@
 		<level value="debug"/>
 		<appender-ref ref="STDOUT"/>
 	</logger>
+	<logger name="org.mortbay.log" additivity="true">
+		<level value="debug"/>
+		<appender-ref ref="STDOUT"/>
+	</logger>
     
     <!-- ===================================================================== -->
     <!--  Root loggerµÄ¶¨Òå                                                             -->
