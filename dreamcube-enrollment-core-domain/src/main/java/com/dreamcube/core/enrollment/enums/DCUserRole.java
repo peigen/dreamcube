@@ -8,22 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ×ÜÌåËµÃ÷¡£
+ * æ€»ä½“è¯´æ˜ã€‚
  *
  * @author yue.lipy@alipay.com
- * @version $Id: DCUserRole.java,v 0.1 2010-3-31 ÏÂÎç02:56:28 peigen Exp $
+ * @version $Id: DCUserRole.java,v 0.1 2010-3-31 ä¸‹åˆ02:56:28 peigen Exp $
  */
 
 public enum DCUserRole {
 
-    /** AXISER---·¢ÆğÕß */
-    AXISER("AXISER", "·¢ÆğÕß"),
+    /** AXISER---å‘èµ·è€… */
+    AXISER("AXISER", "å‘èµ·è€…"),
 
-    /** CUBER---²ÎÓëÕß */
-    CUBER("CUBER", "²ÎÓëÕß"),
+    /** CUBER---å‚ä¸è€… */
+    CUBER("CUBER", "å‚ä¸è€…"),
 
-    /** VC---Í¶×ÊÕß */
-    VC("VC", "Í¶×ÊÕß");
+    /** VC---æŠ•èµ„è€… */
+    VC("VC", "æŠ•èµ„è€…");
     private final String key;
 
     private final String desc;
@@ -52,7 +52,7 @@ public enum DCUserRole {
     }
 
     /**
-     * »ñÈ¡È«²¿½ÇÉ«
+     * è·å–å…¨éƒ¨è§’è‰²
      * 
      * @return
      */

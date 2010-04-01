@@ -13,45 +13,45 @@ import org.springframework.util.Assert;
 import com.dreamcube.core.enrollment.enums.DCUserRole;
 
 /**
- * ×ÜÌåËµÃ÷¡£
+ * æ€»ä½“è¯´æ˜ã€‚
  *
  * @author yue.lipy@alipay.com
- * @version $Id: DCUser.java,v 0.1 2010-3-31 ÏÂÎç01:37:28 peigen Exp $
+ * @version $Id: DCUser.java,v 0.1 2010-3-31 ä¸‹åˆ01:37:28 peigen Exp $
  */
 
 public abstract class DCUser {
 
     private int        id;
 
-    /** µÇÂ¼Ãû */
+    /** ç™»å½•å */
     private String     logonName;
 
-    /** µÇÂ¼ÃÜÂë */
+    /** ç™»å½•å¯†ç  */
     private String     logonPasswd;
 
-    /** êÇ³Æ */
+    /** æ˜µç§° */
     private String     nickName;
 
-    /** ÉúÈÕ */
+    /** ç”Ÿæ—¥ */
     private Date       birthday;
 
-    /** Éí·İÖ¤ */
+    /** èº«ä»½è¯ */
     private String     certNo;
 
-    /** ĞÔ±ğ:0,female;1,male   ºÜĞÎÏó */
+    /** æ€§åˆ«:0,female;1,male   å¾ˆå½¢è±¡ */
     private int        gender;
 
-    /** ¹¤×÷¾­ÀúJSON¸ñÊ½ */
+    /** å·¥ä½œç»å†JSONæ ¼å¼ */
     private String     workSite;
 
-    /** ²ÎÓëÏîÄ¿JSON¸ñÊ½ */
-    //TODO ÖØ¹¹Îª¶ÔÏó
+    /** å‚ä¸é¡¹ç›®JSONæ ¼å¼ */
+    //TODO é‡æ„ä¸ºå¯¹è±¡
     private String     projects;
 
-    /** ĞÅÏ¢:twitter/fackbook */
+    /** ä¿¡æ¯:twitter/fackbook */
     private String     infoSite;
 
-    /** ½ÇÉ« */
+    /** è§’è‰² */
     private DCUserRole role;
 
     /**
@@ -82,7 +82,7 @@ public abstract class DCUser {
     }
 
     /**
-     * ÓÉ×ÓÀàÊµÏÖ
+     * ç”±å­ç±»å®ç°
      */
     public void check() {
 
