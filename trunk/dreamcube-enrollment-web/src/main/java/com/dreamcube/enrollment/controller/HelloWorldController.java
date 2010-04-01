@@ -19,7 +19,7 @@ public class HelloWorldController {
 	 * @param modelMap
 	 * @return vm
 	 */
-	@RequestMapping(value="/enrollment/helloworld.htm",method = RequestMethod.GET)
+	@RequestMapping(value="/enrollment/helloworld.html",method = RequestMethod.GET)
 	public String doGet(ModelMap modelMap){
 		modelMap.addAttribute("time", new Date());
 		return "helloWorld.vm";
