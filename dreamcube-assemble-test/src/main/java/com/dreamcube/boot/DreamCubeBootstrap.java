@@ -10,10 +10,13 @@ import java.net.URLClassLoader;
 import java.util.Properties;
 
 import org.mortbay.jetty.Server;
+import org.mortbay.jetty.handler.ContextHandler;
+import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.ServletHandler;
 import org.mortbay.jetty.servlet.ServletHolder;
 import org.mortbay.jetty.servlet.ServletMapping;
+import org.mortbay.jetty.webapp.WebAppContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
@@ -25,7 +28,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class DreamCubeBootstrap {
 	private Server server;
 	private Context root;
-
+	
+	private String contextLocation = "";
 	private String springContextLocation = "";
 	private int serverPort = 8080;
 	private URL[] subProjectPath;
@@ -76,6 +80,10 @@ public class DreamCubeBootstrap {
 				properties.getProperty("project_home")
 						+ "/dreamcube-assemble/src/main/webapp/WEB-INF/dreamcube-servlet.xml")
 				.toURI().toURL().toExternalForm();
+		contextLocation = new File(
+				properties.getProperty("project_home")
+				+ "/dreamcube-assemble/src/main/webapp/")
+		.toURI().toURL().toExternalForm();
 	}
 
 	/**
@@ -119,6 +127,10 @@ public class DreamCubeBootstrap {
 		server = new Server(serverPort);
 		final String CONTEXTPATH = "/dreamcube";
 		root = new Context(server, CONTEXTPATH, Context.SESSIONS);
+		
+		//增加处理静态文件的handler
+		server.setHandler(new WebAppContext(contextLocation, CONTEXTPATH));
+		
 		ServletHandler servletHandler = root.getServletHandler();
 		DispatcherServlet ds = new DispatcherServlet();
 		ds.setContextConfigLocation(springContextLocation);
