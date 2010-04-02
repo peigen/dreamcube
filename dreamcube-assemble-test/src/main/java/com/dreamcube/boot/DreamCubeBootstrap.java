@@ -9,8 +9,9 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Properties;
 
+import org.mortbay.jetty.Handler;
 import org.mortbay.jetty.Server;
-import org.mortbay.jetty.handler.HandlerWrapper;
+import org.mortbay.jetty.handler.ContextHandlerCollection;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.ServletHandler;
 import org.mortbay.jetty.servlet.ServletHolder;
@@ -128,21 +129,25 @@ public class DreamCubeBootstrap {
 		root = new Context(server, CONTEXTPATH, Context.SESSIONS);
 		
 		//增加处理静态文件的handler
-//		server.setHandler();
-//		HandlerWrapper wr = new HandlerWrapper();
-//		wr.addHandler(new WebAppContext(contextLocation, CONTEXTPATH));
-//		root.addHandler(wr);
+		WebAppContext webApp = new WebAppContext(contextLocation, "/");
+		//增加servlet handler
 		ServletHandler servletHandler = root.getServletHandler();
 		DispatcherServlet ds = new DispatcherServlet();
 		ds.setContextConfigLocation(springContextLocation);
 		ServletHolder servletHolder = new ServletHolder(ds);
 		servletHolder.setName("dreamcube");
 		servletHandler.addServlet(servletHolder);
-
+		//设置servlet mapping
 		ServletMapping servletMapping = new ServletMapping();
-		servletMapping.setPathSpecs(new String[] { "*.html" });
+		servletMapping.setPathSpecs(new String[] { "*.html","*.json" });
 		servletMapping.setServletName("dreamcube");
 		servletHandler.addServletMapping(servletMapping);
+		
+		//设置server handler
+		ContextHandlerCollection handlerCollection = new ContextHandlerCollection();
+		handlerCollection.setHandlers(new Handler[] { root, webApp });
+        server.setHandler(handlerCollection);
+
 	}
 
 	/**
