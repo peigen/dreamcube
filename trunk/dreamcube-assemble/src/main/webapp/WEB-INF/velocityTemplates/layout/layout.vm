@@ -1,6 +1,7 @@
 <html>
-	<head></head>
+#parse("layout/header.vm")
 	<body>
 		${screen_content}
 	</body>
+#parse("layout/foot.vm")
 </html>
