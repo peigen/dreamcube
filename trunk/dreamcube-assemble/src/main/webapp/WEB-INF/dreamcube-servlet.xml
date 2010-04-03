@@ -18,7 +18,7 @@
 	<context:component-scan base-package="com.dreamcube.enrollment" />
 
 	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
 		<property name="cache" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
 		<property name="prefix" value=""></property>
@@ -30,6 +30,7 @@
 		-->
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
+		<property name="layoutUrl" value="layout/layout.vm"/>
 	</bean>
 
 	<bean id="velocityConfig"
