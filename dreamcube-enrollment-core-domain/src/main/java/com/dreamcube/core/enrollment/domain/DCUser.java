@@ -10,7 +10,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.util.Assert;
 
-import com.dreamcube.core.enrollment.enums.DCUserRoleEnum;
 import com.dreamcube.core.enrollment.enums.DCUserStatusEnum;
 
 /**
@@ -35,268 +34,240 @@ import com.dreamcube.core.enrollment.enums.DCUserStatusEnum;
  *<li>Content: create</li> 
  */
 
-public abstract class DCUser {
+public class DCUser {
 
-	private int id;
+    private int              id;
 
-	/** 登录名 */
-	private String logonName;
+    /** 登录名 */
+    private String           logonName;
 
-	/** 登录密码 */
-	private String logonPasswd;
+    /** 登录密码 */
+    private String           logonPasswd;
 
-	/** 昵称 */
-	private String nickName;
+    /** 昵称 */
+    private String           nickName;
 
-	/** 生日 */
-	private Date birthday;
+    /** 生日 */
+    private Date             birthday;
 
-	/** 身份证 */
-	private String certNo;
+    /** 身份证 */
+    private String           certNo;
 
-	/** 性别:0,female;1,male 很形象 */
-	private int gender;
+    /** 性别:0,female;1,male 很形象 */
+    private int              gender;
 
-	/** 工作经历JSON格式 */
-	private String workSite;
+    /** 工作经历JSON格式 */
+    private String           workSite;
 
-	/** 参与项目JSON格式 */
-	// TODO 重构为对象
-	private String projects;
+    /** 参与项目JSON格式 */
+    // TODO 重构为对象
+    private String           projects;
 
-	/** 信息:twitter/fackbook */
-	private String infoSite;
+    /** 信息:twitter/fackbook */
+    private String           infoSite;
 
-	/** 角色 */
-	private DCUserRoleEnum role;
+    private Date             gmtStart;
 
-	private DCUserStatusEnum status;
+    private Date             gmtMotify;
 
-	/**
-	 * @param logonName
-	 * @param logonPasswd
-	 * @param nickName
-	 * @param birthday
-	 * @param certNo
-	 * @param gender
-	 * @param workSite
-	 * @param projects
-	 * @param infoSite
-	 * @param role
-	 * @param status
-	 */
-	public DCUser(String logonName, String logonPasswd, String nickName,
-			Date birthday, String certNo, int gender, String workSite,
-			String projects, String infoSite, DCUserRoleEnum role,
-			DCUserStatusEnum status) {
-		this.logonName = logonName;
-		this.logonPasswd = logonPasswd;
-		this.nickName = nickName;
-		this.birthday = birthday;
-		this.certNo = certNo;
-		this.gender = gender;
-		this.workSite = workSite;
-		this.projects = projects;
-		this.infoSite = infoSite;
-		this.role = role;
-		this.status = status;
-	}
+    /** 当前状态 */
+    private DCUserStatusEnum status;
 
-	/**
-	 * 由子类实现
-	 */
-	public void check() {
+    /**
+     * 
+     */
+    public void check() {
 
-		Assert.notNull(logonName);
-		Assert.notNull(logonPasswd);
+        Assert.notNull(logonName);
+        Assert.notNull(logonPasswd);
 
-	}
+    }
 
-	// ~~~DI
-	/**
-	 * @return Returns the id.
-	 */
-	public int getId() {
-		return id;
-	}
+    // ~~~DI
+    /**
+     * @return Returns the id.
+     */
+    public int getId() {
+        return id;
+    }
 
-	/**
-	 * @param id
-	 *            The id to set.
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * @param id
+     *            The id to set.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return Returns the logonName.
-	 */
-	public String getLogonName() {
-		return logonName;
-	}
+    /**
+     * @return Returns the logonName.
+     */
+    public String getLogonName() {
+        return logonName;
+    }
 
-	/**
-	 * @param logonName
-	 *            The logonName to set.
-	 */
-	public void setLogonName(String logonName) {
-		this.logonName = logonName;
-	}
+    /**
+     * @param logonName
+     *            The logonName to set.
+     */
+    public void setLogonName(String logonName) {
+        this.logonName = logonName;
+    }
 
-	/**
-	 * @return Returns the logonPasswd.
-	 */
-	public String getLogonPasswd() {
-		return logonPasswd;
-	}
+    /**
+     * @return Returns the logonPasswd.
+     */
+    public String getLogonPasswd() {
+        return logonPasswd;
+    }
 
-	/**
-	 * @param logonPasswd
-	 *            The logonPasswd to set.
-	 */
-	public void setLogonPasswd(String logonPasswd) {
-		this.logonPasswd = logonPasswd;
-	}
+    /**
+     * @param logonPasswd
+     *            The logonPasswd to set.
+     */
+    public void setLogonPasswd(String logonPasswd) {
+        this.logonPasswd = logonPasswd;
+    }
 
-	/**
-	 * @return Returns the nickName.
-	 */
-	public String getNickName() {
-		return nickName;
-	}
+    /**
+     * @return Returns the nickName.
+     */
+    public String getNickName() {
+        return nickName;
+    }
 
-	/**
-	 * @param nickName
-	 *            The nickName to set.
-	 */
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
+    /**
+     * @param nickName
+     *            The nickName to set.
+     */
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
-	/**
-	 * @return Returns the birthday.
-	 */
-	public Date getBirthday() {
-		return birthday;
-	}
+    /**
+     * @return Returns the birthday.
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
 
-	/**
-	 * @param birthday
-	 *            The birthday to set.
-	 */
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+    /**
+     * @param birthday
+     *            The birthday to set.
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-	/**
-	 * @return Returns the certNo.
-	 */
-	public String getCertNo() {
-		return certNo;
-	}
+    /**
+     * @return Returns the certNo.
+     */
+    public String getCertNo() {
+        return certNo;
+    }
 
-	/**
-	 * @param certNo
-	 *            The certNo to set.
-	 */
-	public void setCertNo(String certNo) {
-		this.certNo = certNo;
-	}
+    /**
+     * @param certNo
+     *            The certNo to set.
+     */
+    public void setCertNo(String certNo) {
+        this.certNo = certNo;
+    }
 
-	/**
-	 * @return Returns the gender.
-	 */
-	public int getGender() {
-		return gender;
-	}
+    /**
+     * @return Returns the gender.
+     */
+    public int getGender() {
+        return gender;
+    }
 
-	/**
-	 * @param gender
-	 *            The gender to set.
-	 */
-	public void setGender(int gender) {
-		this.gender = gender;
-	}
+    /**
+     * @param gender
+     *            The gender to set.
+     */
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
 
-	/**
-	 * @return Returns the projects.
-	 */
-	public String getProjects() {
-		return projects;
-	}
+    /**
+     * @return Returns the projects.
+     */
+    public String getProjects() {
+        return projects;
+    }
 
-	/**
-	 * @param projects
-	 *            The projects to set.
-	 */
-	public void setProjects(String projects) {
-		this.projects = projects;
-	}
+    /**
+     * @param projects
+     *            The projects to set.
+     */
+    public void setProjects(String projects) {
+        this.projects = projects;
+    }
 
-	/**
-	 * @return Returns the workSite.
-	 */
-	public String getWorkSite() {
-		return workSite;
-	}
+    /**
+     * @return Returns the workSite.
+     */
+    public String getWorkSite() {
+        return workSite;
+    }
 
-	/**
-	 * @param workSite
-	 *            The workSite to set.
-	 */
-	public void setWorkSite(String workSite) {
-		this.workSite = workSite;
-	}
+    /**
+     * @param workSite
+     *            The workSite to set.
+     */
+    public void setWorkSite(String workSite) {
+        this.workSite = workSite;
+    }
 
-	/**
-	 * @return Returns the infoSite.
-	 */
-	public String getInfoSite() {
-		return infoSite;
-	}
+    /**
+     * @return Returns the infoSite.
+     */
+    public String getInfoSite() {
+        return infoSite;
+    }
 
-	/**
-	 * @param infoSite
-	 *            The infoSite to set.
-	 */
-	public void setInfoSite(String infoSite) {
-		this.infoSite = infoSite;
-	}
+    /**
+     * @param infoSite
+     *            The infoSite to set.
+     */
+    public void setInfoSite(String infoSite) {
+        this.infoSite = infoSite;
+    }
 
-	/**
-	 * @return Returns the role.
-	 */
-	public DCUserRoleEnum getRole() {
-		return role;
-	}
+    public Date getGmtStart() {
+        return gmtStart;
+    }
 
-	/**
-	 * @param role
-	 *            The role to set.
-	 */
-	public void setRole(DCUserRoleEnum role) {
-		this.role = role;
-	}
+    public void setGmtStart(Date gmtStart) {
+        this.gmtStart = gmtStart;
+    }
 
-	/**
-	 * @return the status
-	 */
-	public DCUserStatusEnum getStatus() {
-		return status;
-	}
+    public Date getGmtMotify() {
+        return gmtMotify;
+    }
 
-	/**
-	 * @param status
-	 *            the status to set
-	 */
-	public void setStatus(DCUserStatusEnum status) {
-		this.status = status;
-	}
+    public void setGmtMotify(Date gmtMotify) {
+        this.gmtMotify = gmtMotify;
+    }
 
-	@Override
-	public String toString() {
+    /**
+     * @return the status
+     */
+    public DCUserStatusEnum getStatus() {
+        return status;
+    }
 
-		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
-	}
+    /**
+     * @param status
+     *            the status to set
+     */
+    public void setStatus(DCUserStatusEnum status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }
