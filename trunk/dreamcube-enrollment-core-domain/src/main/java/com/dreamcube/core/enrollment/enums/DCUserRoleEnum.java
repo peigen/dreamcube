@@ -8,10 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 总体说明。
+ *                       
+ *Filename:DCUserRoleEnum.java<br>
  *
- * @author yue.lipy@alipay.com
- * @version $Id: DCUserRole.java,v 0.1 2010-3-31 下午02:56:28 peigen Exp $
+ *Description:<br>
+ *
+ *Version:0.1<br>
+ *
+ *Author: peigen<br>
+ *
+ *Email: peigen123@gmail.com<br>
+ *
+ *Blog: http://peigen.info<br>
+ *
+ *       
+ *History:<br>
+ *<li>Author: peigen</li>
+ *<li>Date: 2010-4-2</li>
+ *<li>Version: 0.1</li>
+ *<li>Content: create</li>
  */
 
 public enum DCUserRoleEnum {
@@ -23,7 +38,11 @@ public enum DCUserRoleEnum {
     CUBER("CUBER", "参与者"),
 
     /** VC---投资者 */
-    VC("VC", "投资者");
+    VC("VC", "投资者"),
+
+    /** MANAGE---管理员 */
+    MANAGE("MANAGE", "管理员");
+
     private final String key;
 
     private final String desc;

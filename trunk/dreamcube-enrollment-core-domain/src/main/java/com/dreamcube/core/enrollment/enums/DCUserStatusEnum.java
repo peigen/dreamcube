@@ -29,14 +29,12 @@ import java.util.List;
  */
 
 public enum DCUserStatusEnum {
-	/** AXISER---发起者 */
-    AXISER("AXISER", "发起者"),
+    /** NOT_CERTIFIED---实名认证 */
+    CERTIFIED("CERTIFIED", "实名认证"),
 
-    /** CUBER---参与者 */
-    CUBER("CUBER", "参与者"),
+    /** NOT_CERTIFIED---未认证 */
+    NOT_CERTIFIED("NOT_CERTIFIED", "未认证");
 
-    /** VC---投资者 */
-    VC("VC", "投资者");
     private final String key;
 
     private final String desc;
