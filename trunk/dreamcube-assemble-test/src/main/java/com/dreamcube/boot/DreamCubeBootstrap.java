@@ -11,12 +11,13 @@ import java.util.Properties;
 
 import org.mortbay.jetty.Handler;
 import org.mortbay.jetty.Server;
+import org.mortbay.jetty.handler.ContextHandler;
 import org.mortbay.jetty.handler.ContextHandlerCollection;
+import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.ServletHandler;
 import org.mortbay.jetty.servlet.ServletHolder;
 import org.mortbay.jetty.servlet.ServletMapping;
-import org.mortbay.jetty.webapp.WebAppContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
@@ -27,7 +28,8 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 public class DreamCubeBootstrap {
 	private Server server;
-	private Context root;
+	private Context servletContext;
+	private ContextHandler resourceContext;
 	
 	private String contextLocation = "";
 	private String springContextLocation = "";
@@ -126,12 +128,16 @@ public class DreamCubeBootstrap {
 		preConfig();
 		server = new Server(serverPort);
 		final String CONTEXTPATH = "/dreamcube";
-		root = new Context(server, CONTEXTPATH, Context.SESSIONS);
+		servletContext = new Context(server, CONTEXTPATH, Context.SESSIONS);
 		
 		//增加处理静态文件的handler
-		WebAppContext webApp = new WebAppContext(contextLocation, "/");
+		resourceContext = new Context();
+		resourceContext.setContextPath("/");
+		resourceContext.setResourceBase(contextLocation);
+		resourceContext.setHandler( new ResourceHandler());
+		
 		//增加servlet handler
-		ServletHandler servletHandler = root.getServletHandler();
+		ServletHandler servletHandler = servletContext.getServletHandler();
 		DispatcherServlet ds = new DispatcherServlet();
 		ds.setContextConfigLocation(springContextLocation);
 		ServletHolder servletHolder = new ServletHolder(ds);
@@ -145,7 +151,7 @@ public class DreamCubeBootstrap {
 		
 		//设置server handler
 		ContextHandlerCollection handlerCollection = new ContextHandlerCollection();
-		handlerCollection.setHandlers(new Handler[] { root, webApp });
+		handlerCollection.setHandlers(new Handler[] {  resourceContext,servletContext });
         server.setHandler(handlerCollection);
 
 	}
