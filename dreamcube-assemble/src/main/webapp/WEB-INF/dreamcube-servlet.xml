@@ -39,8 +39,8 @@
 			value="file:${webapp_path}/WEB-INF/velocityTemplates/" />
 		<property name="velocityProperties">
 			<props>
-				<prop key="input.encoding">GBK</prop>
-				<prop key="output.encoding">GBK</prop>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
 				<prop key="parser.pool.size">100</prop>
 			</props>
 		</property>
