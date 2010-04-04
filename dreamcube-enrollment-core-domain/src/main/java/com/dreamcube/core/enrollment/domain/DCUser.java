@@ -63,10 +63,10 @@ public class DCUser {
     // TODO 重构为对象
     private String           projects;
 
-    /** 信息:twitter/fackbook */
+    /** SNS信息:twitter/fackbook */
     private String           infoSite;
 
-    private Date             gmtStart;
+    private Date             gmtCreate;
 
     private Date             gmtMotify;
 
@@ -234,12 +234,12 @@ public class DCUser {
         this.infoSite = infoSite;
     }
 
-    public Date getGmtStart() {
-        return gmtStart;
+    public Date getGmtCreate() {
+        return gmtCreate;
     }
 
-    public void setGmtStart(Date gmtStart) {
-        this.gmtStart = gmtStart;
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 
     public Date getGmtMotify() {
