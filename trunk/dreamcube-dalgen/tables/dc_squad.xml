@@ -1,0 +1,48 @@
+<table sqlname="dc_squad">
+	<operation name="insert" paramtype="object">
+		<sql>
+			<![CDATA[
+				insert into dc_squad
+					(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify)
+				values
+					(?,?,?,?,?,?,?,?,?);
+        	]]>
+		</sql>
+	</operation>
+
+	<operation name="load"  paramtype="primitive">
+		<sql>
+			<![CDATA[
+				  select * from dc_squad where squad_name=?;
+    		]]>
+		</sql>
+	</operation>
+	
+	<operation name="update" paramtype="object">
+		<sql>
+			<![CDATA[
+				   update dc_squad
+			   set 
+				   squad_name =?,
+				   squadDesc=?,
+				   axiser=?,
+				   cubers=?,
+				   followers=?,
+				   investors=?,
+				   status=?,
+				   gmt_create=sysdate,
+				   gmt_modify=sysdate
+			 where id = ?;
+    		]]>
+		</sql>
+	</operation>
+	
+	<operation name="clean">
+		<sql>
+			<![CDATA[
+				delete from dc_squad;
+			]]>
+		</sql>
+	</operation>
+	
+</table>
