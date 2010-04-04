@@ -68,10 +68,42 @@ public class DCUser {
 
     private Date             gmtCreate;
 
-    private Date             gmtMotify;
+    private Date             gmtModify;
 
     /** 当前状态 */
     private DCUserStatusEnum status;
+
+    /**
+     * @param logonName
+     * @param logonPasswd
+     * @param nickName
+     * @param birthday
+     * @param certNo
+     * @param gender
+     * @param workSite
+     * @param projects
+     * @param infoSite
+     * @param gmtCreate
+     * @param gmtModify
+     * @param status
+     */
+    public DCUser(String logonName, String logonPasswd, String nickName, Date birthday,
+                  String certNo, int gender, String workSite, String projects, String infoSite,
+                  Date gmtCreate, Date gmtModify, DCUserStatusEnum status) {
+        super();
+        this.logonName = logonName;
+        this.logonPasswd = logonPasswd;
+        this.nickName = nickName;
+        this.birthday = birthday;
+        this.certNo = certNo;
+        this.gender = gender;
+        this.workSite = workSite;
+        this.projects = projects;
+        this.infoSite = infoSite;
+        this.gmtCreate = gmtCreate;
+        this.gmtModify = gmtModify;
+        this.status = status;
+    }
 
     /**
      * 
@@ -242,12 +274,12 @@ public class DCUser {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtMotify() {
-        return gmtMotify;
+    public Date getGmtModify() {
+        return gmtModify;
     }
 
-    public void setGmtMotify(Date gmtMotify) {
-        this.gmtMotify = gmtMotify;
+    public void setGmtModify(Date gmtModify) {
+        this.gmtModify = gmtModify;
     }
 
     /**
