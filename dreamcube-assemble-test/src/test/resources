@@ -1,8 +1,0 @@
-<<<<<<< .mine
-project_home=/media/WORK/source/dreamcube/yayavsi
-project_modules=dreamcube-dal,dreamcube-enrollment-core-domain,dreamcube-enrollment-biz,dreamcube-enrollment-web,dreamcube-enrollment-assemble
-=======
-project_home=/home/peigen/workspace/open_ssh/dreamcube
-project_modules=dreamcube-dal,dreamcube-core-common,dreamcube-squad-biz,dreamcube-squad-core-domain,dreamcube-squad-web,dreamcube-enrollment-core-domain,dreamcube-enrollment-biz,dreamcube-enrollment-web,dreamcube-enrollment-assemble
->>>>>>> .r87
-jetty_port=8080
