@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sql-map-config>
+	<sql-map resource="sqlmap/DCUser.xml" />
+	<sql-map resource="sqlmap/DCSquad.xml" />
+</sql-map-config>
