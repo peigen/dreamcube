@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+	default-lazy-init="true">
+
+	<!-- mysql版本 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/dreamcube?useUnicode=true&amp;characterEncoding=UTF-8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="peigen"></property>
+		<property name="maxActive" value="50" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWait" value="1000" />
+	</bean>
+	<!-- SessionFactory -->
+
+	<bean id="sessionFactory"
+		class="com.dreamcube.core.common.tools.AnnotationSessionFactoryBeanEx">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQL5Dialect
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="show_sql">true</prop>
+			</props>
+		</property>
+		<property name="annotatedClassesLocations">
+			<list>
+				<value>classpath*:com/dreamcube/core/dal/entity/*.class</value>
+			</list>
+		</property>
+		<property name="excludedClassesRegexPatterns">
+			<list>
+				<value><![CDATA[^[\w\.]+Test[\w]+$]]></value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- TransactionManager  -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 事务 -->
+	<bean id="baseServiceProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="baseDaoService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="spring/sql-map-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 基础组件 -->
+	<bean id="baseDao" class="com.dreamcube.core.dal.base.BaseDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseDaoService" class="com.dreamcube.core.dal.base.BaseDaoService">
+		<property name="baseDao" ref="baseDao" />
+	</bean>
+</beans>
