@@ -50,20 +50,17 @@
 		</fileset>
 	</path>
 	
+	<property name="dir.antx" value="${user.home}/soft/java/antx" />
+	
 	<target name="antx_home_setting" description="设定ANTX_HOME即antx文件夹所在目录">		
  		<!-- 引入环境变量ANTX_HOME -->
  		<property environment="env"/>
 		<if><not><isset property="env.ANTX_HOME"/></not>
-    	<then>
-      	<fail>
-			  	ANTX_HOME
-			  </fail>
-      </then>
 			<else>
-				<property name="dir.antx" value="${env.ANTX_HOME}"/>
+				<property name="dir.antx" value="${user.home}/soft/java/antx"/>
 			</else>
-    </if>
-    <echo message="dir.antx=${dir.antx}"/>
+    	</if>
+    	<echo message="{env.ANTX_HOME}"/>
 	</target>
   
 	<!-- compile middlegen plugin -->
@@ -95,7 +92,6 @@
 	<!-- Run Middlegen                                                       -->
 	<!-- =================================================================== -->
 	<target name="middlegen" depends="compile,check-driver-present,panic-if-driver-not-present" description="">
-
 		<taskdef name="middlegen" classname="middlegen.MiddlegenTask" classpathref="classpath.main" />
 		<echo message="" />
 		<input message="请输入目标表名,多表以逗号分隔,全表生成请输入'*',只生成Sequence请输入'seq': " addproperty="tabs" />

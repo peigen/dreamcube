@@ -16,7 +16,5 @@
 #end
     <bean id="${table.beanName}DAO" class="${table.package}.ibatis.Ibatis${table.baseClassName}DAO" parent="$parent"/>
 #end
-
-	<bean id="${plugin.seqDAOBeanName}" class="${plugin.qualifiedSeqIbatisClassName}" parent="baseSqlMapClientDAO"/>
-    
+	
 </beans>
