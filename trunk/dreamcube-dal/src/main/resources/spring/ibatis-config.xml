@@ -33,7 +33,7 @@
 		</property>
 		<property name="annotatedClassesLocations">
 			<list>
-				<value>classpath*:com/dreamcube/core/dal/entity/*.class</value>
+				<value>classpath*:com/dreamcube/core/dal/dataobject/*.class</value>
 			</list>
 		</property>
 		<property name="excludedClassesRegexPatterns">
@@ -57,9 +57,6 @@
 		<property name="transactionManager">
 			<ref bean="transactionManager" />
 		</property>
-		<property name="target">
-			<ref local="baseDaoService" />
-		</property>
 		<property name="transactionAttributes">
 			<props>
 				<prop key="insert*">PROPAGATION_REQUIRED</prop>
@@ -70,16 +67,8 @@
 	</bean>
 
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="configLocation" value="spring/sql-map-config.xml" />
+		<property name="configLocation" value="sqlmap/sqlmap.xml" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 基础组件 -->
-	<bean id="baseDao" class="com.dreamcube.core.dal.base.BaseDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean id="baseDaoService" class="com.dreamcube.core.dal.base.BaseDaoService">
-		<property name="baseDao" ref="baseDao" />
-	</bean>
 </beans>

@@ -14,8 +14,11 @@
 			<value>classpath:dreamcube-assemble-config.properties</value>
 		</property>
 	</bean>
+	
+	<import resource="classpath:spring/applicationContext.xml"/>
 
 	<context:component-scan base-package="com.dreamcube.enrollment" />
+	<context:component-scan base-package="com.dreamcube.squad" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
@@ -47,12 +50,12 @@
 	</bean>
 
 
-	<bean name="viewNameTranslator"
+	<bean id="viewNameTranslator"
 		class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">
 	</bean>
 
-	<bean
+	<bean id="defaultAnnotationHandlerMapping"
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
-	<bean
+	<bean id="annotationMethodHandlerAdapter"
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 </beans>

@@ -1,0 +1,17 @@
+<div>
+	<form method="POST" id="vForm" name="vForm" action="./edit.html">
+	<table>
+		<tr>
+			<td>小组名:</td>
+			<td><input name="squadName" value=""/>
+		</tr>
+		<tr>
+			<td>小组描述:</td>
+			<td><input name="squadDesc" value=""/>
+		</tr>
+		<tr>
+			<td><input name="submit" type="submit" value="注册"/></td>
+			<td><input name="reset" type="reset" value="重置" /></td>
+	</table>
+	</form>
+</div>

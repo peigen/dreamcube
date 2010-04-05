@@ -1,0 +1,25 @@
+<div>
+	<form method="POST" id="vForm" name="vForm" action="./edit.html">
+	<table>
+		<tr>
+			<td>登录名:</td>
+			<td><input name="logonName" value=""/>
+		</tr>
+		<tr>
+			<td>昵称:</td>
+			<td><input name="nickName" value=""/>
+		</tr>
+		<tr>
+			<td>登录密码：</td>
+			<td><input name="logonPasswd" value=""/>
+		</tr>
+		<tr>
+			<td>校验密码：</td>
+			<td><input name="logonPasswdValid" value=""/>
+		</tr>
+		<tr>
+			<td><input name="submit" type="submit" value="注册"/></td>
+			<td><input name="reset" type="reset" value="重置" /></td>
+	</table>
+	</form>
+</div>
