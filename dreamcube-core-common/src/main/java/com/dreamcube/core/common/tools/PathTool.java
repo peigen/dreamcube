@@ -17,7 +17,9 @@ import java.security.ProtectionDomain;
  * 
  * Author: peigen
  * 
- * History: [ Author Date Version Content ] peigen 2008-07-29 V0.1 create
+ * History:<br>
+ *<li>Author: peigen</li> <li>Date: 2010-4-5</li> <li>Version: 0.1</li> <li>
+ * Content: create</li>
  * 
  */
 @SuppressWarnings("unchecked")
