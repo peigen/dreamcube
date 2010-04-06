@@ -1,5 +1,7 @@
 package com.dreamcube.squad.biz.convert;
 
+import org.springframework.beans.BeanUtils;
+
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import com.dreamcube.core.squad.domain.DCSquad;
 
@@ -34,6 +36,10 @@ public class SquadConvert {
      */
     public static DcSquadDO domainToDo(DCSquad squad) {
         DcSquadDO squadDo = new DcSquadDO();
+        squadDo.setAxiser(squad.getAxiser());
+        squadDo.setSquadDesc(squad.getSquadDesc());
+        squadDo.setSquadName(squad.getSquadName());
+        
 
         return squadDo;
     }

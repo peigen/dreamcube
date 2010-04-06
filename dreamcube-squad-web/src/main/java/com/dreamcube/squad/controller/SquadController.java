@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +38,7 @@ import com.dreamcube.squad.form.SquadForm;
  */
 @Controller
 public class SquadController {
-
+	@Autowired
     private SquadService squadService;
     private Logger       log = LoggerFactory.getLogger(SquadController.class);
 

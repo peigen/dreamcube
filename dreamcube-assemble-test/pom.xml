@@ -12,12 +12,6 @@
 	<name>dreamcube-assemble-test</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-		<dependency>
-			<groupId>com.dreamcube</groupId>
-			<artifactId>dreamcube-enrollment-biz</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>com.dreamcube</groupId>
@@ -28,21 +22,39 @@
 
 		<dependency>
 			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-enrollment-core-domain</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-enrollment-biz</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dreamcube</groupId>
 			<artifactId>dreamcube-enrollment-web</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!--  <dependency>
-			<groupId>com.dreamcube</groupId>
-			<artifactId>dreamcube-assemble</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>-->
 		
+		<!-- squad -->
 		<dependency>
 			<groupId>com.dreamcube</groupId>
-			<artifactId>dreamcube-enrollment-core-domain</artifactId>
+			<artifactId>dreamcube-squad-core-domain</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-squad-biz</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-squad-web</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
