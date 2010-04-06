@@ -46,6 +46,13 @@
 			<version>1.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-enrollment-core-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
 		<!-- test scoped -->
 		<dependency>
 			<groupId>junit</groupId>
