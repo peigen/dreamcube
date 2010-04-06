@@ -49,7 +49,7 @@
 		
 		<dependency>
 			<groupId>com.dreamcube</groupId>
-			<artifactId>dreamcube-enrollment-core-common</artifactId>
+			<artifactId>dreamcube-core-common</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
