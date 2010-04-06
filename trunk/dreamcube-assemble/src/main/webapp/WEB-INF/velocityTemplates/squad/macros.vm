@@ -1,0 +1,4 @@
+#macro ( jdkEnumMessageByValue $name $value)
+  #set ($jdkEnum = $!counterJDKEnumUtil.getJDKEnumByValue($name,$value))
+  $jdkEnum.getMessage()
+#end
