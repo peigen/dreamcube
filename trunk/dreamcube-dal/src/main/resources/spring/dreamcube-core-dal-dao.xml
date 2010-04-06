@@ -11,6 +11,4 @@
     <!-- ======================================================================== -->
     <bean id="dcSquadDAO" class="com.dreamcube.core.dal.ibatis.IbatisDcSquadDAO" parent="baseSqlMapClientDAO"/>
 
-	<!--  <bean id="seqDAO" class="com.dreamcube.core.dal.ibatis.IbatisSeqDAO" parent="baseSqlMapClientDAO"/>-->
-    
 </beans>

@@ -12,7 +12,10 @@
 			value="jdbc:mysql://localhost:3306/dreamcube?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
 		<property name="username" value="root"></property>
+		<!-- holly 
 		<property name="password" value="passme"></property>
+		 -->
+		<property name="password" value="peigen"></property>
 		<property name="maxActive" value="50" />
 		<property name="maxIdle" value="5" />
 		<property name="maxWait" value="1000" />
