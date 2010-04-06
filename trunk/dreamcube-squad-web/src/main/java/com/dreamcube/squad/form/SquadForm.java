@@ -26,8 +26,10 @@ import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
  * 
  * 
  * History:<br>
- *<li>Author: peigen</li> <li>Date: 2010-4-5</li> <li>Version: 0.1</li> <li>
- * Content: create</li>
+ *<li>Author: peigen</li>
+ *<li>Date: 2010-4-5</li>
+ *<li>Version: 0.1</li>
+ *<li>Content: create</li>
  * 
  */
 public class SquadForm implements Serializable {
