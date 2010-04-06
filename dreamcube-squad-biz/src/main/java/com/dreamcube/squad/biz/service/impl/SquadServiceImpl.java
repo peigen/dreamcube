@@ -1,8 +1,11 @@
 package com.dreamcube.squad.biz.service.impl;
 
+import java.util.Date;
+
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import com.dreamcube.core.squad.domain.DCSquad;
+import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 import com.dreamcube.squad.biz.convert.SquadConvert;
 import com.dreamcube.squad.biz.service.SquadService;
 
@@ -30,7 +33,7 @@ import com.dreamcube.squad.biz.service.SquadService;
  */
 public class SquadServiceImpl implements SquadService {
 
-    private DcSquadDAO dcdcSquadDAO;
+    private DcSquadDAO dcSquadDAO;
 
     /**
      * @param squad
@@ -40,7 +43,15 @@ public class SquadServiceImpl implements SquadService {
     public void addSquad(DCSquad squad) {
 
         DcSquadDO dcSquad = SquadConvert.domainToDo(squad);
-        dcdcSquadDAO.insert(dcSquad);
+        dcSquad.setStatus(DCSquadStatusEnum.MUSTER.getCode());
+        dcSquad.setGmtCreate(new Date());
+        dcSquad.setGmtModify(new Date());
+        dcSquad.setAxiser("x");
+        dcSquadDAO.insert(dcSquad);
     }
+
+	public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
+		this.dcSquadDAO = dcSquadDAO;
+	}
 
 }
