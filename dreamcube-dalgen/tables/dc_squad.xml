@@ -5,15 +5,23 @@
 				insert into dc_squad
 					(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify)
 				values
-					(?,?,?,?,?,?,?,?,?);
+					(?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
         	]]>
 		</sql>
 	</operation>
 
-	<operation name="load"  paramtype="primitive">
+	<operation name="loadByName" paramtype="primitive">
 		<sql>
 			<![CDATA[
 				  select * from dc_squad where squad_name=?;
+    		]]>
+		</sql>
+	</operation>
+	
+	<operation name="load" multiplicity="many">
+		<sql>
+			<![CDATA[
+				  select * from dc_squad;
     		]]>
 		</sql>
 	</operation>
@@ -30,28 +38,20 @@
 				   followers=?,
 				   investors=?,
 				   status=?,
-				   gmt_create=sysdate,
-				   gmt_modify=sysdate
+				   gmt_create=CURRENT_TIMESTAMP,
+				   gmt_modify=CURRENT_TIMESTAMP
 			 where id = ?;
     		]]>
 		</sql>
 	</operation>
 	
-	<operation name="delte">
+	<operation name="deleteById">
 		<sql>
 			<![CDATA[
 				delete from dc_squad where id = ?;
 			]]>
 		</sql>
 	
-	</operation>
-	
-	<operation name="clean">
-		<sql>
-			<![CDATA[
-				delete from dc_squad;
-			]]>
-		</sql>
 	</operation>
 	
 </table>

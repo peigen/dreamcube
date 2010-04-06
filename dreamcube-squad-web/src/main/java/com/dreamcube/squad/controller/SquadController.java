@@ -1,6 +1,7 @@
 package com.dreamcube.squad.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,15 +39,10 @@ import com.dreamcube.squad.form.SquadForm;
  */
 @Controller
 public class SquadController {
-	@Autowired
+    @Autowired
     private SquadService squadService;
     private Logger       log = LoggerFactory.getLogger(SquadController.class);
 
-    /**
-     * method to handle the get method of helloworld
-     * @param modelMap
-     * @return vm
-     */
     @RequestMapping(value = "/squad/show.html", method = RequestMethod.GET)
     public String viewShow(ModelMap modelMap) {
         modelMap.addAttribute("time", new Date());
@@ -71,6 +67,15 @@ public class SquadController {
         return "squad/show.vm";
     }
 
+    @RequestMapping(value = "/squad/list.html", method = RequestMethod.GET)
+    public String list(ModelMap modelMap) {
+
+        List<DCSquad> list = squadService.queryAllSquad();
+        modelMap.addAttribute("squadList", list);
+        return "squad/list.vm";
+    }
+
+    // private method
     /**
      * 
      * @param form

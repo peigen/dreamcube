@@ -7,8 +7,8 @@ CREATE TABLE `dreamcube`.`dc_squad` (
   `followers` VARCHAR(4000) ,
   `investors` VARCHAR(400) ,
   `status` VARCHAR(20)  NOT NULL,
-  `gmt_create` DATE  NOT NULL,
-  `gmt_modify` DATE  NOT NULL,
+  `gmt_create` TIMESTAMP  NOT NULL,
+  `gmt_modify` TIMESTAMP  NOT NULL,
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB

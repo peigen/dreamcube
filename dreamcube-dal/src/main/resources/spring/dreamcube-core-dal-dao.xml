@@ -10,5 +10,5 @@
     <!--  DAO生成                                                               -->
     <!-- ======================================================================== -->
     <bean id="dcSquadDAO" class="com.dreamcube.core.dal.ibatis.IbatisDcSquadDAO" parent="baseSqlMapClientDAO"/>
-
+	
 </beans>

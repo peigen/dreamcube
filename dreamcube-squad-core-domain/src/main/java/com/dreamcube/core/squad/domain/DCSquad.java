@@ -74,10 +74,19 @@ public class DCSquad {
         this.axiser = axiser;
         this.cubers = axiser;
         this.investors = investors;
+
+        // 新建领域对象默认以下属性
         this.status = DCSquadStatusEnum.MUSTER;
         this.gmtCreate = new Date();
         this.gmtModify = new Date();
 
+    }
+
+    /**
+     * 空对象 
+     */
+    public DCSquad() {
+        super();
     }
 
     //~~~ DI

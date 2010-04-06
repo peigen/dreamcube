@@ -241,12 +241,21 @@ public class DcSquadDO {
 		this.gmtCreate = gmtCreate;
 	}
 
+    /**
+     * Getter method for property <tt>gmtModify</tt>.
+     *
+     * @return property value of gmtModify
+     */
 	public Date getGmtModify() {
 		return gmtModify;
 	}
-
+	
+	/**
+	 * Setter method for property <tt>gmtModify</tt>.
+	 * 
+	 * @param gmtModify value to be assigned to property gmtModify
+     */
 	public void setGmtModify(Date gmtModify) {
 		this.gmtModify = gmtModify;
 	}
-
 }
