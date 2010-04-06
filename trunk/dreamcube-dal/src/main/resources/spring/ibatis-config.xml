@@ -17,58 +17,32 @@
 		<property name="maxIdle" value="5" />
 		<property name="maxWait" value="1000" />
 	</bean>
-	<!-- SessionFactory -->
-
-	<bean id="sessionFactory"
-		class="com.dreamcube.core.common.tools.AnnotationSessionFactoryBeanEx">
-		<property name="dataSource" ref="dataSource" />
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQL5Dialect
-				</prop>
-				<prop key="hibernate.hbm2ddl.auto">none</prop>
-				<prop key="show_sql">true</prop>
-			</props>
-		</property>
-		<property name="annotatedClassesLocations">
-			<list>
-				<value>classpath*:com/dreamcube/core/dal/dataobject/*.class</value>
-			</list>
-		</property>
-		<property name="excludedClassesRegexPatterns">
-			<list>
-				<value><![CDATA[^[\w\.]+Test[\w]+$]]></value>
-			</list>
-		</property>
-	</bean>
-
-
 
 	<!-- TransactionManager  -->
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<!-- 事务 -->
-	<bean id="baseServiceProxy"
-		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="transactionManager" />
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="insert*">PROPAGATION_REQUIRED</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED</prop>
-				<prop key="update*">PROPAGATION_REQUIRED</prop>
-			</props>
-		</property>
-	</bean>
-
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="configLocation" value="sqlmap/sqlmap.xml" />
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- transaction Template -->
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager">
+			<ref bean="transactionManager"/>
+		</property>
+	</bean>
+	
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:sqlmap/sqlmap.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="baseSqlMapClientDAO" abstract="true">
+		<property name="dataSource" >
+			<ref bean="dataSource"/>
+		</property>
+		<property name="sqlMapClient">
+			<ref bean="sqlMapClient"/>
+		</property>
 	</bean>
 
 </beans>
