@@ -103,7 +103,7 @@ public class DreamCubeBootstrap {
 	private URL[] toSubjectPathURLs(String projectHome, String projectModule)
 			throws MalformedURLException {
 		String[] modules = projectModule.split(",");
-		subProjectPath = new URL[modules.length];
+		subProjectPath = new URL[modules.length+1];
 		int i = 0;
 		for (String module : modules) {
 			URL url = new File(projectHome, module + "/target/").toURI()
@@ -112,6 +112,9 @@ public class DreamCubeBootstrap {
 
 			System.out.println(url);
 		}
+		subProjectPath[i++] =  new File(projectHome, "dreamcube-assemble" + "/src/main/resources/").toURI()
+		.toURL();
+		System.out.println(subProjectPath[--i]);
 		return subProjectPath;
 	}
 
