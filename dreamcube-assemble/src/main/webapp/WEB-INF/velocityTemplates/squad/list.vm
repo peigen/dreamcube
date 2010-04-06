@@ -1,0 +1,40 @@
+<div>
+	#if($squadList && ($squadList.size()>0))
+	##结果列表表格	
+	<table border="0" cellspacing="0" cellpadding="5" id="searchresult">
+		<tr>
+			<th>团队名称</th>
+			<th>团队简介</th>
+			<th>发起者</th>
+			<th>团队成员</th>			
+			<th>跟随者</th>
+			<th>投资人</th>			
+			<th>当前状态</th>
+			<th>创建时间</th>
+			<th>最后修改时间</th>
+			<th>更改操作</th>
+		</tr>
+		#foreach($item in $squadList)
+		<tr>
+			<td>$!item.squadName &nbsp;</td>
+			<td>$!item.squadDesc &nbsp;</td>
+			<td>$!item.axiser &nbsp;</td>
+			<td>$!item.cubers &nbsp;</td>
+			<td>$!item.followers &nbsp;</td>
+			<td>$!item.investors &nbsp;</td>
+			<td>$!item.status &nbsp;</td>
+			<td>$!dateUtil.format($!item.gmtCreate,'yyyy-MM-dd HH:mm:ss')  &nbsp;</td>
+			<td>$!dateUtil.format($!item.gmtModified,'yyyy-MM-dd HH:mm:ss')  &nbsp;</td>
+			<td width="8%">
+				<form name="form_delete" method=post action="depositbackTranscodeConfQuery.htm">
+					<input type="hidden" name="id" value="$!item.id">
+					<input type="hidden" name="action" value="depositback_transcode_conf_action">
+					<input type="submit" name="event_submit_do_delete_depositback_transcode_conf" value="删除" onClick="return deleteAction()">
+    				<input type="button" value="修改" onclick="do_modify_action('$!{item.id}')" />
+			   </form>
+			</td>
+		</tr>
+		#end
+	</table>##end##结果列表表格
+	#end ##if($pageList && $pageList.size()>0)语句块
+</div>
