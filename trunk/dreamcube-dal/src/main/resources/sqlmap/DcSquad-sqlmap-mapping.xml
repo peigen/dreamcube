@@ -34,7 +34,7 @@
         <result property="investors" column="investors" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="status" column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="gmtCreate" column="gmt_create" javaType="java.util.Date" jdbcType="DATETIME"/>
-        <result property="gmtMotify" column="gmt_motify" javaType="java.util.Date" jdbcType="DATETIME"/>
+        <result property="gmtModify" column="gmt_modify" javaType="java.util.Date" jdbcType="DATETIME"/>
     </resultMap>
 
 
@@ -51,7 +51,7 @@
     <!-- mapped statement for IbatisDcSquadDAO.load -->
     <select id="MS-DC-SQUAD-LOAD" resultMap="RM-DC-SQUAD">
     <![CDATA[
-        select * from dc_squad where (squad_name = #value#)
+        select * from dc_squad where (squad_name = #squadName#)
     ]]>
     </select>
 

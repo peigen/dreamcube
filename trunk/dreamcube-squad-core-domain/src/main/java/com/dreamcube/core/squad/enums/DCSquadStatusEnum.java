@@ -36,24 +36,24 @@ public enum DCSquadStatusEnum {
     /** RELEASE---发布阶段 */
     RELEASE("RELEASE", "发布阶段");
 
-    private final String key;
+    private final String code;
 
     private final String desc;
 
     /**
-     * @param key
+     * @param code
      * @param desc
      */
-    private DCSquadStatusEnum(String key, String desc) {
-        this.key = key;
+    private DCSquadStatusEnum(String code, String desc) {
+        this.code = code;
         this.desc = desc;
     }
 
     /**
      * @return Returns the key.
      */
-    public String getKey() {
-        return key;
+    public String getCode() {
+        return code;
     }
 
     /**

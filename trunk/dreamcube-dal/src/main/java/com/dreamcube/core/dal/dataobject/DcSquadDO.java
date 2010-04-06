@@ -73,9 +73,9 @@ public class DcSquadDO {
 	private Date gmtCreate;
 
 	/**
-	 * This property corresponds to db column <tt>gmt_motify</tt>.
+	 * This property corresponds to db column <tt>gmt_modify</tt>.
 	 */
-	private Date gmtMotify;
+	private Date gmtModify;
 
     //========== getters and setters ==========
 
@@ -241,21 +241,12 @@ public class DcSquadDO {
 		this.gmtCreate = gmtCreate;
 	}
 
-    /**
-     * Getter method for property <tt>gmtMotify</tt>.
-     *
-     * @return property value of gmtMotify
-     */
-	public Date getGmtMotify() {
-		return gmtMotify;
+	public Date getGmtModify() {
+		return gmtModify;
 	}
-	
-	/**
-	 * Setter method for property <tt>gmtMotify</tt>.
-	 * 
-	 * @param gmtMotify value to be assigned to property gmtMotify
-     */
-	public void setGmtMotify(Date gmtMotify) {
-		this.gmtMotify = gmtMotify;
+
+	public void setGmtModify(Date gmtModify) {
+		this.gmtModify = gmtModify;
 	}
+
 }
