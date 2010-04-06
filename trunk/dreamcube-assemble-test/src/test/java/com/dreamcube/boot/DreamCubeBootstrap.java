@@ -82,6 +82,10 @@ public class DreamCubeBootstrap {
 				properties.getProperty("project_home")
 						+ "/dreamcube-assemble/src/main/webapp/WEB-INF/dreamcube-servlet.xml")
 				.toURI().toURL().toExternalForm();
+		StringBuffer springContextBuffer  = new StringBuffer(springContextLocation);
+		springContextBuffer.append(",classpath*:spring/*.xml");
+		springContextLocation = springContextBuffer.toString();
+		
 		contextLocation = new File(
 				properties.getProperty("project_home")
 				+ "/dreamcube-assemble/src/main/webapp/")
@@ -129,7 +133,7 @@ public class DreamCubeBootstrap {
 		server = new Server(serverPort);
 		final String CONTEXTPATH = "/dreamcube";
 		servletContext = new Context(server, CONTEXTPATH, Context.SESSIONS);
-		
+//		servletContext.setAttribute("contextConfigLocation", value);
 		//增加处理静态文件的handler
 		resourceContext = new Context();
 		resourceContext.setContextPath("/");
