@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dreamcube.core.squad.domain.DCSquad;
+import com.dreamcube.squad.SquadFormConvert;
 import com.dreamcube.squad.biz.service.SquadService;
 import com.dreamcube.squad.form.SquadForm;
 
@@ -41,6 +42,8 @@ import com.dreamcube.squad.form.SquadForm;
 public class SquadController {
     @Autowired
     private SquadService squadService;
+
+    @SuppressWarnings("unused")
     private Logger       log = LoggerFactory.getLogger(SquadController.class);
 
     @RequestMapping(value = "/squad/show.html", method = RequestMethod.GET)
@@ -55,16 +58,22 @@ public class SquadController {
         return "squad/add.vm";
     }
 
-    @RequestMapping(value = "/squad/edit.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/squad/doEdit.html", method = RequestMethod.POST)
+    public String doEdit(ModelMap modelMap, SquadForm squadForm) {
+
+        squadService.editSquad(SquadFormConvert.covert(squadForm));
+
+        return "squad/show.vm";
+    }
+
+    @RequestMapping(value = "/squad/edit.html", method = RequestMethod.GET)
     public String edit(ModelMap modelMap, SquadForm squadForm) {
 
-        try {
-            squadService.addSquad(covert(squadForm));
-        } catch (Exception e) {
-            log.error("", e);
-        }
-        modelMap.addAttribute("time", new Date());
-        return "squad/show.vm";
+        DCSquad squad = squadService.loadById(squadForm.getId());
+
+        modelMap.addAttribute("squad", SquadFormConvert.covert(squad));
+
+        return "squad/edit.vm";
     }
 
     @RequestMapping(value = "/squad/list.html", method = RequestMethod.GET)
@@ -76,21 +85,5 @@ public class SquadController {
     }
 
     // private method
-    /**
-     * 
-     * @param form
-     * @return
-     */
-    private DCSquad covert(SquadForm form) {
-        DCSquad squad = new DCSquad(form.getSquadName(), form.getSquadDesc(), form.getAxiser(),
-            form.getInvestors(), form.getStatus());
-
-        return squad;
-    }
-
-    // ~~~DI
-    public void setSquadService(SquadService squadService) {
-        this.squadService = squadService;
-    }
 
 }

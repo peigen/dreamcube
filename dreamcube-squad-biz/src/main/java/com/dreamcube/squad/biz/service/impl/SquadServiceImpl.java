@@ -2,6 +2,7 @@ package com.dreamcube.squad.biz.service.impl;
 
 import java.util.List;
 
+import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import com.dreamcube.core.squad.domain.DCSquad;
@@ -35,19 +36,6 @@ public class SquadServiceImpl implements SquadService {
     private DcSquadDAO dcSquadDAO;
 
     /**
-     * @param squad
-     * @see com.dreamcube.squad.biz.service.SquadService#addSquad(com.dreamcube.core.squad.domain.DCSquad)
-     */
-    @Override
-    public void addSquad(DCSquad squad) {
-
-        DcSquadDO dcSquad = SquadConvert.domainToDo(squad);
-        //TODO 将来权限系统起来要重构掉的，取当前操作员名称
-        dcSquad.setAxiser("x");
-        dcSquadDAO.insert(dcSquad);
-    }
-
-    /**
      * @return
      * @see com.dreamcube.squad.biz.service.SquadService#queryAllSquad()
      */
@@ -57,6 +45,35 @@ public class SquadServiceImpl implements SquadService {
         List<DcSquadDO> dcSquadList = dcSquadDAO.load();
 
         return SquadConvert.doToDomainCollections(dcSquadList);
+    }
+
+    /**
+     * @param id
+     * @return
+     * @see com.dreamcube.squad.biz.service.SquadService#loadById(java.lang.String)
+     */
+    @Override
+    public DCSquad loadById(String id) {
+        DcSquadDO squadDO = dcSquadDAO.loadById(Integer.valueOf(id));
+
+        return SquadConvert.doToDomain(squadDO);
+    }
+
+    /**
+     * 
+     * @see com.dreamcube.squad.biz.service.SquadService#editSquad()
+     */
+    @Override
+    public void editSquad(DCSquad dcsquad) {
+
+        if (StringTool.isNotBlank(dcsquad.getId())) {
+            dcSquadDAO.update(SquadConvert.domainToDo(dcsquad));
+        } else {
+            //TODO 将来权限系统起来要重构掉的，取当前操作员名称
+            dcsquad.setAxiser("x");
+            dcSquadDAO.insert(SquadConvert.domainToDo(dcsquad));
+        }
+
     }
 
     // private method

@@ -29,16 +29,24 @@ import com.dreamcube.core.squad.domain.DCSquad;
 public interface SquadService {
 
     /**
-     * 新增团队
-     * @param squad
-     */
-    public void addSquad(DCSquad squad);
-
-    /**
      * 团队列表服务
      * 
      * @return
      */
     public List<DCSquad> queryAllSquad();
+
+    /**
+     * 根据id读取团队信息
+     * @param id
+     * @return
+     */
+    public DCSquad loadById(String id);
+
+    /**
+     * 团队信息修改
+     * 
+     * @param id
+     */
+    public void editSquad(DCSquad dcsquad);
 
 }

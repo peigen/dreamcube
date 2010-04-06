@@ -26,11 +26,10 @@
 			<td>$!dateUtil.format($!item.gmtCreate,'yyyy-MM-dd HH:mm:ss')  &nbsp;</td>
 			<td>$!dateUtil.format($!item.gmtModified,'yyyy-MM-dd HH:mm:ss')  &nbsp;</td>
 			<td width="8%">
-				<form name="form_delete" method=post action="depositbackTranscodeConfQuery.htm">
+				<form name="form_list" method=post action="squad/edit.html">
 					<input type="hidden" name="id" value="$!item.id">
-					<input type="hidden" name="action" value="depositback_transcode_conf_action">
 					<input type="submit" name="event_submit_do_delete_depositback_transcode_conf" value="删除" onClick="return deleteAction()">
-    				<input type="button" value="修改" onclick="do_modify_action('$!{item.id}')" />
+    				<input type="button" value="修改" onclick="$("form_list").submit();" />
 			   </form>
 			</td>
 		</tr>

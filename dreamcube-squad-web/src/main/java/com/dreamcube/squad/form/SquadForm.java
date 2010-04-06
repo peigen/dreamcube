@@ -33,118 +33,128 @@ import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
  * 
  */
 public class SquadForm implements Serializable {
-	private static final long serialVersionUID = -1364804142287870679L;
+    private static final long serialVersionUID = -1364804142287870679L;
 
-	/** 团队名称 */
-	@Length(min = 2, max = 32)
-	@RegExp(ValidateTool.REGEX_USER_NAME)
-	@NotBlank
-	private String squadName;
+    private String            id;
 
-	/** 团队简介 */
-	private String squadDesc;
+    /** 团队名称 */
+    @Length(min = 2, max = 32)
+    @RegExp(ValidateTool.REGEX_USER_NAME)
+    @NotBlank
+    private String            squadName;
 
-	/** 校验码 */
-	@RegExp(ValidateTool.REGUX_VALIDATE_CODE)
-	private String authcodeTxt;
+    /** 团队简介 */
+    private String            squadDesc;
 
-	private Date gmtCreate;
+    /** 校验码 */
+    @RegExp(ValidateTool.REGUX_VALIDATE_CODE)
+    private String            authcodeTxt;
 
-	private Date gmtModify;
+    private Date              gmtCreate;
 
-	/** 发起者 */
-	private String axiser;
+    private Date              gmtModify;
 
-	/** 成员ID-JSON格式 */
-	private String cubers;
+    /** 发起者 */
+    private String            axiser;
 
-	/** 跟随者-JSON格式 */
-	private String followers;
+    /** 成员ID-JSON格式 */
+    private String            cubers;
 
-	/** 投资人-JSON格式 */
-	private String investors;
+    /** 跟随者-JSON格式 */
+    private String            followers;
 
-	/** 团队当前状态 */
-	private DCSquadStatusEnum status;
+    /** 投资人-JSON格式 */
+    private String            investors;
 
-	public String getSquadName() {
-		return squadName;
-	}
+    /** 团队当前状态 */
+    private DCSquadStatusEnum status;
 
-	public void setSquadName(String squadName) {
-		this.squadName = squadName;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getSquadDesc() {
-		return squadDesc;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setSquadDesc(String squadDesc) {
-		this.squadDesc = squadDesc;
-	}
+    public String getSquadName() {
+        return squadName;
+    }
 
-	public Date getGmtCreate() {
-		return gmtCreate;
-	}
+    public void setSquadName(String squadName) {
+        this.squadName = squadName;
+    }
 
-	public void setGmtCreate(Date gmtCreate) {
-		this.gmtCreate = gmtCreate;
-	}
+    public String getSquadDesc() {
+        return squadDesc;
+    }
 
-	public Date getGmtModify() {
-		return gmtModify;
-	}
+    public void setSquadDesc(String squadDesc) {
+        this.squadDesc = squadDesc;
+    }
 
-	public void setGmtModify(Date gmtModify) {
-		this.gmtModify = gmtModify;
-	}
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
 
-	public String getAxiser() {
-		return axiser;
-	}
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
 
-	public void setAxiser(String axiser) {
-		this.axiser = axiser;
-	}
+    public Date getGmtModify() {
+        return gmtModify;
+    }
 
-	public String getCubers() {
-		return cubers;
-	}
+    public void setGmtModify(Date gmtModify) {
+        this.gmtModify = gmtModify;
+    }
 
-	public void setCubers(String cubers) {
-		this.cubers = cubers;
-	}
+    public String getAxiser() {
+        return axiser;
+    }
 
-	public String getFollowers() {
-		return followers;
-	}
+    public void setAxiser(String axiser) {
+        this.axiser = axiser;
+    }
 
-	public void setFollowers(String followers) {
-		this.followers = followers;
-	}
+    public String getCubers() {
+        return cubers;
+    }
 
-	public String getInvestors() {
-		return investors;
-	}
+    public void setCubers(String cubers) {
+        this.cubers = cubers;
+    }
 
-	public void setInvestors(String investors) {
-		this.investors = investors;
-	}
+    public String getFollowers() {
+        return followers;
+    }
 
-	public DCSquadStatusEnum getStatus() {
-		return status;
-	}
+    public void setFollowers(String followers) {
+        this.followers = followers;
+    }
 
-	public void setStatus(DCSquadStatusEnum status) {
-		this.status = status;
-	}
+    public String getInvestors() {
+        return investors;
+    }
 
-	public String getAuthcodeTxt() {
-		return authcodeTxt;
-	}
+    public void setInvestors(String investors) {
+        this.investors = investors;
+    }
 
-	public void setAuthcodeTxt(String authcodeTxt) {
-		this.authcodeTxt = authcodeTxt;
-	}
+    public DCSquadStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(DCSquadStatusEnum status) {
+        this.status = status;
+    }
+
+    public String getAuthcodeTxt() {
+        return authcodeTxt;
+    }
+
+    public void setAuthcodeTxt(String authcodeTxt) {
+        this.authcodeTxt = authcodeTxt;
+    }
 
 }
