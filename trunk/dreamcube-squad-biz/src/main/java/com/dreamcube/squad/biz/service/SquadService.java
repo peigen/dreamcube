@@ -1,12 +1,14 @@
 package com.dreamcube.squad.biz.service;
 
+import java.util.List;
+
 import com.dreamcube.core.squad.domain.DCSquad;
 
 /**
  *                       
  * Filename: SquadService.java
  *
- * Description: 
+ * Description: 团队相关服务
  *
  * Version: 0.1
  *
@@ -27,9 +29,16 @@ import com.dreamcube.core.squad.domain.DCSquad;
 public interface SquadService {
 
     /**
-     * 
+     * 新增团队
      * @param squad
      */
     public void addSquad(DCSquad squad);
+
+    /**
+     * 团队列表服务
+     * 
+     * @return
+     */
+    public List<DCSquad> queryAllSquad();
 
 }

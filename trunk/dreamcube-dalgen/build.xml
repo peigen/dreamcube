@@ -93,12 +93,11 @@
 	<!-- =================================================================== -->
 	<target name="middlegen" depends="compile,check-driver-present,panic-if-driver-not-present" description="">
 		<taskdef name="middlegen" classname="middlegen.MiddlegenTask" classpathref="classpath.main" />
-		<echo message="" />
+		<echo message="生成目录在${dir.deploy}" />
 		<input message="请输入目标表名,多表以逗号分隔,全表生成请输入'*',只生成Sequence请输入'seq': " addproperty="tabs" />
 
 		<echo message="DAL配置文件：${middlegen.config.file}." />
 		<echo message="开始自动生成DAL..." />
-		<echo message="${middlegen.package}" />
 
 		<mkdir dir="${middlegen.destination}" />
 		<middlegen configfile="${middlegen.config.file}" runModel="SOFA" tabs="${tabs}" appname="${name}" databaseurl="${database.url}" driver="${database.driver}" username="${database.userid}" password="${database.password}" schema="${database.schema}" prefsdir="${dir.target}">
@@ -139,6 +138,20 @@
 			</iwallet>
 		</middlegen>
 		<echo message="DAL生成已成功!" />
+		
+	</target>
+	
+	<!-- copy 
+		<property name="copy.to" value="/home/peigen/dalgen/maixxxn" />
+	-->
+	<target name="copy" depends="clean">
+		<property name="copy.to" value="${basedir}/../dreamcube-dal/src/main" />
+		<echo message="开始复制" />
+		<echo message="生成目录在${copy.to}" />
+		<copy todir="${copy.to}" overwrite="true">
+			<fileset dir="${dir.deploy}">
+			</fileset>
+	   </copy>
 	</target>
 
 	<target name="clean-perf" depends="" description="">
@@ -153,5 +166,6 @@
 	<target name="clean" depends="clean-perf,clean-middlegen" description="clean all generated stuff" />
 
 	<!-- The default target to use -->
-	<target name="release" depends="clean,middlegen" description="" />
+	<target name="release" depends="clean,middlegen,copy" description="" />
+	
 </project>

@@ -7,6 +7,7 @@ package com.dreamcube.core.dal.daointerface;
 // auto generated imports
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import org.springframework.dao.DataAccessException;
+import java.util.List;
 
 /**
  * A dao interface provides methods to access database table <tt>dc_squad</tt>.
@@ -29,7 +30,7 @@ public interface DcSquadDAO {
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify) values (?, ?, ?, ?, ?, ?, ?, ?, ?)</tt>
+	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)</tt>
 	 *
 	 *	@param dcSquad
 	 *	@return long
@@ -48,14 +49,26 @@ public interface DcSquadDAO {
 	 *	@return DcSquadDO
 	 *	@throws DataAccessException
 	 */	 
-    public DcSquadDO load(String squadName) throws DataAccessException;
+    public DcSquadDO loadByName(String squadName) throws DataAccessException;
+
+	/**
+	 *  Query DB table <tt>dc_squad</tt> for records.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>select * from dc_squad</tt>
+	 *
+	 *	@return List<DcSquadDO>
+	 *	@throws DataAccessException
+	 */	 
+    public List<DcSquadDO> load() throws DataAccessException;
 
 	/**
 	 *  Update DB table <tt>dc_squad</tt>.
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>update dc_squad set squad_name=?, squadDesc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_create=sysdate, gmt_modify=sysdate where (id = ?)</tt>
+	 *  <tt>update dc_squad set squad_name=?, squadDesc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_create=CURRENT_TIMESTAMP, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
 	 *
 	 *	@param dcSquad
 	 *	@return int
@@ -68,11 +81,12 @@ public interface DcSquadDAO {
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>delete dc_squad</tt>
+	 *  <tt>delete from dc_squad where (id = ?)</tt>
 	 *
+	 *	@param id
 	 *	@return int
 	 *	@throws DataAccessException
 	 */	 
-    public int clean() throws DataAccessException;
+    public int deleteById(long id) throws DataAccessException;
 
 }

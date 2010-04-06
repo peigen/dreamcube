@@ -4,13 +4,13 @@
  */
 package com.dreamcube.core.dal.ibatis;
 
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
-
-// auto generated imports
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
-import org.springframework.dao.DataAccessException;
 
 /**
  * An ibatis based implementation of dao interface <tt>com.dreamcube.core.dal.daointerface.DcSquadDAO</tt>.
@@ -28,77 +28,95 @@ import org.springframework.dao.DataAccessException;
  * @author peigen
  */
 public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadDAO {
-	/**
-	 *  Insert one <tt>DcSquadDO</tt> object to DB table <tt>dc_squad</tt>, return primary key
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify) values (?, ?, ?, ?, ?, ?, ?, ?, ?)</tt>
-	 *
-	 *	@param dcSquad
-	 *	@return long
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Insert one <tt>DcSquadDO</tt> object to DB table <tt>dc_squad</tt>, return primary key
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)</tt>
+     *
+     *	@param dcSquad
+     *	@return long
+     *	@throws DataAccessException
+     */
     public long insert(DcSquadDO dcSquad) throws DataAccessException {
-    	if (dcSquad == null) {
-    		throw new IllegalArgumentException("Can't insert a null data object into db.");
-    	}
-    	
+        if (dcSquad == null) {
+            throw new IllegalArgumentException("Can't insert a null data object into db.");
+        }
+
         getSqlMapClientTemplate().insert("MS-DC-SQUAD-INSERT", dcSquad);
 
         return dcSquad.getId();
     }
 
-	/**
-	 *  Query DB table <tt>dc_squad</tt> for records.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_squad where (squad_name = ?)</tt>
-	 *
-	 *	@param squadName
-	 *	@return DcSquadDO
-	 *	@throws DataAccessException
-	 */	 
-    public DcSquadDO load(String squadName) throws DataAccessException {
+    /**
+     *  Query DB table <tt>dc_squad</tt> for records.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>select * from dc_squad where (squad_name = ?)</tt>
+     *
+     *	@param squadName
+     *	@return DcSquadDO
+     *	@throws DataAccessException
+     */
+    public DcSquadDO loadByName(String squadName) throws DataAccessException {
 
-        return (DcSquadDO) getSqlMapClientTemplate().queryForObject("MS-DC-SQUAD-LOAD", squadName);
+        return (DcSquadDO) getSqlMapClientTemplate().queryForObject("MS-DC-SQUAD-LOAD-BY-NAME",
+            squadName);
 
     }
 
-	/**
-	 *  Update DB table <tt>dc_squad</tt>.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>update dc_squad set squad_name=?, squadDesc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_create=sysdate, gmt_modify=sysdate where (id = ?)</tt>
-	 *
-	 *	@param dcSquad
-	 *	@return int
-	 *	@throws DataAccessException
-	 */	 
-    public int update(DcSquadDO dcSquad) throws DataAccessException {
-    	if (dcSquad == null) {
-    		throw new IllegalArgumentException("Can't update by a null data object.");
-    	}
+    /**
+     *  Query DB table <tt>dc_squad</tt> for records.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>select * from dc_squad</tt>
+     *
+     *	@return List<DcSquadDO>
+     *	@throws DataAccessException
+     */
+    public List<DcSquadDO> load() throws DataAccessException {
 
+        return getSqlMapClientTemplate().queryForList("MS-DC-SQUAD-LOAD", null);
+
+    }
+
+    /**
+     *  Update DB table <tt>dc_squad</tt>.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>update dc_squad set squad_name=?, squadDesc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_create=CURRENT_TIMESTAMP, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
+     *
+     *	@param dcSquad
+     *	@return int
+     *	@throws DataAccessException
+     */
+    public int update(DcSquadDO dcSquad) throws DataAccessException {
+        if (dcSquad == null) {
+            throw new IllegalArgumentException("Can't update by a null data object.");
+        }
 
         return getSqlMapClientTemplate().update("MS-DC-SQUAD-UPDATE", dcSquad);
     }
 
-	/**
-	 *  Delete records from DB table <tt>dc_squad</tt>.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>delete dc_squad</tt>
-	 *
-	 *	@return int
-	 *	@throws DataAccessException
-	 */	 
-    public int clean() throws DataAccessException {
+    /**
+     *  Delete records from DB table <tt>dc_squad</tt>.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>delete from dc_squad where (id = ?)</tt>
+     *
+     *	@param id
+     *	@return int
+     *	@throws DataAccessException
+     */
+    public int deleteById(long id) throws DataAccessException {
+        Long param = new Long(id);
 
-        return getSqlMapClientTemplate().delete("MS-DC-SQUAD-CLEAN", null);
+        return getSqlMapClientTemplate().delete("MS-DC-SQUAD-DELETE-BY-ID", param);
     }
 
 }
