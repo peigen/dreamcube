@@ -48,13 +48,6 @@
     ]]>
     </insert>
 
-    <!-- mapped statement for IbatisDcSquadDAO.loadByName -->
-    <select id="MS-DC-SQUAD-LOAD-BY-NAME" resultMap="RM-DC-SQUAD">
-    <![CDATA[
-        select * from dc_squad where (squad_name = #value#)
-    ]]>
-    </select>
-
     <!-- mapped statement for IbatisDcSquadDAO.load -->
     <select id="MS-DC-SQUAD-LOAD" resultMap="RM-DC-SQUAD">
     <![CDATA[
@@ -62,10 +55,24 @@
     ]]>
     </select>
 
+    <!-- mapped statement for IbatisDcSquadDAO.loadById -->
+    <select id="MS-DC-SQUAD-LOAD-BY-ID" resultMap="RM-DC-SQUAD">
+    <![CDATA[
+        select * from dc_squad where (id = #value#)
+    ]]>
+    </select>
+
+    <!-- mapped statement for IbatisDcSquadDAO.loadByName -->
+    <select id="MS-DC-SQUAD-LOAD-BY-NAME" resultMap="RM-DC-SQUAD">
+    <![CDATA[
+        select * from dc_squad where (squad_name = #value#)
+    ]]>
+    </select>
+
     <!-- mapped statement for IbatisDcSquadDAO.update -->
     <update id="MS-DC-SQUAD-UPDATE">
     <![CDATA[
-        update dc_squad set squad_name=#squadName#, squadDesc=#squadDesc#, axiser=#axiser#, cubers=#cubers#, followers=#followers#, investors=#investors#, status=#status#, gmt_create=CURRENT_TIMESTAMP, gmt_modify=CURRENT_TIMESTAMP where (id = #id#)
+        update dc_squad set squad_name=#squadName#, squadDesc=#squadDesc#, axiser=#axiser#, cubers=#cubers#, followers=#followers#, investors=#investors#, status=#status#, gmt_modify=CURRENT_TIMESTAMP where (id = #id#)
     ]]>
     </update>
 

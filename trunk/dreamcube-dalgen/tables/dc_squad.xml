@@ -10,14 +10,6 @@
 		</sql>
 	</operation>
 
-	<operation name="loadByName" paramtype="primitive">
-		<sql>
-			<![CDATA[
-				  select * from dc_squad where squad_name=?;
-    		]]>
-		</sql>
-	</operation>
-	
 	<operation name="load" multiplicity="many">
 		<sql>
 			<![CDATA[
@@ -25,7 +17,25 @@
     		]]>
 		</sql>
 	</operation>
-	
+
+	<operation name="loadById" paramtype="primitive">
+		<sql>
+			<![CDATA[
+				  select * from dc_squad where id=?;
+    		]]>
+		</sql>
+	</operation>
+
+	<operation name="loadByName" paramtype="primitive">
+		<sql>
+			<![CDATA[
+				  select * from dc_squad where squad_name=?;
+    		]]>
+		</sql>
+	</operation>
+
+
+
 	<operation name="update" paramtype="object">
 		<sql>
 			<![CDATA[
@@ -38,20 +48,19 @@
 				   followers=?,
 				   investors=?,
 				   status=?,
-				   gmt_create=CURRENT_TIMESTAMP,
 				   gmt_modify=CURRENT_TIMESTAMP
 			 where id = ?;
     		]]>
 		</sql>
 	</operation>
-	
+
 	<operation name="deleteById">
 		<sql>
 			<![CDATA[
 				delete from dc_squad where id = ?;
 			]]>
 		</sql>
-	
+
 	</operation>
-	
+
 </table>
