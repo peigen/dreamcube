@@ -16,7 +16,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath*:spring/dreamcube*.xml
+			classpath*:spring/*.xml
 		</param-value>
 	</context-param>
 	<listener>
