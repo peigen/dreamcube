@@ -1,4 +1,16 @@
+<strong>欢迎来到dreamcube  let's start !!</strong>current time is $time</br>
+使用dateUtils.addDays(time,1) 得到 $dateUtils.addDays($time,1)
+另外有dateTool可以使用 按照"yyyy-MM-dd"格式化得到$dateTool.format('yyyy-MM-dd',$time)
+<p>
+<a href="">Link</a>
 
-	 	<strong>欢迎来到dreamcube  let's start !!</strong>current time is $time</br>
-		使用dateUtils.addDays(time,1) 得到 $dateUtils.addDays($time,1)
-		另外有dateTool可以使用 按照"yyyy-MM-dd"格式化得到$dateTool.format('yyyy-MM-dd',$time)
+		
+		
+<script type="text/javascript">                                         
+  	$(document).ready(function() {
+                       $("a").click(function() {
+                       alert("Hello world!");});
+                                  });                            
+</script>
+		 
+		
