@@ -38,15 +38,15 @@ public enum DCSquadStatusEnum {
 
     private final String code;
 
-    private final String desc;
+    private final String message;
 
     /**
      * @param code
-     * @param desc
+     * @param message
      */
-    private DCSquadStatusEnum(String code, String desc) {
+    private DCSquadStatusEnum(String code, String message) {
         this.code = code;
-        this.desc = desc;
+        this.message = message;
     }
 
     /**
@@ -57,10 +57,10 @@ public enum DCSquadStatusEnum {
     }
 
     /**
-     * @return Returns the desc.
+     * @return Returns the message.
      */
-    public String getDesc() {
-        return desc;
+    public String getMessage() {
+        return message;
     }
 
     /**
