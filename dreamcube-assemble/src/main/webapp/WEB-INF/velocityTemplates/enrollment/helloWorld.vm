@@ -1,2 +1,3 @@
 
-	 	<strong>欢迎来到dreamcube  let's start !!</strong>current time is $time
+	 	<strong>欢迎来到dreamcube  let's start !!</strong>current time is $time</br>
+		使用dateUtils.addDays(time,1) 得到 $dateUtils.addDays($time,1)
