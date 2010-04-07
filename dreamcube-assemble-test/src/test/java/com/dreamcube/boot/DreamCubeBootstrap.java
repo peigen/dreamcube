@@ -86,9 +86,12 @@ public class DreamCubeBootstrap {
         springContextBuffer.append(",classpath*:spring/*.xml");
         springContextLocation = springContextBuffer.toString();
 
-        contextLocation = new File(loadHostName(properties)
-                                   + "/dreamcube-assemble/src/main/webapp/").toURI().toURL()
-            .toExternalForm();
+        URL contextLocationURL = new File(loadHostName(properties)
+                                   + "/dreamcube-assemble/src/main/webapp/").toURI().toURL();
+        
+        //增加webapp到classpath
+        addURLMethod.invoke(classLoader, contextLocationURL);                           
+        contextLocation  =  contextLocationURL.toExternalForm();
     }
 
     /**
@@ -134,6 +137,7 @@ public class DreamCubeBootstrap {
         server = new Server(serverPort);
         final String CONTEXTPATH = "/dreamcube";
         servletContext = new Context(server, CONTEXTPATH, Context.SESSIONS);
+        servletContext.setResourceBase(contextLocation);
         //		servletContext.setAttribute("contextConfigLocation", value);
         //增加处理静态文件的handler
         resourceContext = new Context();
