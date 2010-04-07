@@ -14,7 +14,7 @@
 			<value>classpath:dreamcube-assemble-config.properties</value>
 		</property>
 	</bean>
-	
+
 	<!--  <import resource="classpath:spring/applicationContext.xml"/>-->
 
 	<context:component-scan base-package="com.dreamcube.enrollment" />
@@ -27,13 +27,11 @@
 		<property name="prefix" value=""></property>
 		<property name="order" value="1"></property>
 		<property name="contentType" value="text/html; charset=GBK"></property>
-		<!--
-			<property name="toolboxConfigLocation"
-			value="${webapp_path}/WEB-INF/config/velocity-toolbox.xml"></property>
-		-->
+		<property name="toolboxConfigLocation"
+			value="WEB-INF/config/velocity-toolbox.xml"></property>
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
-		<property name="layoutUrl" value="layout/layout.vm"/>
+		<property name="layoutUrl" value="layout/layout.vm" />
 	</bean>
 
 	<bean id="velocityConfig"
@@ -60,4 +58,12 @@
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean id="annotationMethodHandlerAdapter"
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+	<!-- AnnotationBeanValidationConfigurationLoader -->
+	<bean id="configurationLoader"
+		class="org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader" />
+
+	<!-- BeanValidator -->
+	<bean id="validator" class="org.springmodules.validation.bean.BeanValidator"
+		p:configurationLoader-ref="configurationLoader" />
 </beans>
