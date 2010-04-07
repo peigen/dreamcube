@@ -87,7 +87,7 @@ public class DreamCubeBootstrap {
         springContextLocation = springContextBuffer.toString();
 
         URL contextLocationURL = new File(loadHostName(properties)
-                                   + "/dreamcube-assemble/src/main/webapp/").toURI().toURL();
+                                   + "/dreamcube-assemble/src/main/webapp").toURI().toURL();
         
         //增加webapp到classpath
         addURLMethod.invoke(classLoader, contextLocationURL);                           
