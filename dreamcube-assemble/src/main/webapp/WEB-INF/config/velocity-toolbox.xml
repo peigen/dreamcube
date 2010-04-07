@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <toolbox>
 	<tool>
-		<key>date</key>
-		<scope>application</scope>
-		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<key>dateUtils</key>
+		<scope>request</scope>
+		<class>org.apache.commons.lang.time.DateUtils</class>
 	</tool>
 </toolbox>
