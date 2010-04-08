@@ -20,12 +20,16 @@
 	<context:component-scan base-package="com.dreamcube.enrollment" />
 	<context:component-scan base-package="com.dreamcube.squad" />
 
-	<bean id="viewResolver"
+	<!-- velocity view config -->
+	<bean name="velocityViewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
 		<property name="cache" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
 		<property name="prefix" value=""></property>
 		<property name="order" value="1"></property>
+		<property name="viewNames">
+			<list><value>*.vm</value></list>
+		</property>
 		<property name="contentType" value="text/html; charset=GBK"></property>
 		<property name="toolboxConfigLocation"
 			value="WEB-INF/config/velocity-toolbox.xml"></property>
@@ -48,10 +52,24 @@
 			</props>
 		</property>
 	</bean>
-
+	
+	<!-- json view config -->
+	<bean name="jsonViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="cache" value="true" />
+		<property name="prefix" value=""></property>
+		<property name="order" value="1"></property>
+		<property name="viewNames">
+			<list><value>*.json</value></list>
+		</property>
+		<property name="viewClass"
+			value="com.dreamcube.framework.views.DreamCubeJsonView" />
+	</bean>
+	
 
 	<bean id="viewNameTranslator"
 		class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">
+		<property name="stripExtension" value="false"></property>
 	</bean>
 
 	<bean id="defaultAnnotationHandlerMapping"
