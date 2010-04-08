@@ -3,14 +3,19 @@
 另外有dateTool可以使用 按照"yyyy-MM-dd"格式化得到$dateTool.format('yyyy-MM-dd',$time)
 <p>
 <a href="">Link</a>
+<p>json点击测试</p>
 
 		
 		
 <script type="text/javascript">                                         
   	$(document).ready(function() {
-                       $("a").click(function() {
-                       alert("Hello world!");});
-                                  });                            
+                       $("p").click(function() {
+                       		var jsonResponse = jQuery.getJSON('/dreamcube/enrollment/helloworld.json',function(data){
+                       				 alert(data.time);
+                       			});
+                           
+                           });    //end of click function
+                       });   // end of ready function                         
 </script>
 		 
 		
