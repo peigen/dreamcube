@@ -24,4 +24,14 @@ public class HelloWorldController {
 		modelMap.addAttribute("time", new Date());
 		return "enrollment/helloWorld.vm";
 	}
+	
+	/**
+	 * json测试
+	 * @param modelMap
+	 */
+	@RequestMapping(value="/enrollment/helloworld.json",method = RequestMethod.GET)
+	public String doGetJson(ModelMap modelMap){
+		modelMap.addAttribute("time", new Date());
+		return "helloworld.json";
+	}
 }
