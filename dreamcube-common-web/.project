@@ -1,0 +1,20 @@
+<projectDescription>
+  <name>dreamcube-common-web</name>
+  <comment>Centrepoint is a basic but useful application that sets up a
+	dashboard of project information from Maven, Archiva and
+	Continuum.</comment>
+  <projects>
+    <project>dreamcube-core-common</project>
+    <project>dreamcube-dal</project>
+    <project>dreamcube-enrollment-core-domain</project>
+    <project>dreamcube-squad-core-domain</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
