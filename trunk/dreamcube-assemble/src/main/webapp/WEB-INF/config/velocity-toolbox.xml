@@ -10,5 +10,10 @@
 		<scope>request</scope>
 		<class>org.apache.velocity.tools.generic.DateTool</class>
 	</tool>
+	<tool>
+		<key>jdkEnumUtils</key>
+		<scope>request</scope>
+		<class>com.dreamcube.core.common.tools.JDKEnumUtils</class>
+	</tool>
 	
 </toolbox>

@@ -78,6 +78,16 @@ public class JDKEnumUtils {
         return new ArrayList(EnumSet.allOf(enumClass));
     }
 
+    /**
+     * 获取枚举中的对象列表
+     * 
+     * @param enumName
+     * @return
+     */
+    public static List getEnumList(String enumName) {
+        return new ArrayList(EnumSet.allOf(getJDKEnumClass(enumName)));
+    }
+
     public static Map getEnumMap(Class enumClass) {
         HashMap map = new HashMap();
         Iterator itr = EnumUtils.iterator(enumClass);
@@ -131,14 +141,14 @@ public class JDKEnumUtils {
         return null;
     }
 
-    public static String getEnumByValue(String className, String value) {
-
-        return getJDKEnumMessage(className, "code", "message", value);
-    }
-
     public static String getEnumByCode(String className, String code) {
 
-        return getJDKEnumMessage(className, "message", "code", code);
+        return getJDKEnumMessage(className, "code", "message", code);
+    }
+
+    public static String getEnumByMessage(String className, String message) {
+
+        return getJDKEnumMessage(className, "message", "code", message);
     }
 
     /**
@@ -151,8 +161,4 @@ public class JDKEnumUtils {
                + StringTool.substring(propertyName, 1, propertyName.length());
     }
 
-    public static void main(String[] args) {
-        System.out.println(getEnumByValue("DCSquadStatusEnum", "MUSTER"));
-        System.out.println(getEnumByCode("DCSquadStatusEnum", "开发段"));
-    }
 }

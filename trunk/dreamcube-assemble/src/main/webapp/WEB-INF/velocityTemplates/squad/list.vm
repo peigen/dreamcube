@@ -22,9 +22,9 @@
 			<td>$!item.cubers &nbsp;</td>
 			<td>$!item.followers &nbsp;</td>
 			<td>$!item.investors &nbsp;</td>
-			<td>$!item.status &nbsp;</td>
-			<td>$!dateUtil.format($!item.gmtCreate,'yyyy-MM-dd HH:mm:ss')  &nbsp;</td>
-			<td>$!dateUtil.format($!item.gmtModified,'yyyy-MM-dd HH:mm:ss')  &nbsp;</td>
+			<td>$!jdkEnumUtils.getEnumByCode("DCSquadStatusEnum","$!item.status") &nbsp;</td>
+			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtCreate) &nbsp;</td>
+			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtModify) &nbsp;</td>
 			<td width="8%">
 				<form name="form_list" method=post action="squad/edit.html">
 					<input type="hidden" name="id" value="$!item.id">
