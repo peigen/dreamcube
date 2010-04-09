@@ -154,7 +154,7 @@ public class DreamCubeBootstrap {
         servletHandler.addServlet(servletHolder);
         //设置servlet mapping
         ServletMapping servletMapping = new ServletMapping();
-        servletMapping.setPathSpecs(new String[] { "*.html", "*.json" });
+        servletMapping.setPathSpecs(new String[] { "*.html", "*.json","*.checkcode" });
         servletMapping.setServletName("dreamcube");
         servletHandler.addServletMapping(servletMapping);
 

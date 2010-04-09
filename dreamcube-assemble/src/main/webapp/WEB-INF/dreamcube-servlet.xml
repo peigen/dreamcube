@@ -19,6 +19,7 @@
 
 	<context:component-scan base-package="com.dreamcube.enrollment" />
 	<context:component-scan base-package="com.dreamcube.squad" />
+	<context:component-scan base-package="com.dreamcube.common.controller" />
 
 	<!-- velocity view config -->
 	<bean name="velocityViewResolver"
@@ -64,6 +65,19 @@
 		</property>
 		<property name="viewClass"
 			value="com.dreamcube.framework.views.DreamCubeJsonView" />
+	</bean>
+	
+		<!-- checkcode view config -->
+	<bean name="checkCodeViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="cache" value="true" />
+		<property name="prefix" value=""></property>
+		<property name="order" value="2"></property>
+		<property name="viewNames">
+			<list><value>*.checkcode</value></list>
+		</property>
+		<property name="viewClass"
+			value="com.dreamcube.framework.views.DreamCubeCheckCodeView" />
 	</bean>
 	
 
