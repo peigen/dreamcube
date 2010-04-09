@@ -12,7 +12,6 @@ import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
-import com.dreamcube.core.dal.dataobject.DcSquadDO;
 
 /**
  * An ibatis based implementation of dao interface <tt>com.dreamcube.core.dal.daointerface.DcSquadDAO</tt>.

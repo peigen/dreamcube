@@ -31,7 +31,7 @@
 		<property name="viewNames">
 			<list><value>*.vm</value></list>
 		</property>
-		<property name="contentType" value="text/html; charset=GBK"></property>
+		<property name="contentType" value="text/html; charset=UTF-8"></property>
 		<property name="toolboxConfigLocation"
 			value="WEB-INF/config/velocity-toolbox.xml"></property>
 		<property name="viewClass"

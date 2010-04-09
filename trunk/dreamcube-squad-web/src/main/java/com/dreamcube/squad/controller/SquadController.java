@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dreamcube.core.squad.domain.DCSquad;
-import com.dreamcube.squad.SquadFormConvert;
 import com.dreamcube.squad.biz.service.SquadService;
 import com.dreamcube.squad.form.SquadForm;
+import com.dreamcube.squad.util.SquadFormConvert;
 
 /**
  *                       
@@ -63,7 +63,7 @@ public class SquadController {
 
         squadService.editSquad(SquadFormConvert.covert(squadForm));
 
-        return "squad/show.vm";
+        return list(modelMap);
     }
 
     @RequestMapping(value = "/squad/edit.html", method = RequestMethod.GET)
