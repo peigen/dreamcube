@@ -50,7 +50,7 @@ public enum DCSquadStatusEnum {
     }
 
     /**
-     * @return Returns the key.
+     * @return Returns the code.
      */
     public String getCode() {
         return code;
@@ -60,6 +60,20 @@ public enum DCSquadStatusEnum {
      * @return Returns the message.
      */
     public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @return Returns the code.
+     */
+    public String code() {
+        return code;
+    }
+
+    /**
+     * @return Returns the message.
+     */
+    public String message() {
         return message;
     }
 

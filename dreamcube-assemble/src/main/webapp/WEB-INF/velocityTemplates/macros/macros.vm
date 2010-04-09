@@ -1,4 +1,15 @@
-#macro ( jdkEnumMessageByValue $name $value)
-  #set ($jdkEnum = $!counterJDKEnumUtil.getJDKEnumByValue($name,$value))
-  $jdkEnum.getMessage()
+#macro ( jdkEnumMessageByValue $enumName $code)
+	#set ($jdkEnum = $!jdkEnumUtils.getEnumByCode($enumName,$code))
+  	$jdkEnum.getMessage()
+#end
+
+#macro ( enumIterator $enumName $compare_value)
+	#set($enum_list = $!jdkEnumUtils.getEnumList($enumName))
+  	#foreach($item in $enum_list)
+		<option value="$item.code" #if($compare_value && $compare_value==$item.code)selected#end>$item.message</option>	
+	#end
+#end
+
+#macro( testMacro $model )
+test in the macro $model
 #end
