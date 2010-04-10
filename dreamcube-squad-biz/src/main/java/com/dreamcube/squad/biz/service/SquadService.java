@@ -1,8 +1,10 @@
 package com.dreamcube.squad.biz.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.dreamcube.core.squad.domain.DCSquad;
+import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 
 /**
  *                       
@@ -48,5 +50,9 @@ public interface SquadService {
      * @param id
      */
     public void editSquad(DCSquad dcsquad);
+
+    public List<DCSquad> querySquad(String squadName, String axiser, String cubers,
+                                    String followers, String investors, DCSquadStatusEnum status,
+                                    Date gmtCreate, Date gmtModify);
 
 }

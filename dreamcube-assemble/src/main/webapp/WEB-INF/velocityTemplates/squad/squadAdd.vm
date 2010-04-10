@@ -7,7 +7,7 @@
 		</tr>
 		<tr>
 			<td>小组描述:</td>
-			<td><input name="squadDesc" value=""/>
+			<td><textarea name="squadDesc"></textarea>
 		</tr>
 		<tr>
 			<td><input name="submit" type="submit" value="注册"/></td>

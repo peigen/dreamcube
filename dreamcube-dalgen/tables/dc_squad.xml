@@ -34,24 +34,59 @@
 		</sql>
 	</operation>
 
-
-
 	<operation name="update" paramtype="object">
 		<sql>
 			<![CDATA[
-				   update dc_squad
-			   set 
-				   squad_name =?,
-				   squad_desc=?,
-				   axiser=?,
-				   cubers=?,
-				   followers=?,
-				   investors=?,
-				   status=?,
-				   gmt_modify=CURRENT_TIMESTAMP
-			 where id = ?;
+				update dc_squad
+				set 
+					squad_name =?,
+					squad_desc=?,
+					axiser=?,
+					cubers=?,
+					followers=?,
+					investors=?,
+					status=?,
+					gmt_modify=CURRENT_TIMESTAMP
+			 	where id = ?;
     		]]>
 		</sql>
+		<sqlmap>
+			<![CDATA[
+				update dc_squad
+				set	gmt_modify=CURRENT_TIMESTAMP,
+				<dynamic>
+					<isNotEmpty property="squadName">
+						squad_name = #squadName#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="squadName">
+						squad_desc = #squadName#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="axiser">
+						axiser = #axiser#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="cubers">
+						cubers = #cubers#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="followers">
+						followers = #followers#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="investors">
+						investors = #investors#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="status">
+						status = #status#
+					</isNotEmpty>
+					
+			 	</dynamic>
+			 	where id = #id#;
+           ]]>
+		</sqlmap>
 	</operation>
 
 	<operation name="deleteById">
@@ -61,6 +96,49 @@
 			]]>
 		</sql>
 
+	</operation>
+	
+	<operation name="query" multiplicity="many">
+		<sql>
+			<![CDATA[
+				select * from dc_squad where squad_name = ? and axiser = ? and cubers = ? and followers = ? and investors = ? and status = ? and gmt_create =? and gmt_modify = ?;
+			]]>
+		</sql>
+		<sqlmap>
+			<![CDATA[
+				select * from dc_squad
+				<dynamic prepend="where">
+					<isNotEmpty prepend="and" property="squadName">
+						squad_name = #squadName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="axiser">
+						axiser = #axiser#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="cubers">
+						cubers = #cubers#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="followers">
+						followers = #followers#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="investors">
+						investors = #investors#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="status">
+						status = #status#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtCreate">
+					${cdata-start}
+						gmt_create >= date('#gmtCreate#')
+					${cdata-end}
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtModify">
+					${cdata-start}
+						gmt_modify >= date('#gmtModify#')
+					${cdata-end}
+					</isNotEmpty>
+				</dynamic>
+           ]]>
+		</sqlmap>
 	</operation>
 
 </table>

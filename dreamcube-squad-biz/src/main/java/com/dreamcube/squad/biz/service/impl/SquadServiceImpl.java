@@ -1,11 +1,13 @@
 package com.dreamcube.squad.biz.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import com.dreamcube.core.squad.domain.DCSquad;
+import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 import com.dreamcube.squad.biz.convert.SquadConvert;
 import com.dreamcube.squad.biz.service.SquadService;
 
@@ -44,7 +46,7 @@ public class SquadServiceImpl implements SquadService {
 
         List<DcSquadDO> dcSquadList = dcSquadDAO.load();
 
-        return SquadConvert.doToDomainCollections(dcSquadList);
+        return SquadConvert.doToDomainList(dcSquadList);
     }
 
     /**
@@ -71,13 +73,35 @@ public class SquadServiceImpl implements SquadService {
         } else {
             //TODO 将来权限系统起来要重构掉的，取当前操作员名称
             dcsquad.setAxiser("x");
+            dcsquad.setStatus(DCSquadStatusEnum.MUSTER);
             dcSquadDAO.insert(SquadConvert.domainToDo(dcsquad));
         }
 
     }
 
-    // private method
+    /**
+     * @param squadName
+     * @param axiser
+     * @param cubers
+     * @param followers
+     * @param investors
+     * @param status
+     * @param gmtCreate
+     * @param gmtModify
+     * @return
+     * @see com.dreamcube.squad.biz.service.SquadService#querySquad(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.dreamcube.core.squad.enums.DCSquadStatusEnum, java.util.Date, java.util.Date)
+     */
+    @Override
+    public List<DCSquad> querySquad(String squadName, String axiser, String cubers,
+                                    String followers, String investors, DCSquadStatusEnum status,
+                                    Date gmtCreate, Date gmtModify) {
 
+        return SquadConvert.doToDomainList(dcSquadDAO.query(squadName, axiser, cubers, followers,
+            investors, (status == null) ? null : status.code(), gmtCreate, gmtModify));
+
+    }
+
+    // private method
     //~~~DI
     public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
         this.dcSquadDAO = dcSquadDAO;

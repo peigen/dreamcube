@@ -4,31 +4,31 @@
 	<table>
 		<tr>
 			<td>小组名:</td>
-			<td><input name="squadName" value="$!squad.squadName"/>
+			<td><input name="squadName" value="$!squad.squadName"/></td>
 		</tr>
 		<tr>
 			<td>小组描述:</td>
-			<td><textarea name="squadDesc">$!squad.squadDesc</textarea>
-		</tr>
-		<tr>
-			<td>发起者:</td>
-			<td><input name="axiser" value="$!squad.axiser"/>
+			<td><textarea name="squadDesc">$!squad.squadDesc</textarea></td>
 		</tr>
 		<tr>
 			<td>团队成员:</td>
-			<td><input name="cubers" value="$!squad.cubers"/>
+			<td><input name="cubers" value="$!squad.cubers"/></td>
 		</tr>
 		<tr>
 			<td>跟随者:</td>
-			<td><input name="followers" value="$!squad.followers"/>
+			<td><input name="followers" value="$!squad.followers"/></td>
 		</tr>
 		<tr>
 			<td>投资人:</td>
-			<td><input name="invertors" value="$!squad.invertors"/>
+			<td><input name="invertors" value="$!squad.invertors"/></td>
 		</tr>
 		<tr>
 			<td>当前状态:</td>
-			<td><input name="status" value="$!squad.status"/>
+			<td>
+				<select name="status">
+				#enumIterator("DCSquadStatusEnum" "$!squad.status")
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<input type="hidden" name="id" value="$!squad.id">
