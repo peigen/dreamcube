@@ -72,7 +72,7 @@
     <!-- mapped statement for IbatisDcSquadDAO.update -->
     <update id="MS-DC-SQUAD-UPDATE">
     <![CDATA[
-        update dc_squad set squad_name=#squadName#, squadDesc=#squadDesc#, axiser=#axiser#, cubers=#cubers#, followers=#followers#, investors=#investors#, status=#status#, gmt_modify=CURRENT_TIMESTAMP where (id = #id#)
+        update dc_squad set squad_name=#squadName#, squad_desc=#squadDesc#, axiser=#axiser#, cubers=#cubers#, followers=#followers#, investors=#investors#, status=#status#, gmt_modify=CURRENT_TIMESTAMP where (id = #id#)
     ]]>
     </update>
 

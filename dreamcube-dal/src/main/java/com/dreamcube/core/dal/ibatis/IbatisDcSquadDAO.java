@@ -12,6 +12,7 @@ import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
+import com.dreamcube.core.dal.dataobject.DcSquadDO;
 
 /**
  * An ibatis based implementation of dao interface <tt>com.dreamcube.core.dal.daointerface.DcSquadDAO</tt>.
@@ -106,7 +107,7 @@ public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadD
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>update dc_squad set squad_name=?, squadDesc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
+	 *  <tt>update dc_squad set squad_name=?, squad_desc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
 	 *
 	 *	@param dcSquad
 	 *	@return int

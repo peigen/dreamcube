@@ -1,5 +1,5 @@
 <div>
-	<form method="POST" id="vForm" name="vForm" action="./doEdit.html">
+	<form method="POST" id="vForm" name="vForm" action="doEdit.html">
 	<table>
 		<tr>
 			<td>小组名:</td>

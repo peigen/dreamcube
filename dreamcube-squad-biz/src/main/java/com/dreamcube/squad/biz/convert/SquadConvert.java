@@ -37,18 +37,19 @@ public class SquadConvert {
      * @return
      */
     public static DcSquadDO domainToDo(DCSquad squad) {
-        DcSquadDO squadDo = new DcSquadDO();
-        squadDo.setAxiser(squad.getAxiser());
-        squadDo.setSquadDesc(squad.getSquadDesc());
-        squadDo.setSquadName(squad.getSquadName());
-        squadDo.setCubers(squad.getCubers());
-        squadDo.setFollowers(squad.getFollowers());
-        squadDo.setGmtCreate(squad.getGmtCreate());
-        squadDo.setGmtModify(squad.getGmtModify());
-        squadDo.setInvestors(squad.getInvestors());
-        squadDo.setStatus(squad.getStatus().getCode());
+        DcSquadDO squadDO = new DcSquadDO();
+        squadDO.setId(Long.valueOf(squad.getId()));
+        squadDO.setAxiser(squad.getAxiser());
+        squadDO.setSquadDesc(squad.getSquadDesc());
+        squadDO.setSquadName(squad.getSquadName());
+        squadDO.setCubers(squad.getCubers());
+        squadDO.setFollowers(squad.getFollowers());
+        squadDO.setGmtCreate(squad.getGmtCreate());
+        squadDO.setGmtModify(squad.getGmtModify());
+        squadDO.setInvestors(squad.getInvestors());
+        squadDO.setStatus(squad.getStatus().getCode());
 
-        return squadDo;
+        return squadDO;
     }
 
     /**
@@ -58,6 +59,7 @@ public class SquadConvert {
      */
     public static DCSquad doToDomain(DcSquadDO squadDO) {
         DCSquad squad = new DCSquad();
+        squad.setId(String.valueOf(squadDO.getId()));
         squad.setAxiser(squadDO.getAxiser());
         squad.setSquadDesc(squadDO.getSquadDesc());
         squad.setSquadName(squadDO.getSquadName());

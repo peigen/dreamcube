@@ -42,7 +42,7 @@
 				   update dc_squad
 			   set 
 				   squad_name =?,
-				   squadDesc=?,
+				   squad_desc=?,
 				   axiser=?,
 				   cubers=?,
 				   followers=?,
