@@ -8,6 +8,7 @@ package com.dreamcube.core.dal.daointerface;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
+import java.util.Date;
 
 /**
  * A dao interface provides methods to access database table <tt>dc_squad</tt>.
@@ -101,5 +102,25 @@ public interface DcSquadDAO {
 	 *	@throws DataAccessException
 	 */	 
     public int deleteById(long id) throws DataAccessException;
+
+	/**
+	 *  Query DB table <tt>dc_squad</tt> for records.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>select * from dc_squad where ((squad_name = ?) AND (axiser = ?) AND (cubers = ?) AND (followers = ?) AND (investors = ?) AND (status = ?) AND (gmt_create = ?) AND (gmt_modify = ?))</tt>
+	 *
+	 *	@param squadName
+	 *	@param axiser
+	 *	@param cubers
+	 *	@param followers
+	 *	@param investors
+	 *	@param status
+	 *	@param gmtCreate
+	 *	@param gmtModify
+	 *	@return List<DcSquadDO>
+	 *	@throws DataAccessException
+	 */	 
+    public List<DcSquadDO> query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify) throws DataAccessException;
 
 }

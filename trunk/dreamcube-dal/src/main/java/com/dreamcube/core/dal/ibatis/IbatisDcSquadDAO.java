@@ -12,6 +12,9 @@ import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
+import java.util.Date;
+import java.util.Map;
+import java.util.HashMap;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 
 /**
@@ -137,6 +140,40 @@ public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadD
         Long param = new Long(id);
 
         return getSqlMapClientTemplate().delete("MS-DC-SQUAD-DELETE-BY-ID", param);
+    }
+
+	/**
+	 *  Query DB table <tt>dc_squad</tt> for records.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>select * from dc_squad where ((squad_name = ?) AND (axiser = ?) AND (cubers = ?) AND (followers = ?) AND (investors = ?) AND (status = ?) AND (gmt_create = ?) AND (gmt_modify = ?))</tt>
+	 *
+	 *	@param squadName
+	 *	@param axiser
+	 *	@param cubers
+	 *	@param followers
+	 *	@param investors
+	 *	@param status
+	 *	@param gmtCreate
+	 *	@param gmtModify
+	 *	@return List<DcSquadDO>
+	 *	@throws DataAccessException
+	 */	 
+    public List<DcSquadDO> query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify) throws DataAccessException {
+        Map param = new HashMap();
+
+        param.put("squadName", squadName);
+        param.put("axiser", axiser);
+        param.put("cubers", cubers);
+        param.put("followers", followers);
+        param.put("investors", investors);
+        param.put("status", status);
+        param.put("gmtCreate", gmtCreate);
+        param.put("gmtModify", gmtModify);
+
+        return getSqlMapClientTemplate().queryForList("MS-DC-SQUAD-QUERY", param);
+
     }
 
 }

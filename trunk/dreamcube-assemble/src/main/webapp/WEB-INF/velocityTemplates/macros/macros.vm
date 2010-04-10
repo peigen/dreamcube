@@ -10,6 +10,3 @@
 	#end
 #end
 
-#macro( testMacro $model )
-test in the macro $model
-#end

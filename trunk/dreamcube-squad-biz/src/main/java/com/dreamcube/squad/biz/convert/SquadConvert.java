@@ -3,6 +3,7 @@ package com.dreamcube.squad.biz.convert;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
@@ -38,7 +39,8 @@ public class SquadConvert {
      */
     public static DcSquadDO domainToDo(DCSquad squad) {
         DcSquadDO squadDO = new DcSquadDO();
-        squadDO.setId(Long.valueOf(squad.getId()));
+        if (StringTool.isNotBlank(squad.getId()))
+            squadDO.setId(Long.valueOf(squad.getId()));
         squadDO.setAxiser(squad.getAxiser());
         squadDO.setSquadDesc(squad.getSquadDesc());
         squadDO.setSquadName(squad.getSquadName());
@@ -59,7 +61,8 @@ public class SquadConvert {
      */
     public static DCSquad doToDomain(DcSquadDO squadDO) {
         DCSquad squad = new DCSquad();
-        squad.setId(String.valueOf(squadDO.getId()));
+        if (squadDO.getId() > 0)
+            squad.setId(String.valueOf(squadDO.getId()));
         squad.setAxiser(squadDO.getAxiser());
         squad.setSquadDesc(squadDO.getSquadDesc());
         squad.setSquadName(squadDO.getSquadName());
@@ -78,7 +81,7 @@ public class SquadConvert {
      * @param doList
      * @return
      */
-    public static List<DCSquad> doToDomainCollections(List<DcSquadDO> doList) {
+    public static List<DCSquad> doToDomainList(List<DcSquadDO> doList) {
         List<DCSquad> squadList = new ArrayList<DCSquad>();
 
         for (DcSquadDO dcSquad : doList) {

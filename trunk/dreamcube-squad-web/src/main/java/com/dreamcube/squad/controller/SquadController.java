@@ -52,20 +52,20 @@ public class SquadController {
         return "squad/show.vm";
     }
 
-    @RequestMapping(value = "/squad/add.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/squad/squadAdd.html", method = RequestMethod.GET)
     public String viewAdd(ModelMap modelMap) {
 
-        return "squad/add.vm";
+        return "squad/squadAdd.vm";
     }
 
-    @RequestMapping(value = "/squad/edit.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/squad/squadEdit.html", method = RequestMethod.POST)
     public String viewEdit(ModelMap modelMap, SquadForm squadForm) {
 
         DCSquad squad = squadService.loadById(squadForm.getId());
 
         modelMap.addAttribute("squad", SquadFormConvert.covert(squad));
 
-        return "squad/edit.vm";
+        return "squad/squadEdit.vm";
     }
 
     @RequestMapping(value = "/squad/doEdit.html", method = RequestMethod.POST)
@@ -73,15 +73,25 @@ public class SquadController {
 
         squadService.editSquad(SquadFormConvert.covert(squadForm));
 
-        return list(modelMap);
+        return doQuery(modelMap, squadForm);
     }
 
-    @RequestMapping(value = "/squad/list.html", method = RequestMethod.GET)
-    public String list(ModelMap modelMap) {
+    @RequestMapping(value = "/squad/squadQuery.html", method = RequestMethod.GET)
+    public String viewQuery(ModelMap modelMap) {
 
-        List<DCSquad> list = squadService.queryAllSquad();
+        return "squad/squadQuery.vm";
+    }
+
+    @RequestMapping(value = "/squad/doSquadQuery.html", method = RequestMethod.POST)
+    public String doQuery(ModelMap modelMap, SquadForm squadForm) {
+
+        List<DCSquad> list = squadService.querySquad(squadForm.getSquadName(), squadForm
+            .getAxiser(), squadForm.getCubers(), squadForm.getFollowers(),
+            squadForm.getInvestors(), squadForm.getStatus(), squadForm.getGmtCreate(), squadForm
+                .getGmtModify());
         modelMap.addAttribute("squadList", list);
-        return "squad/list.vm";
+        modelMap.addAttribute("squad", squadForm);
+        return "squad/squadQuery.vm";
     }
 
     // private method

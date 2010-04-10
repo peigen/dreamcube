@@ -34,11 +34,21 @@ public class SquadFormConvert {
      * @return
      */
     public static DCSquad covert(SquadForm squadForm) {
-        DCSquad squad = new DCSquad(squadForm.getSquadName(), squadForm.getSquadDesc(), squadForm
-            .getAxiser(), squadForm.getInvestors(), squadForm.getStatus());
+        DCSquad squad = new DCSquad();
 
         if (StringTool.isNotBlank(squadForm.getId()))
             squad.setId(squadForm.getId());
+
+        squad.setAxiser(squadForm.getAxiser());
+        squad.setCubers(squadForm.getCubers());
+        squad.setFollowers(squadForm.getFollowers());
+        squad.setGmtCreate(squadForm.getGmtCreate());
+        squad.setGmtModify(squadForm.getGmtModify());
+        squad.setInvestors(squadForm.getInvestors());
+        squad.setSquadDesc(squadForm.getSquadDesc());
+        squad.setSquadName(squadForm.getSquadName());
+        squad.setStatus(squadForm.getStatus());
+
         return squad;
     }
 
