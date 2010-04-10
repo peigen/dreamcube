@@ -1,5 +1,6 @@
 package com.dreamcube.squad.util;
 
+import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.form.SquadForm;
 
@@ -36,6 +37,8 @@ public class SquadFormConvert {
         DCSquad squad = new DCSquad(squadForm.getSquadName(), squadForm.getSquadDesc(), squadForm
             .getAxiser(), squadForm.getInvestors(), squadForm.getStatus());
 
+        if (StringTool.isNotBlank(squadForm.getId()))
+            squad.setId(squadForm.getId());
         return squad;
     }
 
@@ -47,6 +50,7 @@ public class SquadFormConvert {
     public static SquadForm covert(DCSquad squad) {
 
         SquadForm squadForm = new SquadForm();
+        squadForm.setId(squad.getId());
         squadForm.setAxiser(squad.getAxiser());
         squadForm.setSquadDesc(squad.getSquadDesc());
         squadForm.setSquadName(squad.getSquadName());

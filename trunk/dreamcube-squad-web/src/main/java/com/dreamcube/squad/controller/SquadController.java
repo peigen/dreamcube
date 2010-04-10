@@ -58,22 +58,22 @@ public class SquadController {
         return "squad/add.vm";
     }
 
-    @RequestMapping(value = "/squad/doEdit.html", method = RequestMethod.POST)
-    public String doEdit(ModelMap modelMap, SquadForm squadForm) {
-
-        squadService.editSquad(SquadFormConvert.covert(squadForm));
-
-        return list(modelMap);
-    }
-
-    @RequestMapping(value = "/squad/edit.html", method = RequestMethod.GET)
-    public String edit(ModelMap modelMap, SquadForm squadForm) {
+    @RequestMapping(value = "/squad/edit.html", method = RequestMethod.POST)
+    public String viewEdit(ModelMap modelMap, SquadForm squadForm) {
 
         DCSquad squad = squadService.loadById(squadForm.getId());
 
         modelMap.addAttribute("squad", SquadFormConvert.covert(squad));
 
         return "squad/edit.vm";
+    }
+
+    @RequestMapping(value = "/squad/doEdit.html", method = RequestMethod.POST)
+    public String doEdit(ModelMap modelMap, SquadForm squadForm) {
+
+        squadService.editSquad(SquadFormConvert.covert(squadForm));
+
+        return list(modelMap);
     }
 
     @RequestMapping(value = "/squad/list.html", method = RequestMethod.GET)

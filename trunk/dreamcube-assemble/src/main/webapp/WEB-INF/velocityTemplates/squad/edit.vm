@@ -1,37 +1,40 @@
 <div>
-	<form method="POST" id="form_edit" action="./doEdit.html">
+	
+	<form method="POST" id="form_edit" action="doEdit.html">
 	<table>
 		<tr>
 			<td>小组名:</td>
-			<td><input name="squadName" value="$squad.squadName"/>
+			<td><input name="squadName" value="$!squad.squadName"/>
 		</tr>
 		<tr>
 			<td>小组描述:</td>
-			<td><input name="squadDesc" value="$squad.squadDesc"/>
+			<td><textarea name="squadDesc">$!squad.squadDesc</textarea>
 		</tr>
 		<tr>
 			<td>发起者:</td>
-			<td><input name="axiser" value="$squad.axiser"/>
+			<td><input name="axiser" value="$!squad.axiser"/>
 		</tr>
 		<tr>
 			<td>团队成员:</td>
-			<td><input name="cubers" value="$squad.cubers"/>
+			<td><input name="cubers" value="$!squad.cubers"/>
 		</tr>
 		<tr>
 			<td>跟随者:</td>
-			<td><input name="followers" value="$squad.followers"/>
+			<td><input name="followers" value="$!squad.followers"/>
 		</tr>
 		<tr>
 			<td>投资人:</td>
-			<td><input name="invertors" value="$squad.invertors"/>
+			<td><input name="invertors" value="$!squad.invertors"/>
 		</tr>
 		<tr>
 			<td>当前状态:</td>
-			<td><input name="status" value="$squad.status"/>
+			<td><input name="status" value="$!squad.status"/>
 		</tr>
 		<tr>
+			<input type="hidden" name="id" value="$!squad.id">
 			<td><input name="submit" type="submit" value="修改"/></td>
 			<td><input name="reset" type="reset" value="重置" /></td>
+		</tr>
 	</table>
 	</form>
 </div>

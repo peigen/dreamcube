@@ -81,7 +81,7 @@ public interface DcSquadDAO {
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>update dc_squad set squad_name=?, squadDesc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
+	 *  <tt>update dc_squad set squad_name=?, squad_desc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
 	 *
 	 *	@param dcSquad
 	 *	@return int

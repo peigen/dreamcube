@@ -26,14 +26,28 @@
 			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtCreate) &nbsp;</td>
 			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtModify) &nbsp;</td>
 			<td width="8%">
-				<form name="form_list" method=post action="squad/edit.html">
+				<form name="form_list" method=post action="edit.html">
 					<input type="hidden" name="id" value="$!item.id">
+					<input type="hidden" name="squadName" value="$!item.squadName">
+					<input type="hidden" name="squadDesc" value="$!item.squadDesc">
+					<input type="hidden" name="axiser" value="$!item.axiser">
+					<input type="hidden" name="cubers" value="$!item.cubers">
+					<input type="hidden" name="followers" value="$!item.followers">
+					<input type="hidden" name="investors" value="$!item.investors">
+					<input type="hidden" name="status" value="$!item.status">
 					<input type="submit" name="event_submit_do_delete_depositback_transcode_conf" value="删除" onClick="return deleteAction()">
-    				<input type="button" value="修改" onclick="$("form_list").submit();" />
+    				<input type="button" value="修改" onclick="$(form_list).submit();" />
 			   </form>
 			</td>
+			
 		</tr>
 		#end
 	</table>##end##结果列表表格
 	#end ##if($pageList && $pageList.size()>0)语句块
 </div>
+
+<script  type="text/JavaScript">
+$(jquery_test).append("<b>Hello</b>");
+
+$(xxx).empty();
+</script>
