@@ -101,6 +101,20 @@ public class SquadServiceImpl implements SquadService {
 
     }
 
+    /**
+     * @param id
+     * @see com.dreamcube.squad.biz.service.SquadService#removeSquad(java.lang.String)
+     */
+    @Override
+    public void removeSquad(String id) {
+
+        if (StringTool.isBlank(id))
+            throw new IllegalArgumentException("id不得为空");
+
+        dcSquadDAO.deleteById(Long.valueOf(id));
+
+    }
+
     // private method
     //~~~DI
     public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
