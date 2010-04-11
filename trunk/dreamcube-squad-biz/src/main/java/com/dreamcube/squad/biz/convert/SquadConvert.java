@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
+import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 
@@ -86,6 +87,22 @@ public class SquadConvert {
 
         for (DcSquadDO dcSquad : doList) {
             squadList.add(doToDomain(dcSquad));
+        }
+
+        return squadList;
+    }
+
+    /**
+     * 集合型
+     * @param doList
+     * @return
+     */
+    public static List<DCSquad> doToDomainPageList(PageList doList) {
+
+        List<DCSquad> squadList = new ArrayList<DCSquad>();
+
+        for (Object object : doList) {
+            squadList.add(doToDomain((DcSquadDO) object));
         }
 
         return squadList;

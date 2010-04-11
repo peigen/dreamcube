@@ -3,6 +3,7 @@ package com.dreamcube.squad.biz.service;
 import java.util.Date;
 import java.util.List;
 
+import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 
@@ -61,11 +62,13 @@ public interface SquadService {
      * @param status
      * @param gmtCreate
      * @param gmtModify
-     * @return
+     * @param pageSize
+     * @param pageNum
+     * @return PageList
      */
-    public List<DCSquad> querySquad(String squadName, String axiser, String cubers,
-                                    String followers, String investors, DCSquadStatusEnum status,
-                                    Date gmtCreate, Date gmtModify);
+    public PageList querySquad(String squadName, String axiser, String cubers, String followers,
+                               String investors, DCSquadStatusEnum status, Date gmtCreate,
+                               Date gmtModify, int pageSize, int pageNum);
 
     /**
      * 删除方法

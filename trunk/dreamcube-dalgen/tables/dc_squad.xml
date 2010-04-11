@@ -98,7 +98,7 @@
 
 	</operation>
 	
-	<operation name="query" multiplicity="many">
+	<operation name="query" multiplicity="many" paging="true">
 		<sql>
 			<![CDATA[
 				select * from dc_squad where squad_name = ? and axiser = ? and cubers = ? and followers = ? and investors = ? and status = ? and gmt_create =? and gmt_modify = ?;

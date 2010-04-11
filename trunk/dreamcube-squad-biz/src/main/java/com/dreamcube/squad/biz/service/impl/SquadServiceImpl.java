@@ -6,6 +6,7 @@ import java.util.List;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
+import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 import com.dreamcube.squad.biz.convert.SquadConvert;
@@ -56,6 +57,9 @@ public class SquadServiceImpl implements SquadService {
      */
     @Override
     public DCSquad loadById(String id) {
+        if (StringTool.isBlank(id))
+            throw new IllegalArgumentException("id不得为空");
+
         DcSquadDO squadDO = dcSquadDAO.loadById(Integer.valueOf(id));
 
         return SquadConvert.doToDomain(squadDO);
@@ -88,16 +92,17 @@ public class SquadServiceImpl implements SquadService {
      * @param status
      * @param gmtCreate
      * @param gmtModify
+     * @param pageSize
+     * @param pageNum
      * @return
-     * @see com.dreamcube.squad.biz.service.SquadService#querySquad(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.dreamcube.core.squad.enums.DCSquadStatusEnum, java.util.Date, java.util.Date)
+     * @see com.dreamcube.squad.biz.service.SquadService#querySquad(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.dreamcube.core.squad.enums.DCSquadStatusEnum, java.util.Date, java.util.Date, int, int)
      */
-    @Override
-    public List<DCSquad> querySquad(String squadName, String axiser, String cubers,
-                                    String followers, String investors, DCSquadStatusEnum status,
-                                    Date gmtCreate, Date gmtModify) {
+    public PageList querySquad(String squadName, String axiser, String cubers, String followers,
+                               String investors, DCSquadStatusEnum status, Date gmtCreate,
+                               Date gmtModify, int pageSize, int pageNum) {
 
-        return SquadConvert.doToDomainList(dcSquadDAO.query(squadName, axiser, cubers, followers,
-            investors, (status == null) ? null : status.code(), gmtCreate, gmtModify));
+        return dcSquadDAO.query(squadName, axiser, cubers, followers, investors,
+            (status == null) ? null : status.code(), gmtCreate, gmtModify, pageSize, pageNum);
 
     }
 

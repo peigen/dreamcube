@@ -9,6 +9,7 @@ import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
 import java.util.Date;
+import com.dreamcube.core.dal.util.PageList;
 
 /**
  * A dao interface provides methods to access database table <tt>dc_squad</tt>.
@@ -118,9 +119,11 @@ public interface DcSquadDAO {
 	 *	@param status
 	 *	@param gmtCreate
 	 *	@param gmtModify
-	 *	@return List<DcSquadDO>
+	 *	@param pageSize
+	 *	@param pageNum
+	 *	@return PageList
 	 *	@throws DataAccessException
 	 */	 
-    public List<DcSquadDO> query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify) throws DataAccessException;
+    public PageList query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify, int pageSize, int pageNum) throws DataAccessException;
 
 }
