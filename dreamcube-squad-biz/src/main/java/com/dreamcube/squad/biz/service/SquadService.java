@@ -51,8 +51,25 @@ public interface SquadService {
      */
     public void editSquad(DCSquad dcsquad);
 
+    /**
+     * 查询团队信息，根据输入的参数查询
+     * @param squadName
+     * @param axiser
+     * @param cubers
+     * @param followers
+     * @param investors
+     * @param status
+     * @param gmtCreate
+     * @param gmtModify
+     * @return
+     */
     public List<DCSquad> querySquad(String squadName, String axiser, String cubers,
                                     String followers, String investors, DCSquadStatusEnum status,
                                     Date gmtCreate, Date gmtModify);
 
+    /**
+     * 删除方法
+     * @param id
+     */
+    public void removeSquad(String id);
 }

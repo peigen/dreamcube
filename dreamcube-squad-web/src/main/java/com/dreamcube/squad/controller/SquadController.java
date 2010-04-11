@@ -1,6 +1,5 @@
 package com.dreamcube.squad.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.service.SquadService;
 import com.dreamcube.squad.form.SquadForm;
@@ -46,25 +46,14 @@ public class SquadController {
     @SuppressWarnings("unused")
     private Logger       log = LoggerFactory.getLogger(SquadController.class);
 
-    @RequestMapping(value = "/squad/show.html", method = RequestMethod.GET)
-    public String viewShow(ModelMap modelMap) {
-        modelMap.addAttribute("time", new Date());
-        return "squad/show.vm";
-    }
-
-    @RequestMapping(value = "/squad/squadAdd.html", method = RequestMethod.GET)
-    public String viewAdd(ModelMap modelMap) {
-
-        return "squad/squadAdd.vm";
-    }
-
-    @RequestMapping(value = "/squad/squadEdit.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/squad/squadEdit.html", method = RequestMethod.GET)
     public String viewEdit(ModelMap modelMap, SquadForm squadForm) {
 
-        DCSquad squad = squadService.loadById(squadForm.getId());
+        if (StringTool.isNotBlank(squadForm.getId())) {
+            DCSquad squad = squadService.loadById(squadForm.getId());
 
-        modelMap.addAttribute("squad", SquadFormConvert.covert(squad));
-
+            modelMap.addAttribute("squad", SquadFormConvert.covert(squad));
+        }
         return "squad/squadEdit.vm";
     }
 
@@ -94,6 +83,11 @@ public class SquadController {
         return "squad/squadQuery.vm";
     }
 
-    // private method
+    @RequestMapping(value = "/squad/doDelete.html", method = RequestMethod.POST)
+    public String doDelete(ModelMap modelMap, SquadForm squadForm) {
 
+        squadService.removeSquad(squadForm.getId());
+
+        return "squad/squadQuery.vm";
+    }
 }
