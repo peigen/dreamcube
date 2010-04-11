@@ -13,8 +13,10 @@ import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
 import java.util.Date;
+import com.dreamcube.core.dal.util.PageList;
 import java.util.Map;
 import java.util.HashMap;
+import com.dreamcube.core.dal.util.Paginator;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 
 /**
@@ -157,10 +159,12 @@ public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadD
 	 *	@param status
 	 *	@param gmtCreate
 	 *	@param gmtModify
-	 *	@return List<DcSquadDO>
+	 *	@param pageSize
+	 *	@param pageNum
+	 *	@return PageList
 	 *	@throws DataAccessException
 	 */	 
-    public List<DcSquadDO> query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify) throws DataAccessException {
+    public PageList query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify, int pageSize, int pageNum) throws DataAccessException {
         Map param = new HashMap();
 
         param.put("squadName", squadName);
@@ -171,9 +175,25 @@ public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadD
         param.put("status", status);
         param.put("gmtCreate", gmtCreate);
         param.put("gmtModify", gmtModify);
+        param.put("pageSize", new Integer(pageSize));
+        param.put("pageNum", new Integer(pageNum));
 
-        return getSqlMapClientTemplate().queryForList("MS-DC-SQUAD-QUERY", param);
+        Paginator paginator = new Paginator();
+        paginator.setItemsPerPage(pageSize);
+        paginator.setPage(pageNum);
 
+        paginator.setItems(((Integer) getSqlMapClientTemplate().queryForObject("MS-DC-SQUAD-QUERY-COUNT-FOR-PAGING", param)).intValue());
+        
+        PageList  pageList = new PageList();
+        pageList.setPaginator(paginator);
+        
+        if (paginator.getBeginIndex() <= paginator.getItems()) {
+            param.put("startRow", new Integer(paginator.getBeginIndex()));
+            param.put("endRow", new Integer(paginator.getEndIndex()));
+            pageList.addAll(getSqlMapClientTemplate().queryForList("MS-DC-SQUAD-QUERY", param));
+        }
+        
+        return pageList;
     }
 
 }

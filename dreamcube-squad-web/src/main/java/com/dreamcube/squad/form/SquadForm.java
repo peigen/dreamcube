@@ -3,6 +3,8 @@ package com.dreamcube.squad.form;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.RegExp;
@@ -68,6 +70,10 @@ public class SquadForm implements Serializable {
 
     /** 团队当前状态 */
     private DCSquadStatusEnum status;
+
+    private int               pageNum;
+
+    private int               pageSize;
 
     public String getId() {
         return id;
@@ -157,4 +163,23 @@ public class SquadForm implements Serializable {
         this.authcodeTxt = authcodeTxt;
     }
 
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }

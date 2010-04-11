@@ -11,7 +11,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
 		default-autowire="byName">
 
-	<!-- 图片校验码生成的工具 -->
+	<!-- 图片校验码生成的工具 
 	<bean id="wordImageProducer" class="com.dreamcube.core.common.tools.WordImageProducer" init-method="init"/>
 	<bean id="picCodeGenerateTool" class="com.dreamcube.core.common.tools.PicCodeGenerateTool"/>
+	-->
 </beans>

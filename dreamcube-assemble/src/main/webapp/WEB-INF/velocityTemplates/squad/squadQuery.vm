@@ -12,6 +12,7 @@
    </tr>
    <tr>
 	  	<td id="searchbutton" colspan="4" >
+	  		<input type="hidden" name="pageNum" />
 			<input type="submit" name="search" value=" 搜 索 " onclick="clickSub(this)" />&nbsp;
 			<span id="hid_sub" style="display:none">查询中，请稍候 ...</span>
 			<input type="button" name="clean" value=" 清 空 " onclick="cleanElement();" />&nbsp;
@@ -72,9 +73,18 @@
 			
 		</tr>
 		#end
+		<tr>$!squadList.paginator
+			##分页属性栏
+			<div align="center">
+				<script>
+				pageSlider($!squadList.paginator.pages,$!squadList.paginator.page,$!squadList.paginator.items,$!squadList.paginator.itemsPerPage,'','suqad_form_query','pageNum','/img');	
+				</script>
+			</div>
+		</tr>
 	#end ##if($pageList && $pageList.size()>0)语句块
 	</table>##end##结果列表表格
 </div>
+
 
 <script  type="text/JavaScript">
 

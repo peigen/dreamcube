@@ -68,13 +68,16 @@
 		<mkdir dir="${dir.lib}" />
 		<mkdir dir="${dir.conf}" />
 		<copy todir="${dir.lib}">
-			<fileset dir="${dir.antx}/repository/alipay/thirdparty/dalgen_08">
+			<fileset dir="${dir.antx}/repository/alipay/thirdparty/dalgen_10">
 				<include name="**/*.jar" />
 				<exclude name="**/*src.jar" />
 				<exclude name="**/*doc.jar" />
 			</fileset>
 		</copy>
+		<!--
 		<unjar src="${dir.lib}/alipay-tools-dalgen-1.1.0.20080122.jar" dest="${dir.conf}" />
+		-->
+		<unjar src="${dir.lib}/alipay-tools-dalgen-peigen.jar" dest="${dir.conf}" />
 		<copy file="${dir.conf}/middlegen-plugin.xml" todir="${dir.conf}/META-INF" />
 	</target>
 

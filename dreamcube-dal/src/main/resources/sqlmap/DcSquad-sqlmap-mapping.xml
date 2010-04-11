@@ -145,6 +145,41 @@
 						gmt_modify >= date('#gmtModify#')
 					]]>
 					</isNotEmpty>
+				</dynamic> limit #startRow# , #endRow#
+    </select>
+
+    <!-- mapped statement for IbatisDcSquadDAO.query, needed by paging -->
+    <select id="MS-DC-SQUAD-QUERY-COUNT-FOR-PAGING" resultClass="int">
+        select count(*) from dc_squad
+				<dynamic prepend="where">
+					<isNotEmpty prepend="and" property="squadName">
+						squad_name = #squadName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="axiser">
+						axiser = #axiser#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="cubers">
+						cubers = #cubers#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="followers">
+						followers = #followers#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="investors">
+						investors = #investors#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="status">
+						status = #status#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtCreate">
+					<![CDATA[
+						gmt_create >= date('#gmtCreate#')
+					]]>
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtModify">
+					<![CDATA[
+						gmt_modify >= date('#gmtModify#')
+					]]>
+					</isNotEmpty>
 				</dynamic>
     </select>
 

@@ -1,7 +1,5 @@
 package com.dreamcube.squad.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dreamcube.core.common.tools.StringTool;
+import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.service.SquadService;
 import com.dreamcube.squad.form.SquadForm;
@@ -74,10 +73,10 @@ public class SquadController {
     @RequestMapping(value = "/squad/doSquadQuery.html", method = RequestMethod.POST)
     public String doQuery(ModelMap modelMap, SquadForm squadForm) {
 
-        List<DCSquad> list = squadService.querySquad(squadForm.getSquadName(), squadForm
-            .getAxiser(), squadForm.getCubers(), squadForm.getFollowers(),
-            squadForm.getInvestors(), squadForm.getStatus(), squadForm.getGmtCreate(), squadForm
-                .getGmtModify());
+        PageList list = squadService.querySquad(squadForm.getSquadName(), squadForm.getAxiser(),
+            squadForm.getCubers(), squadForm.getFollowers(), squadForm.getInvestors(), squadForm
+                .getStatus(), squadForm.getGmtCreate(), squadForm.getGmtModify(), squadForm
+                .getPageSize(), squadForm.getPageNum());
         modelMap.addAttribute("squadList", list);
         modelMap.addAttribute("squad", squadForm);
         return "squad/squadQuery.vm";
