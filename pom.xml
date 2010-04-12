@@ -103,6 +103,12 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>20030825.184428</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>1.4</version>
+		</dependency>
 		
 		<!-- log -->
 		<dependency>
@@ -146,9 +152,6 @@
 			<artifactId>pjl-comp-filter</artifactId>
 			<version>1.6.4</version>
 		</dependency>
-
-
-
 
 		<!-- test scoped dependencies -->
 
