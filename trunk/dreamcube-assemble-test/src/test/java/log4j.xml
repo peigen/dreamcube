@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="GB2312"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "D:\home\desktop\log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <!-- ===================================================================== -->
-    <!--  ÒÔÏÂÊÇappenderµÄ¶¨Òå                                                           -->
+    <!--  ä»¥ä¸‹æ˜¯appenderçš„å®šä¹‰                                                           -->
     <!-- ===================================================================== -->
     <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
         <param name="encoding" value="GBK"/>
@@ -11,7 +11,7 @@
         </layout>
     </appender>
     <!-- ===================================================================== -->
-    <!--  ÒÔÏÂÊÇloggerµÄ¶¨Òå                                                             -->
+    <!--  ä»¥ä¸‹æ˜¯loggerçš„å®šä¹‰                                                             -->
     <!-- ===================================================================== -->
     <logger name="com.dreamcube.enrollment" additivity="false">
 		<level value="debug"/>
@@ -63,7 +63,7 @@
 	</logger>
     
     <!-- ===================================================================== -->
-    <!--  Root loggerµÄ¶¨Òå                                                             -->
+    <!--  Root loggerçš„å®šä¹‰                                                             -->
     <!-- ===================================================================== -->
     <root>
         <level value="debug"/>
