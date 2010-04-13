@@ -145,7 +145,7 @@
 						gmt_modify >= date('#gmtModify#')
 					]]>
 					</isNotEmpty>
-				</dynamic> limit #startRow# , #endRow#
+				</dynamic> limit #startRow# , #pageSize#
     </select>
 
     <!-- mapped statement for IbatisDcSquadDAO.query, needed by paging -->
