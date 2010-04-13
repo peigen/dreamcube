@@ -75,8 +75,8 @@ public class SquadController {
 
         PageList list = squadService.querySquad(squadForm.getSquadName(), squadForm.getAxiser(),
             squadForm.getCubers(), squadForm.getFollowers(), squadForm.getInvestors(), squadForm
-                .getStatus(), squadForm.getGmtCreate(), squadForm.getGmtModify(), squadForm
-                .getPageSize(), squadForm.getPageNum());
+                .getStatus(), squadForm.getGmtCreate(), squadForm.getGmtModify(),
+            forInteger(squadForm.getPageSize()), forInteger(squadForm.getPageNum()));
         modelMap.addAttribute("squadList", list);
         modelMap.addAttribute("squad", squadForm);
         return "squad/squadQuery.vm";
@@ -88,5 +88,9 @@ public class SquadController {
         squadService.removeSquad(squadForm.getId());
 
         return "squad/squadQuery.vm";
+    }
+
+    private int forInteger(String str) {
+        return StringTool.isNotBlank(str) ? Integer.valueOf(str) : 0;
     }
 }

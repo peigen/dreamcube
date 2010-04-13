@@ -1,1 +1,11 @@
-aaa
+#pagination{border: none}
+#pagination td{vertical-align: middle}
+input.pgno {
+	background-color: #FFF;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid #0000FF;
+	cursor: pointer;
+	padding: 0;
+}

@@ -9,6 +9,7 @@ import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.RegExp;
 
+import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.common.tools.ValidateTool;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 
@@ -71,9 +72,10 @@ public class SquadForm implements Serializable {
     /** 团队当前状态 */
     private DCSquadStatusEnum status;
 
-    private int               pageNum;
+    private String            pageNum;
 
-    private int               pageSize;
+    /** 默认每页5条 必须的 */
+    private String            pageSize;
 
     public String getId() {
         return id;
@@ -163,19 +165,22 @@ public class SquadForm implements Serializable {
         this.authcodeTxt = authcodeTxt;
     }
 
-    public int getPageNum() {
+    public String getPageNum() {
         return pageNum;
     }
 
-    public void setPageNum(int pageNum) {
+    public void setPageNum(String pageNum) {
         this.pageNum = pageNum;
     }
 
-    public int getPageSize() {
+    public String getPageSize() {
+        if (StringTool.isBlank(pageSize))
+            this.pageSize = "5";
+
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(String pageSize) {
         this.pageSize = pageSize;
     }
 

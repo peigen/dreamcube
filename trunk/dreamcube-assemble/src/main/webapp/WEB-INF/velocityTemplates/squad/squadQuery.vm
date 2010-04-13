@@ -12,11 +12,19 @@
    </tr>
    <tr>
 	  	<td id="searchbutton" colspan="4" >
-	  		<input type="hidden" name="pageNum" />
+	  		
+	  		<input type="hidden" id="pageNum" name="pageNum" value="$!squad.pageNum" />&nbsp;
+	  		<input type="hidden" id="pageSize" name="pageSize" value="$!squad.pageSize" />&nbsp;
+	  		
 			<input type="submit" name="search" value=" 搜 索 " onclick="clickSub(this)" />&nbsp;
 			<span id="hid_sub" style="display:none">查询中，请稍候 ...</span>
-			<input type="button" name="clean" value=" 清 空 " onclick="cleanElement();" />&nbsp;
+			
+			<input type="button" name="clean" value=" 清 空 " onclick="cleanAll();" />&nbsp;
 			<input type="button" name="add" value=" 添 加 " onclick="do_modify_action();" />&nbsp;
+			<select>
+				<option value="selected">xx</option>
+				<option value="">yy</option>
+			</select>
 		</td>
 	</tr>
 	</table>
@@ -73,11 +81,12 @@
 			
 		</tr>
 		#end
-		<tr>$!squadList.paginator
+		<tr>
+			$!squadList.paginator
 			##分页属性栏
 			<div align="center">
 				<script>
-				pageSlider($!squadList.paginator.pages,$!squadList.paginator.page,$!squadList.paginator.items,$!squadList.paginator.itemsPerPage,'','suqad_form_query','pageNum','/img');	
+					pageSlider($!squadList.paginator.pages,$!squadList.paginator.page,$!squadList.paginator.items,$!squadList.paginator.itemsPerPage,20,'suqad_form_query','pageNum','/img');	
 				</script>
 			</div>
 		</tr>
@@ -89,6 +98,7 @@
 <script  type="text/JavaScript">
 
 function clickSub(obj){
+	cleanField("pageNum");
 	obj.style.display="none";
 	$("#hid_sub").style.display="";
 }
@@ -107,18 +117,14 @@ function do_modify_action(id){
 ##是否确认删除
 function deleteAction() {
 	var alarm = "确定要删除吗?"
-	if(confirm(alarm)){					  	
+	if(confirm(alarm)){
 	  return true;
 	}
    return false;
 }
 
-function cleanElement(){
-	$("#squadName").val("");
-}
-
 $(document).ready(function() {
 	$("#squadName").focus();
-	
 });
+
 </script>
