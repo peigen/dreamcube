@@ -18,3 +18,6 @@ mvn archetype:create -DgroupId=com.dreamcube -DartifactId=dreamcube-squad-core-d
 mvn archetype:create -DgroupId=com.dreamcube -DartifactId=dreamcube-squad-biz -Dversion=1.0-SNAPSHOT
 mvn archetype:create -DgroupId=com.dreamcube -DartifactId=dreamcube-squad-web -Dversion=1.0-SNAPSHOT
 mvn archetype:create -DgroupId=com.dreamcube -DartifactId=dreamcube-core-common -Dversion=1.0-SNAPSHOT
+
+
+打包，先mvn clean下，eclipse  clean project   mvn install
