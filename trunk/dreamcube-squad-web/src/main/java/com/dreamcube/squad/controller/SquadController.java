@@ -45,6 +45,12 @@ public class SquadController {
     @SuppressWarnings("unused")
     private Logger       log = LoggerFactory.getLogger(SquadController.class);
 
+    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
+    public String index(ModelMap modelMap) {
+
+        return "index.vm";
+    }
+
     @RequestMapping(value = "/squad/squadEdit.html", method = RequestMethod.GET)
     public String viewEdit(ModelMap modelMap, SquadForm squadForm) {
 
