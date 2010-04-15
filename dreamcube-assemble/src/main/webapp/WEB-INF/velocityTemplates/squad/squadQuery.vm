@@ -38,6 +38,8 @@
 		<tr>
 			<th colspan="4" id="searchbutton">
 				<font color="red">查询：没有符合条件的记录</font>
+				<br><font color="red">也许是没有配置好数据库哦。打开dc_squad.sql，
+				新建库和表。然后可以选择insert几条测试数据。</font>
 			</th>
 		</tr>
 	#elseif($squadList && ($squadList.size()>0))
