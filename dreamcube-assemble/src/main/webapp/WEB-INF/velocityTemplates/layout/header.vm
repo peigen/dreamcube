@@ -7,9 +7,15 @@
 
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+	<!-- 上线时考虑用google提供的压缩后jQuery -->
+	<!--
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"><!--mce:0--></script>
+	-->
+	
     <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="/js/site.js"></script>
 	<script type="text/javascript" src="/js/jquery.soChange.js"></script>
+	
 	<link rel="stylesheet" type="text/css" href="/css/site.css"/>
 	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
