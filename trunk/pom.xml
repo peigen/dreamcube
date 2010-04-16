@@ -271,18 +271,28 @@
 
 	</repositories>
 	<modules>
-		<module>dreamcube-core-common</module>
-		<module>dreamcube-common-web</module>
+		
+		<!-- commons -->
 		<module>dreamcube-dal</module>
+		<module>dreamcube-core-common</module>
+		<module>dreamcube-test-test</module>
+		
+		<!-- web -->
 		<module>dreamcube-assemble</module>
 		<module>dreamcube-assemble-test</module>
+		
+		<module>dreamcube-common-web</module>
+		
 		<module>dreamcube-enrollment-core-domain</module>
 		<module>dreamcube-enrollment-biz</module>
 		<module>dreamcube-enrollment-web</module>
+		
 		<module>dreamcube-squad-core-domain</module>
 		<module>dreamcube-squad-biz</module>
 		<module>dreamcube-squad-web</module>
-		<module>dreamcube-test-test</module>
+		
+		
+		
   </modules>
 </project>
 
