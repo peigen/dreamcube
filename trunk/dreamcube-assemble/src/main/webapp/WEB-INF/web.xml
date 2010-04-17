@@ -32,9 +32,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dreamcube</servlet-name>
-		<url-pattern>*.*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-	
 	<!-- 验证码Servlet -->
 	<servlet>
 		<servlet-name>validImg</servlet-name>
