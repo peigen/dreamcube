@@ -54,7 +54,6 @@ private static final String DEFAULT_ENCODING = "UTF-8";
 	public void renderMergedOutputModel(Map model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		response.setContentType(getContentType());
-		response.setCharacterEncoding(encoding);
 		RequestContext rc = getRequestContext(model);
 		BindingResult br = getBindingResult( model);
 		JsonWriterConfiguratorTemplateRegistry configuratorTemplateRegistry = getConfiguratorTemplateRegistry(request);
