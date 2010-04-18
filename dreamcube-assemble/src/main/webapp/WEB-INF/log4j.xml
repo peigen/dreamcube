@@ -5,7 +5,7 @@
     <!--  以下是appender的定义                                                           -->
     <!-- ===================================================================== -->
     <appender name="FILE" class="org.apache.log4j.FileAppender">
-    	<param name="file" value="/home/holly/dreamcube.log"/>
+    	<param name="file" value="~/dreamcube.log"/>
     	<param name="append" value="false"/>
         <param name="encoding" value="GBK"/>
         <layout class="org.apache.log4j.PatternLayout">
