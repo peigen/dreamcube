@@ -68,6 +68,14 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.7.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+			
 		
 		<!-- dal -->
 		<!--<dependency>
@@ -275,7 +283,7 @@
 		<!-- commons -->
 		<module>dreamcube-dal</module>
 		<module>dreamcube-core-common</module>
-		<module>dreamcube-test-test</module>
+		<module>dreamcube-core-misc</module>
 		
 		<!-- web -->
 		<module>dreamcube-assemble</module>
@@ -290,10 +298,8 @@
 		<module>dreamcube-squad-core-domain</module>
 		<module>dreamcube-squad-biz</module>
 		<module>dreamcube-squad-web</module>
-		
-		
-		
+
+		<!-- Test -->
+		<module>dreamcube-test-test</module>
   </modules>
 </project>
-
-

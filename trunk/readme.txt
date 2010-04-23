@@ -21,3 +21,10 @@ mvn archetype:create -DgroupId=com.dreamcube -DartifactId=dreamcube-core-common 
 
 
 打包，先mvn clean下，eclipse  clean project   mvn install
+
+启动mongodb
+打算把一些系统配置缓存放到里面去
+#!/bin/bash
+pkill mongodb
+/home/peigen/soft/java/mongodb/bin/mongod --dbpath /tmp/ --logpath /tmp/mongodb.log --logappend --port 1983
+
