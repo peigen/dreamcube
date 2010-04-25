@@ -9,7 +9,7 @@
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 	<!-- 上线时考虑用google提供的压缩后jQuery -->
 	<!--
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"><!--mce:0--></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
 	-->
 	
     <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
