@@ -15,4 +15,16 @@
 	<bean id="wordImageProducer" class="com.dreamcube.core.common.tools.WordImageProducer" init-method="init"/>
 	<bean id="picCodeGenerateTool" class="com.dreamcube.core.common.tools.PicCodeGenerateTool"/>
 	
+	<!-- MongoDB -->
+	<bean id="mongo" class="com.mongodb.Mongo">
+		<constructor-arg index="0" value="localhost" />
+		<constructor-arg index="1" value="1983" />
+	</bean>
+	
+	<bean id="mongoCache" class="com.dreamcube.core.common.service.impl.MongoCacheImpl" />
+	
+	<bean id="cacheService" class="com.dreamcube.core.common.service.impl.CacheServiceImpl" />
+	
+	<bean id="localCacheManage" class="com.dreamcube.core.common.service.impl.LocalCacheManageImpl" />
+	
 </beans>

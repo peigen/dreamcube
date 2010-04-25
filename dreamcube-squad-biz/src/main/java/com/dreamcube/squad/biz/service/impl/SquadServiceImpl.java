@@ -3,6 +3,10 @@ package com.dreamcube.squad.biz.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
+
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
@@ -10,6 +14,7 @@ import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 import com.dreamcube.squad.biz.convert.SquadConvert;
+import com.dreamcube.squad.biz.service.SquadLocalCache;
 import com.dreamcube.squad.biz.service.SquadService;
 
 /**
@@ -36,7 +41,11 @@ import com.dreamcube.squad.biz.service.SquadService;
  */
 public class SquadServiceImpl implements SquadService {
 
-    private DcSquadDAO dcSquadDAO;
+    private static Logger   log = LoggerFactory.getLogger(SquadServiceImpl.class);
+
+    private DcSquadDAO      dcSquadDAO;
+
+    private SquadLocalCache squadLocalCache;
 
     /**
      * @return
@@ -80,6 +89,7 @@ public class SquadServiceImpl implements SquadService {
             dcsquad.setStatus(DCSquadStatusEnum.MUSTER);
             dcSquadDAO.insert(SquadConvert.domainToDo(dcsquad));
         }
+        refreshLocalCache();
 
     }
 
@@ -116,14 +126,33 @@ public class SquadServiceImpl implements SquadService {
         if (StringTool.isBlank(id))
             throw new IllegalArgumentException("id不得为空");
 
-        dcSquadDAO.deleteById(Long.valueOf(id));
-
+        try {
+            dcSquadDAO.deleteById(Long.valueOf(id));
+            refreshLocalCache();
+        } catch (DataAccessException e) {
+            throw e;
+        } catch (NumberFormatException e) {
+            log.error("", e);
+            throw e;
+        }
     }
 
     // private method
+
+    /**
+     * 刷缓存
+     */
+    private void refreshLocalCache() {
+        squadLocalCache.refresh();
+    }
+
     //~~~DI
     public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
         this.dcSquadDAO = dcSquadDAO;
+    }
+
+    public void setSquadLocalCache(SquadLocalCache squadLocalCache) {
+        this.squadLocalCache = squadLocalCache;
     }
 
 }

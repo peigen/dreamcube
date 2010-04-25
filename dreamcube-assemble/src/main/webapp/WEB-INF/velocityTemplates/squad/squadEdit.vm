@@ -32,7 +32,11 @@
 		</tr>
 		<tr>
 			<input type="hidden" name="id" value="$!squad.id">
+			#if($!squad.id)
 			<td><input name="submit" type="submit" value="修改"/></td>
+			#else
+			<td><input name="submit" type="submit" value="新增"/></td>
+			#end
 			<td><input name="reset" type="reset" value="重置" /></td>
 		</tr>
 	</table>

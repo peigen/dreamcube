@@ -6,6 +6,7 @@ import java.util.Set;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
@@ -32,57 +33,80 @@ import com.mongodb.MongoException;
  */
 public class MongoDBStore {
 
-	/**
-	 * @param args
-	 * @throws MongoException
-	 * @throws UnknownHostException
-	 */
-	public static void main(String[] args) throws UnknownHostException,
-			MongoException {
+    /**
+     * @param args
+     * @throws MongoException
+     * @throws UnknownHostException
+     */
+    public static void main(String[] args) throws UnknownHostException, MongoException {
 
-		Mongo mongo = new Mongo("localhost", 1983);
-		DB db = mongo.getDB("mydb");
+        Mongo mongo = new Mongo("localhost", 1983);
+        DB db = mongo.getDB("dreamcube");
 
-		DBCollection coll = db.getCollection("testCollection");
+        DBCollection coll = db.getCollection("dreamcubeConllection");
 
-		insertObject(coll);
+        //        coll.drop();
+        //        insertObject(coll);
+        //        insertObject(coll);
 
-		findOne(coll);
+        //        remove(coll);
 
-		showCollections(db);
-	}
+        long start = System.currentTimeMillis();
 
-	private static void showCollections(DB db) {
-		Set<String> colls = db.getCollectionNames();
+        DBCursor cur = coll.find();
 
-		System.out.println(colls);
+        while (cur.hasNext()) {
+            System.out.println(cur.next());
+        }
 
-		for (String s : colls) {
-			System.out.println(s);
-		}
-	}
+        System.out.println("总共有几个：" + coll.getCount());
 
-	private static void insertObject(DBCollection coll) {
-		BasicDBObject doc = new BasicDBObject();
+        long end = System.currentTimeMillis();
 
-		doc.put("name", "MongoDB");
-		doc.put("type", "database");
-		doc.put("count", 1);
+        System.out.println("总耗时:" + (end - start) + "毫秒");
 
-		BasicDBObject info = new BasicDBObject();
+        showCollections(db);
+    }
 
-		info.put("x", 203);
-		info.put("y", 102);
+    private static void showCollections(DB db) {
+        Set<String> colls = db.getCollectionNames();
 
-		doc.put("info", info);
+        System.err.println("showCollections");
+        System.out.println(colls);
 
-		coll.insert(doc);
+        for (String s : colls) {
+            System.out.println(s);
+        }
+    }
 
-	}
+    private static void insertObject(DBCollection coll) {
+        BasicDBObject doc = new BasicDBObject();
 
-	private static void findOne(DBCollection coll) {
-		DBObject myDoc = coll.findOne();
-		System.out.println(myDoc);
-	}
+        doc.put("name", "MongoDB");
+        doc.put("type", "database");
+        doc.put("count", 1);
+        doc.put("name", "peigen");
+
+        BasicDBObject info = new BasicDBObject();
+
+        info.put("x", 203);
+        info.put("y", 102);
+        info.put("z", 152);
+
+        doc.put("info", info);
+
+        coll.insert(doc);
+
+    }
+
+    private static void findOne(DBCollection coll) {
+        DBObject myDoc = coll.findOne();
+        System.out.println(myDoc);
+    }
+
+    private static void remove(DBCollection coll) {
+        BasicDBObject doc = new BasicDBObject("name", "peigen");
+        coll.remove(doc);
+    }
 
 }

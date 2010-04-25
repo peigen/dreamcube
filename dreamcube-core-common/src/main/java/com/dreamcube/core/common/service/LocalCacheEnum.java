@@ -1,40 +1,35 @@
-package com.dreamcube.core.squad.enums;
+package com.dreamcube.core.common.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *                       
- *Filename: DCSquadStatus.java
+ * Filename: LocalCacheEnum.java
  *
- *Description: 团队状态
+ * Description: 缓存说明枚举
  *
- *Version: 0.1
+ * Version: 0.1
  *
- *Author: peigen
+ * Author: peigen
  *
- *Email: peigen123@gmail.com
+ * Email: peigen123@gmail.com
  *
- *Blog: http://peigen.info
+ * Blog: http://peigen.info
  *
  *       
- *History:<br>
+ * History:<br>
  *<li>Author: peigen</li>
- *<li>Date: 2010-4-3</li>
+ *<li>Date: 2010-4-25</li>
  *<li>Version: 0.1</li>
  *<li>Content: create</li>
  *
  */
-public enum DCSquadStatusEnum {
+public enum LocalCacheEnum {
 
-    /** MUSTER---召集阶段 */
-    MUSTER("MUSTER", "召集阶段"),
+    DC_SQUAD("DC_SQUAD", "团队"),
 
-    /** DEV---开发阶段 */
-    DEV("DEV", "开发阶段"),
-
-    /** RELEASE---发布阶段 */
-    RELEASE("RELEASE", "发布阶段");
+    DC_USER("DC_USER", "用户");
 
     private final String code;
 
@@ -44,7 +39,7 @@ public enum DCSquadStatusEnum {
      * @param code
      * @param message
      */
-    private DCSquadStatusEnum(String code, String message) {
+    private LocalCacheEnum(String code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -82,24 +77,24 @@ public enum DCSquadStatusEnum {
      * @param code
      * @return
      */
-    public static DCSquadStatusEnum getByCode(String code) {
-        for (DCSquadStatusEnum squadStatusCode : values()) {
-            if (squadStatusCode.getCode().equals(code)) {
-                return squadStatusCode;
+    public static LocalCacheEnum getByCode(String code) {
+        for (LocalCacheEnum cacheCode : values()) {
+            if (cacheCode.getCode().equals(code)) {
+                return cacheCode;
             }
         }
         return null;
     }
 
     /**
-     * 获取全部角色
+     * 获取全部缓存
      * 
      * @return
      */
-    public List<DCSquadStatusEnum> getAllRole() {
-        List<DCSquadStatusEnum> list = new ArrayList<DCSquadStatusEnum>();
-        for (DCSquadStatusEnum role : values()) {
-            list.add(role);
+    public List<LocalCacheEnum> getAllRole() {
+        List<LocalCacheEnum> list = new ArrayList<LocalCacheEnum>();
+        for (LocalCacheEnum cache : values()) {
+            list.add(cache);
         }
         return list;
     }
