@@ -1,5 +1,8 @@
 package com.dreamcube.enrollment.biz.convert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.dataobject.DcUserDO;
 import com.dreamcube.core.enrollment.domain.DCUser;
@@ -79,5 +82,33 @@ public class UserConvert {
         user.setWorkSite(dcUserDO.getWorkSite());
 
         return user;
+    }
+
+    /**
+     * @param doList
+     * @return
+     */
+    public static List<DCUser> doToDomainList(List<DcUserDO> doList) {
+        List<DCUser> domainlist = new ArrayList<DCUser>();
+
+        for (DcUserDO userDO : doList) {
+            domainlist.add(doToDomain(userDO));
+        }
+
+        return domainlist;
+    }
+
+    /**
+     * @param domainList
+     * @return
+     */
+    public List<DcUserDO> domainToDoList(List<DCUser> domainList) {
+        List<DcUserDO> doList = new ArrayList<DcUserDO>();
+
+        for (DCUser user : domainList) {
+            doList.add(domainToDo(user));
+        }
+
+        return doList;
     }
 }
