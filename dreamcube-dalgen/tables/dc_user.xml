@@ -1,0 +1,111 @@
+<table sqlname="dc_user">
+	<operation name="insert" paramtype="object">
+		<sql>
+			<![CDATA[
+				insert into dc_user
+					(logon_name,logon_passwd,nick_name,birthday,cert_no,gender,work_site,projects,info_site,gmt_create,gmt_modify,status)
+				values
+					(?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,?);
+        	]]>
+		</sql>
+	</operation>
+
+	<operation name="load" multiplicity="many">
+		<sql>
+			<![CDATA[
+				  select * from dc_user;
+    		]]>
+		</sql>
+	</operation>
+
+	<operation name="loadById" paramtype="primitive">
+		<sql>
+			<![CDATA[
+				  select * from dc_user where id=?;
+    		]]>
+		</sql>
+	</operation>
+
+	<operation name="loadByLogonName" paramtype="primitive">
+		<sql>
+			<![CDATA[
+				  select * from dc_user where logon_name=?;
+    		]]>
+		</sql>
+	</operation>
+
+	<operation name="update" paramtype="object">
+		<sql>
+			<![CDATA[
+				update dc_user
+				set 
+					logon_passwd=?,
+					nick_name=?,
+					birthday=?,
+					cert_no=?,
+					gender=?,
+					work_site=?,
+					projects=?,
+					info_site=?,
+					status=?,
+					gmt_modify=CURRENT_TIMESTAMP
+			 	where id = ?;
+    		]]>
+		</sql>
+		<sqlmap>
+			<![CDATA[
+				update dc_user
+				set	gmt_modify=CURRENT_TIMESTAMP,
+				<dynamic>
+					<isNotEmpty property="logonPasswd">
+						logon_passwd = #logonPasswd#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="nickName">
+						nick_name = #nickName#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="birthday">
+						birthday = #birthday#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="certNo">
+						cert_no = #certNo#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="gender">
+						gender = #gender#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="workSite">
+						work_site = #workSite#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="projects">
+						projects = #projects#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="infoSite">
+						info_site = #infoSite#,
+					</isNotEmpty>
+					
+					<isNotEmpty property="status">
+						status = #status#
+					</isNotEmpty>
+					
+			 	</dynamic>
+			 	where id = #id#;
+           ]]>
+		</sqlmap>
+	</operation>
+
+	<operation name="deleteById">
+		<sql>
+			<![CDATA[
+				delete from dc_user where id = ?;
+			]]>
+		</sql>
+
+	</operation>
+	
+</table>

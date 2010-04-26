@@ -36,7 +36,7 @@ import com.dreamcube.core.enrollment.enums.DCUserStatusEnum;
 
 public class DCUser {
 
-    private int              id;
+    private String           id;
 
     /** 登录名 */
     private String           logonName;
@@ -106,6 +106,13 @@ public class DCUser {
     }
 
     /**
+     * 空对象
+     */
+    public DCUser() {
+        super();
+    }
+
+    /**
      * 
      */
     public void check() {
@@ -117,17 +124,17 @@ public class DCUser {
 
     // ~~~DI
     /**
-     * @return Returns the id.
+     * @return Returns the id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id
-     *            The id to set.
+     * The id to set.
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

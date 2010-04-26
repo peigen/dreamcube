@@ -23,6 +23,7 @@
     
 	<!-- tables -->
     <include table="tables/dc_squad.xml"/>
+    <include table="tables/dc_user.xml"/>
 	
 	
 </tables>

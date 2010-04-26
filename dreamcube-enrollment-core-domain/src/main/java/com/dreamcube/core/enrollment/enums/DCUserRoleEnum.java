@@ -43,31 +43,45 @@ public enum DCUserRoleEnum {
     /** MANAGE---管理员 */
     MANAGE("MANAGE", "管理员");
 
-    private final String key;
+    private final String code;
 
-    private final String desc;
+    private final String message;
 
     /**
-     * @param key
-     * @param desc
+     * @param code
+     * @param message
      */
-    private DCUserRoleEnum(String key, String desc) {
-        this.key = key;
-        this.desc = desc;
+    private DCUserRoleEnum(String code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
     /**
-     * @return Returns the key.
+     * @return Returns the code
      */
-    public String getKey() {
-        return key;
+    public String getCode() {
+        return code;
     }
 
     /**
-     * @return Returns the desc.
+     * @return Returns the message
      */
-    public String getDesc() {
-        return desc;
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @return Returns the code
+     */
+    public String code() {
+        return code;
+    }
+
+    /**
+     * @return Returns the message
+     */
+    public String message() {
+        return message;
     }
 
     /**
@@ -81,6 +95,20 @@ public enum DCUserRoleEnum {
             list.add(role);
         }
         return list;
+    }
+
+    /**
+     * 通过枚举<code>code</code>获得枚举
+     * @param code
+     * @return
+     */
+    public static DCUserRoleEnum getByCode(String code) {
+        for (DCUserRoleEnum userRoleCode : values()) {
+            if (userRoleCode.getCode().equals(code)) {
+                return userRoleCode;
+            }
+        }
+        return null;
     }
 
 }
