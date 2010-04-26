@@ -26,15 +26,19 @@ import java.util.List;
  *
  */
 public enum CommonExceptionEnum {
-
+    /** DBOBJECT_PARSE_ERROR---DBObject解析失败 */
     DBOBJECT_PARSE_ERROR("DBOBJECT_PARSE_ERROR", "DBObject解析失败"),
 
+    /** CACHE_DROP_ERROR---缓存[DROP]失败 */
     CACHE_DROP_ERROR("CACHE_DROP_ERROR", "缓存[DROP]失败"),
 
+    /** CACHE_CLEAN_ERROR---缓存[清理]失败 */
     CACHE_CLEAN_ERROR("CACHE_CLEAN_ERROR", "缓存[清理]失败"),
 
+    /** CACHE_REFRESH_ERROR---缓存[刷新]失败 */
     CACHE_REFRESH_ERROR("CACHE_REFRESH_ERROR", "缓存[刷新]失败"),
 
+    /** CACHE_UPDATE_ERROR---缓存[更新]失败 */
     CACHE_UPDATE_ERROR("CACHE_UPDATE_ERROR", "缓存[更新]失败");
 
     private final String code;

@@ -15,6 +15,7 @@
 	<bean id="wordImageProducer" class="com.dreamcube.core.common.tools.WordImageProducer" init-method="init"/>
 	<bean id="picCodeGenerateTool" class="com.dreamcube.core.common.tools.PicCodeGenerateTool"/>
 	
+	
 	<!-- MongoDB -->
 	<bean id="mongo" class="com.mongodb.Mongo">
 		<constructor-arg index="0" value="localhost" />

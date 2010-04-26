@@ -4,4 +4,5 @@
     <settings cacheModelsEnabled="true" enhancementEnabled="false" lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000" maxTransactions="3000" useStatementNamespaces="false"/>
     
     <sqlMap resource="sqlmap/DcSquad-sqlmap-mapping.xml"/>
+    <sqlMap resource="sqlmap/DcUser-sqlmap-mapping.xml"/>
 </sqlMapConfig>
