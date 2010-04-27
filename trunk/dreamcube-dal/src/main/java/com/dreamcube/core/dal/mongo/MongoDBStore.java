@@ -53,7 +53,10 @@ public class MongoDBStore {
 
         long start = System.currentTimeMillis();
 
-        DBCursor cur = coll.find();
+        DBObject dbObject = new BasicDBObject();
+        dbObject.put("category", "DC_SQUAD");
+
+        DBCursor cur = coll.find(dbObject);
 
         while (cur.hasNext()) {
             System.out.println(cur.next());

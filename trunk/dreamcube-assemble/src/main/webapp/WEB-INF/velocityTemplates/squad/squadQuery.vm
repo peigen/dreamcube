@@ -1,5 +1,9 @@
 <div id="squad_search">
+	<!--
 	<form name="suqad_form_query" method="post" action="doSquadQuery.html" >
+	-->
+	#测试cache
+	<form name="suqad_form_query" method="post" action="doSquadQueryCache.html" >
 	<table border="0" cellspacing="0" cellpadding="5" id="contentsearch">
 	<tr>
 		<th colspan="4">查询列表</th>
