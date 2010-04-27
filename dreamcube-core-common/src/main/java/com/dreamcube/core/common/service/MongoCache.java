@@ -61,4 +61,11 @@ public interface MongoCache {
      */
     public boolean update(DBObject oldCache, DBObject newCache);
 
+    /**
+     * 获取全部缓存中的对象
+     * 
+     * @param cache      缓存对象
+     * @return
+     */
+    public List<DBObject> getAllDBObject(DBObject cache);
 }

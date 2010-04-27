@@ -1,6 +1,9 @@
 package com.dreamcube.squad.biz.service;
 
+import java.util.List;
+
 import com.dreamcube.core.common.service.LocalCache;
+import com.dreamcube.core.squad.domain.DCSquad;
 
 /**
  *                       
@@ -25,5 +28,12 @@ import com.dreamcube.core.common.service.LocalCache;
  *
  */
 public interface SquadLocalCache extends LocalCache {
+
+    /**
+     * 查询全部团队信息
+     * 
+     * @return
+     */
+    public List<DCSquad> queryAll();
 
 }
