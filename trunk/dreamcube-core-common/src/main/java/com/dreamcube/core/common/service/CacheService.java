@@ -2,8 +2,6 @@ package com.dreamcube.core.common.service;
 
 import java.util.List;
 
-import com.mongodb.DBObject;
-
 /**
  *                       
  * Filename: CacheTool.java
@@ -35,7 +33,7 @@ public interface CacheService {
      * @param cacheList     缓存对象集
      * @return
      */
-    public boolean refresh(String category, List<DBObject> cacheList);
+    public boolean refresh(String category, List<?> cacheList);
 
     /**
      * 清空缓存
@@ -55,10 +53,17 @@ public interface CacheService {
      * 更新某个缓存<br>
      * 此更新方法支持批量更新，小心哦。
      * 
+     * @param category      缓存类别
      * @param oldCache      老缓存对象
      * @param newCache      新缓存对象
      * @return
      */
-    public boolean update(DBObject oldCache, DBObject newCache);
+    public boolean update(String category, Object oldCache, Object newCache);
 
+    /**
+     * 
+     * @param category
+     * @return
+     */
+    public List<?> getAllCacheObject(String category);
 }

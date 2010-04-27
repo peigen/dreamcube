@@ -52,7 +52,7 @@ public class MongoCacheImpl implements MongoCache {
 
     private static DBCollection dbCollection;
 
-    private DBCollection getInstance() {
+    public DBCollection getInstance() {
 
         if (dbCollection == null) {
             DB db = mongo.getDB(DATABASENAME);
@@ -138,6 +138,16 @@ public class MongoCacheImpl implements MongoCache {
         }
 
         return isDone;
+    }
+
+    /**
+     * @param cache
+     * @return
+     * @see com.dreamcube.core.common.service.MongoCache#getAllDBObject(com.mongodb.DBObject)
+     */
+    @Override
+    public List<DBObject> getAllDBObject(DBObject cache) {
+        return getInstance().find().toArray();
     }
 
     // DI ~~~

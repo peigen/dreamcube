@@ -7,15 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dreamcube.core.common.service.CacheService;
-import com.dreamcube.core.common.service.CacheTool;
 import com.dreamcube.core.common.service.LocalCacheEnum;
 import com.dreamcube.core.common.tools.CacheDump;
-import com.dreamcube.core.common.util.enums.CommonExceptionEnum;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.convert.SquadConvert;
 import com.dreamcube.squad.biz.service.SquadLocalCache;
-import com.mongodb.DBObject;
 
 /**
  *                       
@@ -45,7 +42,26 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
 
     private DcSquadDAO    dcSquadDAO;
 
+    @SuppressWarnings("unused")
     private static Logger log = LoggerFactory.getLogger(SquadLocalCacheImpl.class);
+
+    /**
+     * @return
+     * @see com.dreamcube.squad.biz.service.SquadLocalCache#queryAll()
+     */
+    @Override
+    public List<DCSquad> queryAll() {
+
+        List<?> list = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
+        List<DCSquad> squadList = new ArrayList<DCSquad>();
+
+        for (Object object : list) {
+            if (object instanceof DCSquad)
+                squadList.add((DCSquad) object);
+        }
+
+        return null;
+    }
 
     /**
      * 
@@ -83,17 +99,8 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
         init();
 
         List<DCSquad> squadList = SquadConvert.doToDomainList(dcSquadDAO.load());
-        List<DBObject> dbObjectList = new ArrayList<DBObject>();
 
-        try {
-            for (DCSquad squad : squadList) {
-                dbObjectList.add(CacheTool.parseDBObject(squad, LocalCacheEnum.DC_SQUAD.code()));
-            }
-        } catch (Exception e) {
-            log.error(CommonExceptionEnum.DBOBJECT_PARSE_ERROR.message(), e);
-        }
-
-        cacheService.refresh(LocalCacheEnum.DC_SQUAD.code(), dbObjectList);
+        cacheService.refresh(LocalCacheEnum.DC_SQUAD.code(), squadList);
 
         dump();
 

@@ -42,9 +42,21 @@ public class CacheTool {
      * 
      * @param category
      */
-    public static BasicDBObject createBasicDBObject(LocalCacheEnum category, BasicDBObject obj) {
+    public static DBObject createDBObject(String category, DBObject obj) {
         obj.put(CATEGORY, category);
         return obj;
+    }
+
+    /**
+     * 创建一个空的基础缓存对象<br>
+     * 为了约束一定要有category的行为。
+     * @param category
+     * @return
+     */
+    public static DBObject createDBObject(String category) {
+        BasicDBObject dbObject = new BasicDBObject();
+        dbObject.put(CATEGORY, category);
+        return dbObject;
     }
 
     /**
@@ -117,12 +129,44 @@ public class CacheTool {
         return dbObject;
     }
 
+    /**
+     * 转换DBObject对象为系统可识别的对象
+     * 
+     * @param dbObject  DBObject对象
+     * @param cls       要转换成哪个对象
+     * @return
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
+     * @throws NoSuchMethodException 
+     * @throws InvocationTargetException 
+     */
+    public static Object parseDBObjectToDCObject(DBObject dbObject, Class<?> cls)
+                                                                                 throws InstantiationException,
+                                                                                 IllegalAccessException,
+                                                                                 InvocationTargetException,
+                                                                                 NoSuchMethodException {
+
+        Object object = cls.newInstance();
+
+        for (Field field : cls.getDeclaredFields()) {
+
+            if (dbObject.containsField(field.getName())) {
+
+                // 根据field名组装mongodb对象
+                field.set(object, dbObject.get(field.getName()));
+            }
+
+        }
+
+        return object;
+    }
+
     // private
     private static boolean isId(String id) {
         if (StringTool.equals(id, "id")) {
             return true;
-        } else {
 
+        } else {
             return false;
         }
     }
