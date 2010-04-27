@@ -2,6 +2,7 @@ package com.dreamcube.core.common.service;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -152,13 +153,38 @@ public class CacheTool {
 
             if (dbObject.containsField(field.getName())) {
 
-                // 根据field名组装mongodb对象
-                field.set(object, dbObject.get(field.getName()));
+                // 根据field名组装cache对象
+                BeanUtils.setProperty(object, field.getName(), dbObject.get(field.getName()));
             }
 
         }
 
         return object;
+    }
+
+    /**
+     * 转换DBObject对象为系统可识别的对象
+     * 
+     * @param dbObjectList  DBObject对象
+     * @param cls           要转换成哪个对象
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     * @throws NoSuchMethodException
+     */
+    public static List<Object> parseDBObjectToDCObjectForList(List<DBObject> dbObjectList,
+                                                              Class<?> cls)
+                                                                           throws InstantiationException,
+                                                                           IllegalAccessException,
+                                                                           InvocationTargetException,
+                                                                           NoSuchMethodException {
+        List<Object> list = new ArrayList<Object>();
+
+        for (DBObject dbObject : dbObjectList) {
+            list.add(parseDBObjectToDCObject(dbObject, cls));
+        }
+        return list;
     }
 
     // private

@@ -1,5 +1,7 @@
 package com.dreamcube.squad.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,33 @@ public class SquadController {
         return "index.vm";
     }
 
+    @RequestMapping(value = "/squad/squadQuery.html", method = RequestMethod.GET)
+    public String viewQuery(ModelMap modelMap) {
+
+        return "squad/squadQuery.vm";
+    }
+
+    @RequestMapping(value = "/squad/doSquadQueryCache.html", method = RequestMethod.POST)
+    public String doQueryCache(ModelMap modelMap, SquadForm squadForm) {
+
+        List<DCSquad> list = squadService.queryAllSquadCache();
+        modelMap.addAttribute("squadList", list);
+        modelMap.addAttribute("squad", squadForm);
+        return "squad/squadQuery.vm";
+    }
+
+    @RequestMapping(value = "/squad/doSquadQuery.html", method = RequestMethod.POST)
+    public String doQuery(ModelMap modelMap, SquadForm squadForm) {
+
+        PageList list = squadService.querySquad(squadForm.getSquadName(), squadForm.getAxiser(),
+            squadForm.getCubers(), squadForm.getFollowers(), squadForm.getInvestors(), squadForm
+                .getStatus(), squadForm.getGmtCreate(), squadForm.getGmtModify(),
+            forInteger(squadForm.getPageSize()), forInteger(squadForm.getPageNum()));
+        modelMap.addAttribute("squadList", list);
+        modelMap.addAttribute("squad", squadForm);
+        return "squad/squadQuery.vm";
+    }
+
     @RequestMapping(value = "/squad/squadEdit.html", method = RequestMethod.GET)
     public String viewEdit(ModelMap modelMap, SquadForm squadForm) {
 
@@ -68,24 +97,6 @@ public class SquadController {
         squadService.editSquad(SquadFormConvert.covert(squadForm));
 
         return doQuery(modelMap, squadForm);
-    }
-
-    @RequestMapping(value = "/squad/squadQuery.html", method = RequestMethod.GET)
-    public String viewQuery(ModelMap modelMap) {
-
-        return "squad/squadQuery.vm";
-    }
-
-    @RequestMapping(value = "/squad/doSquadQuery.html", method = RequestMethod.POST)
-    public String doQuery(ModelMap modelMap, SquadForm squadForm) {
-
-        PageList list = squadService.querySquad(squadForm.getSquadName(), squadForm.getAxiser(),
-            squadForm.getCubers(), squadForm.getFollowers(), squadForm.getInvestors(), squadForm
-                .getStatus(), squadForm.getGmtCreate(), squadForm.getGmtModify(),
-            forInteger(squadForm.getPageSize()), forInteger(squadForm.getPageNum()));
-        modelMap.addAttribute("squadList", list);
-        modelMap.addAttribute("squad", squadForm);
-        return "squad/squadQuery.vm";
     }
 
     @RequestMapping(value = "/squad/doDelete.html", method = RequestMethod.POST)

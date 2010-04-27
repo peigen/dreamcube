@@ -58,7 +58,7 @@ public class CacheDump {
 
                 StringBuffer sb = new StringBuffer();
 
-                sb.append(SEPARATOR + "开始输出缓存" + cacheName + "信息" + SEPARATOR);
+                sb.append(ENTERSTR + SEPARATOR + "开始输出缓存" + cacheName + "信息" + SEPARATOR);
 
                 //TODO
 

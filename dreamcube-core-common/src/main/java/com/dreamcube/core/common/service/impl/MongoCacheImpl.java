@@ -1,5 +1,6 @@
 package com.dreamcube.core.common.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import com.dreamcube.core.common.util.enums.CommonExceptionEnum;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
@@ -147,7 +149,15 @@ public class MongoCacheImpl implements MongoCache {
      */
     @Override
     public List<DBObject> getAllDBObject(DBObject cache) {
-        return getInstance().find().toArray();
+
+        List<DBObject> dbObjectList = new ArrayList<DBObject>();
+
+        DBCursor cur = getInstance().find(cache);
+
+        while (cur.hasNext()) {
+            dbObjectList.add(cur.next());
+        }
+        return dbObjectList;
     }
 
     // DI ~~~

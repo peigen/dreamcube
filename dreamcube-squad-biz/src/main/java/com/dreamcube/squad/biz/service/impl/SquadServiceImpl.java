@@ -49,6 +49,15 @@ public class SquadServiceImpl implements SquadService {
 
     /**
      * @return
+     * @see com.dreamcube.squad.biz.service.SquadService#queryAllSquadCache()
+     */
+    @Override
+    public List<DCSquad> queryAllSquadCache() {
+        return squadLocalCache.queryAll();
+    }
+
+    /**
+     * @return
      * @see com.dreamcube.squad.biz.service.SquadService#queryAllSquad()
      */
     @Override

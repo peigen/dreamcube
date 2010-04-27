@@ -31,6 +31,11 @@ import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
  */
 public interface SquadService {
 
+    /**从缓存中获取团队列表
+     * @return
+     */
+    public List<DCSquad> queryAllSquadCache();
+
     /**
      * 团队列表服务
      * 

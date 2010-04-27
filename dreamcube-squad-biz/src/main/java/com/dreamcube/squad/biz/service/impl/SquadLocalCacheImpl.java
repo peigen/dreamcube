@@ -1,14 +1,15 @@
 package com.dreamcube.squad.biz.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dreamcube.core.common.service.CacheService;
+import com.dreamcube.core.common.service.CacheTool;
 import com.dreamcube.core.common.service.LocalCacheEnum;
 import com.dreamcube.core.common.tools.CacheDump;
+import com.dreamcube.core.common.util.enums.CommonExceptionEnum;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.convert.SquadConvert;
@@ -42,25 +43,27 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
 
     private DcSquadDAO    dcSquadDAO;
 
-    @SuppressWarnings("unused")
     private static Logger log = LoggerFactory.getLogger(SquadLocalCacheImpl.class);
 
     /**
      * @return
      * @see com.dreamcube.squad.biz.service.SquadLocalCache#queryAll()
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<DCSquad> queryAll() {
 
-        List<?> list = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
-        List<DCSquad> squadList = new ArrayList<DCSquad>();
+        List list = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
 
-        for (Object object : list) {
-            if (object instanceof DCSquad)
-                squadList.add((DCSquad) object);
+        attemptRefresh(list);
+
+        try {
+            CacheTool.parseDBObjectToDCObjectForList(list, DCSquad.class);
+        } catch (Exception e) {
+            log.error(CommonExceptionEnum.DBOBJECT_PARSE_ERROR.message(), e);
         }
 
-        return null;
+        return list;
     }
 
     /**
@@ -107,6 +110,12 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
     }
 
     // private
+
+    // 简化query方法,尝试refresh
+    private void attemptRefresh(List<?> list) {
+        if (list == null || list.size() == 0)
+            refresh();
+    }
 
     // DI ~~~
     public void setCacheService(CacheService cacheService) {
