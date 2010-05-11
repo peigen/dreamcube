@@ -127,14 +127,14 @@
 						status = #status#
 					</isNotEmpty>
 					<isNotEmpty prepend="and" property="gmtCreate">
-					${cdata-start}
-						gmt_create >= date('#gmtCreate#')
-					${cdata-end}
+						${cdata-start}
+							gmt_create >= date('#gmtCreate#')
+						${cdata-end}
 					</isNotEmpty>
 					<isNotEmpty prepend="and" property="gmtModify">
-					${cdata-start}
-						gmt_modify >= date('#gmtModify#')
-					${cdata-end}
+						${cdata-start}
+							gmt_modify >= date('#gmtModify#')
+						${cdata-end}
 					</isNotEmpty>
 				</dynamic>
            ]]>

@@ -77,6 +77,8 @@ public class SquadForm implements Serializable {
     /** 默认每页5条 必须的 */
     private String            pageSize;
 
+    //========== getters and setters ==========
+
     public String getId() {
         return id;
     }

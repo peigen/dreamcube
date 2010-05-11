@@ -1,0 +1,44 @@
+<div class="demo">
+	<form method="POST" id="form_edit" action="doEdit.html">
+	<table>
+		<tr>
+			<td>登录名:</td>
+			<td><input name="logonName" value="$!user.logonName"/>
+		</tr>
+		<tr>
+			<td>登录密码：</td>
+			<td><input name="logonPasswd" value="$!user.logonPasswd"/>
+		</tr>
+		<tr>
+			<td>再次输入密码：</td>
+			<td><input name="logonPasswdValid" value="$!user.logonPasswdValid"/>
+		</tr>
+		<tr>
+			<td>昵称:</td>
+			<td><input name="nickName" value="$!user.nickName"/>
+		</tr>
+		<tr>
+			<td>生日:</td>
+			<td><input type="text" id="birthday" value="$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!user.birthday)" />
+		</tr>
+		<tr>
+			<td>性别:</td>
+			<td><input type="text" id="gender" value="$!user.gender" />
+		</tr>
+		<tr>
+			<td><input name="submit" type="submit" value="注册"/></td>
+			<td><input name="reset" type="reset" value="重置" /></td>
+	</table>
+	</form>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$('#birthday').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy-mm-dd',
+			yearRange: 'c-150'
+		});
+		
+	});
+</script>

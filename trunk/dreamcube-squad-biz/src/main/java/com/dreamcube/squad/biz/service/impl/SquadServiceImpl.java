@@ -98,6 +98,7 @@ public class SquadServiceImpl implements SquadService {
             dcsquad.setStatus(DCSquadStatusEnum.MUSTER);
             dcSquadDAO.insert(SquadConvert.domainToDo(dcsquad));
         }
+
         refreshLocalCache();
 
     }

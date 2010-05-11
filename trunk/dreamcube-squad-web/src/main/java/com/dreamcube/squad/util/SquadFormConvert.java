@@ -33,7 +33,7 @@ public class SquadFormConvert {
      * @param squadForm
      * @return
      */
-    public static DCSquad covert(SquadForm squadForm) {
+    public static DCSquad convert(SquadForm squadForm) {
         DCSquad squad = new DCSquad();
 
         if (StringTool.isNotBlank(squadForm.getId()))
@@ -57,7 +57,7 @@ public class SquadFormConvert {
      * @param squad
      * @return
      */
-    public static SquadForm covert(DCSquad squad) {
+    public static SquadForm convert(DCSquad squad) {
 
         SquadForm squadForm = new SquadForm();
         squadForm.setId(squad.getId());

@@ -48,7 +48,7 @@ public class LocalCacheManageImpl implements LocalCacheManage {
         //        cacheService.refresh(category, cacheList)
     }
 
-    // private 
+    // private
 
     // DI ~~~
     public void setCacheService(CacheService cacheService) {
