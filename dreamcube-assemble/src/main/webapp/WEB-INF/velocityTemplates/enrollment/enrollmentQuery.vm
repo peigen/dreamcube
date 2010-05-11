@@ -1,0 +1,133 @@
+<div id="enrollment_search">
+	<form name="entollment_form_query" method="post" action="doQuery.html" >
+	<table border="0" cellspacing="0" cellpadding="5" id="contentsearch">
+	<tr>
+		<th colspan="4">查询列表</th>
+	</tr>
+	<tr>
+     	<td width="10%" align="left">登录名称: </td>
+     	<td width="20%">
+		 	<input type="text" id="logonName" name="logonName" value="$!user.logonName"/>
+     	</td>
+   </tr>
+   <tr>
+	  	<td id="searchbutton" colspan="4" >
+	  		
+	  		<input type="hidden" id="pageNum" name="pageNum" value="$!logonName.pageNum" />&nbsp;
+	  		<input type="hidden" id="pageSize" name="pageSize" value="$!logonName.pageSize" />&nbsp;
+	  		
+			<input type="submit" name="search" value=" 搜 索 " onclick="clickSub(this)" />&nbsp;
+			<span id="hid_sub" style="display:none">查询中，请稍候 ...</span>
+			
+			<input type="button" name="clean" value=" 清 空 " onclick="cleanAll();" />&nbsp;
+			<input type="button" name="add" value=" 添 加 " onclick="do_modify_action();" />&nbsp;
+			<select>
+				<option value="selected">xx</option>
+				<option value="">yy</option>
+			</select>
+		</td>
+	</tr>
+	</table>
+	</form>
+</div>
+
+<div id="enrollment_result">
+	##结果列表表格	
+	<table id="searchresult" border="0" cellspacing="0" cellpadding="5">
+	#if($!userList && $!userList.size()==0)
+		<tr>
+			<th colspan="4" id="searchbutton">
+				<font color="red">查询：没有符合条件的记录</font>
+				<br><font color="red">也许是没有配置好数据库哦。打开dc_user.sql，
+				新建库和表。然后可以选择insert几条测试数据。</font>
+			</th>
+		</tr>
+	#elseif($userList && ($userList.size()>0))
+		<tr>
+			<th>登录名</th>
+			<th>昵称</th>
+			<th>生日</th>			
+			<th>身份证</th>
+			<th>性别</th>			
+			<th>当前状态</th>
+			<th>创建时间</th>
+			<th>最后修改时间</th>
+			<th>更改操作</th>
+		</tr>
+		#foreach($item in $userList)
+		<tr>
+			<td>$!item.logonName &nbsp;</td>
+			<td>$!item.nickName &nbsp;</td>
+			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.birthday) &nbsp;</td>
+			<td>$!item.certNo &nbsp;</td>
+			<td>$!item.gender &nbsp;</td>
+			<td>$!jdkEnumUtils.getEnumByCode("DCEnrollmentStatusEnum","$!item.status") &nbsp;</td>
+			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtCreate) &nbsp;</td>
+			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtModify) &nbsp;</td>
+			<td width="8%">
+				<form name="enrollment_form_list_$!item.id" method="post" action="doDelete.html">
+				
+					<input type="hidden" name="id" value="$!item.id">
+					<input type="hidden" name="logonName" value="$!item.logonName">
+					<input type="hidden" name="nickName" value="$!item.nickName">
+					<input type="hidden" name="birthday" value="$!item.birthday">
+					<input type="hidden" name="certNo" value="$!item.certNo">
+					<input type="hidden" name="gender" value="$!item.gender">
+					<input type="hidden" name="status" value="$!item.status">
+					<input type="hidden" name="gmtCreate" value="$!item.gmtCreate">
+					<input type="hidden" name="gmtModify" value="$!item.gmtModify">
+					
+					<input type="submit" name="doDelete" value="删除" onClick="return deleteAction()">
+    				<input type="button" value="修改" onclick="do_modify_action($!item.id);" />
+			   </form>
+			</td>
+			
+		</tr>
+		#end
+		<tr>
+			$!enrollmentList.paginator
+			##分页属性栏
+			<div align="center">
+				<script>
+					pageSlider($!enrollmentList.paginator.pages,$!enrollmentList.paginator.page,$!enrollmentList.paginator.items,$!enrollmentList.paginator.itemsPerPage,20,'suqad_form_query','pageNum','/img');	
+				</script>
+			</div>
+		</tr>
+	#end ##if($pageList && $pageList.size()>0)语句块
+	</table>##end##结果列表表格
+</div>
+
+
+<script  type="text/JavaScript">
+
+function clickSub(obj){
+	cleanField("pageNum");
+	obj.style.display="none";
+	$("#hid_sub").style.display="";
+}
+					
+##跳转到新增页面
+function do_modify_action(id){
+	var page = "enrollmentEdit.html";
+	var enrollmentId;
+	if(id != null)
+		page += "?id="+id;
+		
+	
+	window.open(page, 'newwindow', 'height=600, width=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no');
+	
+}
+##是否确认删除
+function deleteAction() {
+	var alarm = "确定要删除吗?"
+	if(confirm(alarm)){
+	  return true;
+	}
+   return false;
+}
+
+$(document).ready(function() {
+	$("#enrollmentName").focus();
+});
+
+</script>
