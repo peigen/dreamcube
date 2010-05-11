@@ -21,17 +21,46 @@
 	<operation name="loadById" paramtype="primitive">
 		<sql>
 			<![CDATA[
-				  select * from dc_user where id=?;
+				  select * from dc_user where id = ?;
     		]]>
 		</sql>
 	</operation>
 
-	<operation name="loadByLogonName" paramtype="primitive">
+	<operation name="query" multiplicity="many" paging="true">
 		<sql>
 			<![CDATA[
-				  select * from dc_user where logon_name=?;
+				select * from dc_user where logon_name = ? and nick_name = ? and cert_no = ? and status = ? and gmt_create = ? and gmt_modify = ?;
     		]]>
 		</sql>
+		<sqlmap>
+			<![CDATA[
+				select * from dc_user
+				<dynamic prepend="where">
+					<isNotEmpty prepend="and" property="logonName">
+						logon_name = #logonName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="nickName">
+						nick_name = #nickName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="certNo">
+						cert_no = #certNo#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="status">
+						status = #status#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtCreate">
+						${cdata-start}
+							gmt_create >= date('#gmtCreate#')
+						${cdata-end}
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtModify">
+						${cdata-start}
+							gmt_modify >= date('#gmtModify#')
+						${cdata-end}
+					</isNotEmpty>
+				</dynamic>
+			]]>
+		</sqlmap>
 	</operation>
 
 	<operation name="update" paramtype="object">

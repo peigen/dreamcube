@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dreamcube.core.common.tools.IntegerTool;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
@@ -71,12 +72,15 @@ public class SquadController {
     @RequestMapping(value = "/squad/doSquadQuery.html", method = RequestMethod.POST)
     public String doQuery(ModelMap modelMap, SquadForm squadForm) {
 
-        PageList list = squadService.querySquad(squadForm.getSquadName(), squadForm.getAxiser(),
-            squadForm.getCubers(), squadForm.getFollowers(), squadForm.getInvestors(), squadForm
-                .getStatus(), squadForm.getGmtCreate(), squadForm.getGmtModify(),
-            forInteger(squadForm.getPageSize()), forInteger(squadForm.getPageNum()));
-        modelMap.addAttribute("squadList", list);
+        PageList pagelist = squadService.querySquad(squadForm.getSquadName(),
+            squadForm.getAxiser(), squadForm.getCubers(), squadForm.getFollowers(), squadForm
+                .getInvestors(), squadForm.getStatus(), squadForm.getGmtCreate(), squadForm
+                .getGmtModify(), IntegerTool.strToInt(squadForm.getPageSize()), IntegerTool
+                .strToInt(squadForm.getPageNum()));
+
+        modelMap.addAttribute("squadList", pagelist);
         modelMap.addAttribute("squad", squadForm);
+
         return "squad/squadQuery.vm";
     }
 
@@ -86,7 +90,7 @@ public class SquadController {
         if (StringTool.isNotBlank(squadForm.getId())) {
             DCSquad squad = squadService.loadById(squadForm.getId());
 
-            modelMap.addAttribute("squad", SquadFormConvert.covert(squad));
+            modelMap.addAttribute("squad", SquadFormConvert.convert(squad));
         }
         return "squad/squadEdit.vm";
     }
@@ -94,7 +98,7 @@ public class SquadController {
     @RequestMapping(value = "/squad/doEdit.html", method = RequestMethod.POST)
     public String doEdit(ModelMap modelMap, SquadForm squadForm) {
 
-        squadService.editSquad(SquadFormConvert.covert(squadForm));
+        squadService.editSquad(SquadFormConvert.convert(squadForm));
 
         return doQuery(modelMap, squadForm);
     }
@@ -107,7 +111,4 @@ public class SquadController {
         return "squad/squadQuery.vm";
     }
 
-    private int forInteger(String str) {
-        return StringTool.isNotBlank(str) ? Integer.valueOf(str) : 0;
-    }
 }

@@ -12,7 +12,12 @@ import com.dreamcube.core.dal.daointerface.DcUserDAO;
 import com.dreamcube.core.dal.dataobject.DcUserDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
+import java.util.Date;
+import com.dreamcube.core.dal.util.PageList;
 
+import java.util.Map;
+import java.util.HashMap;
+import com.dreamcube.core.dal.util.Paginator;
 
 /**
  * An ibatis based implementation of dao interface <tt>com.dreamcube.core.dal.daointerface.DcUserDAO</tt>.
@@ -91,16 +96,47 @@ public class IbatisDcUserDAO extends SqlMapClientDaoSupport implements DcUserDAO
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_user where (logon_name = ?)</tt>
+	 *  <tt>select * from dc_user where ((logon_name = ?) AND (nick_name = ?) AND (cert_no = ?) AND (status = ?) AND (gmt_create = ?) AND (gmt_modify = ?))</tt>
 	 *
 	 *	@param logonName
-	 *	@return DcUserDO
+	 *	@param nickName
+	 *	@param certNo
+	 *	@param status
+	 *	@param gmtCreate
+	 *	@param gmtModify
+	 *	@param pageSize
+	 *	@param pageNum
+	 *	@return PageList
 	 *	@throws DataAccessException
 	 */	 
-    public DcUserDO loadByLogonName(String logonName) throws DataAccessException {
+    public PageList query(String logonName, String nickName, String certNo, String status, Date gmtCreate, Date gmtModify, int pageSize, int pageNum) throws DataAccessException {
+        Map param = new HashMap();
 
-        return (DcUserDO) getSqlMapClientTemplate().queryForObject("MS-DC-USER-LOAD-BY-LOGON-NAME", logonName);
+        param.put("logonName", logonName);
+        param.put("nickName", nickName);
+        param.put("certNo", certNo);
+        param.put("status", status);
+        param.put("gmtCreate", gmtCreate);
+        param.put("gmtModify", gmtModify);
+        param.put("pageSize", new Integer(pageSize));
+        param.put("pageNum", new Integer(pageNum));
 
+        Paginator paginator = new Paginator();
+        paginator.setItemsPerPage(pageSize);
+        paginator.setPage(pageNum);
+
+        paginator.setItems(((Integer) getSqlMapClientTemplate().queryForObject("MS-DC-USER-QUERY-COUNT-FOR-PAGING", param)).intValue());
+        
+        PageList  pageList = new PageList();
+        pageList.setPaginator(paginator);
+        
+        if (paginator.getBeginIndex() <= paginator.getItems()) {
+            param.put("startRow", new Integer(paginator.getBeginIndex()));
+            param.put("endRow", new Integer(paginator.getEndIndex()));
+            pageList.addAll(getSqlMapClientTemplate().queryForList("MS-DC-USER-QUERY", param));
+        }
+        
+        return pageList;
     }
 
 	/**

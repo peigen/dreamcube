@@ -8,6 +8,8 @@ package com.dreamcube.core.dal.daointerface;
 import com.dreamcube.core.dal.dataobject.DcUserDO;
 import org.springframework.dao.DataAccessException;
 import java.util.List;
+import java.util.Date;
+import com.dreamcube.core.dal.util.PageList;
 
 /**
  * A dao interface provides methods to access database table <tt>dc_user</tt>.
@@ -68,13 +70,20 @@ public interface DcUserDAO {
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_user where (logon_name = ?)</tt>
+	 *  <tt>select * from dc_user where ((logon_name = ?) AND (nick_name = ?) AND (cert_no = ?) AND (status = ?) AND (gmt_create = ?) AND (gmt_modify = ?))</tt>
 	 *
 	 *	@param logonName
-	 *	@return DcUserDO
+	 *	@param nickName
+	 *	@param certNo
+	 *	@param status
+	 *	@param gmtCreate
+	 *	@param gmtModify
+	 *	@param pageSize
+	 *	@param pageNum
+	 *	@return PageList
 	 *	@throws DataAccessException
 	 */	 
-    public DcUserDO loadByLogonName(String logonName) throws DataAccessException;
+    public PageList query(String logonName, String nickName, String certNo, String status, Date gmtCreate, Date gmtModify, int pageSize, int pageNum) throws DataAccessException;
 
 	/**
 	 *  Update DB table <tt>dc_user</tt>.

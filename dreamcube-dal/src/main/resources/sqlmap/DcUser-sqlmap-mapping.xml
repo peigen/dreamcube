@@ -65,11 +65,62 @@
     ]]>
     </select>
 
-    <!-- mapped statement for IbatisDcUserDAO.loadByLogonName -->
-    <select id="MS-DC-USER-LOAD-BY-LOGON-NAME" resultMap="RM-DC-USER">
-    <![CDATA[
-        select * from dc_user where (logon_name = #value#)
-    ]]>
+    <!-- mapped statement for IbatisDcUserDAO.query -->
+    <select id="MS-DC-USER-QUERY" resultMap="RM-DC-USER">
+        select * from dc_user
+				<dynamic prepend="where">
+					<isNotEmpty prepend="and" property="logonName">
+						logon_name = #logonName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="nickName">
+						nick_name = #nickName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="certNo">
+						cert_no = #certNo#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="status">
+						status = #status#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtCreate">
+						<![CDATA[
+							gmt_create >= date('#gmtCreate#')
+						]]>
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtModify">
+						<![CDATA[
+							gmt_modify >= date('#gmtModify#')
+						]]>
+					</isNotEmpty>
+				</dynamic> limit #startRow# , #pageSize#
+    </select>
+
+    <!-- mapped statement for IbatisDcUserDAO.query, needed by paging -->
+    <select id="MS-DC-USER-QUERY-COUNT-FOR-PAGING" resultClass="int">
+        select count(*) from dc_user
+				<dynamic prepend="where">
+					<isNotEmpty prepend="and" property="logonName">
+						logon_name = #logonName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="nickName">
+						nick_name = #nickName#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="certNo">
+						cert_no = #certNo#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="status">
+						status = #status#
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtCreate">
+						<![CDATA[
+							gmt_create >= date('#gmtCreate#')
+						]]>
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="gmtModify">
+						<![CDATA[
+							gmt_modify >= date('#gmtModify#')
+						]]>
+					</isNotEmpty>
+				</dynamic>
     </select>
 
     <!-- mapped statement for IbatisDcUserDAO.update -->
