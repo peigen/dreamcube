@@ -29,14 +29,14 @@
         <result property="logonName" column="logon_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="logonPasswd" column="logon_passwd" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="nickName" column="nick_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result property="birthday" column="birthday" javaType="java.util.Date" jdbcType="DATETIME"/>
+        <result property="birthday" column="birthday" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
         <result property="certNo" column="cert_no" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="gender" column="gender" javaType="int" jdbcType="INT" nullValue="0"/>
         <result property="workSite" column="work_site" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="projects" column="projects" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="infoSite" column="info_site" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        <result property="gmtCreate" column="gmt_create" javaType="java.util.Date" jdbcType="DATETIME"/>
-        <result property="gmtModify" column="gmt_modify" javaType="java.util.Date" jdbcType="DATETIME"/>
+        <result property="gmtCreate" column="gmt_create" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="gmtModify" column="gmt_modify" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
         <result property="status" column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -119,6 +119,19 @@
 						<![CDATA[
 							gmt_modify >= date('#gmtModify#')
 						]]>
+					</isNotEmpty>
+				</dynamic>
+    </select>
+
+    <!-- mapped statement for IbatisDcUserDAO.loadByLogonNameOrNickName -->
+    <select id="MS-DC-USER-LOAD-BY-LOGON-NAME-OR-NICK-NAME" resultMap="RM-DC-USER">
+        select * from dc_user
+				<dynamic prepend="where">
+					<isNotEmpty prepend="" property="logonName">
+						logon_name = #logonName#
+					</isNotEmpty>
+					<isNotEmpty prepend="" property="nickName">
+						or nick_name = #nickName#
 					</isNotEmpty>
 				</dynamic>
     </select>

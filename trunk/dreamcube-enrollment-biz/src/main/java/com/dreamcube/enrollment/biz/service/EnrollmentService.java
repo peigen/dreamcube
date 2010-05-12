@@ -68,4 +68,14 @@ public interface EnrollmentService {
                               DCUserStatusEnum status, Date gmtCreate, Date gmtModify,
                               int pageSize, int pageNum);
 
+    /**
+     * 校验注册时的用户名是否已被注册.<br>
+     * 如果已被注册则返回false.
+     * 
+     * @param logonName
+     * @param nickName
+     * @return boolean
+     */
+    public boolean vaildUserName(String logonName, String nickName);
+
 }

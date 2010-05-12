@@ -31,6 +31,7 @@ import com.mongodb.MongoException;
  * Content: create</li>
  * 
  */
+@SuppressWarnings("unused")
 public class MongoDBStore {
 
     /**

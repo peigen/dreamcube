@@ -89,4 +89,23 @@ public class EnrollmentController {
 
         return "squad/squadQuery.vm";
     }
+
+    /**
+     * 是否允许使用该登录名或者昵称
+     * @param modelMap
+     * @param userForm
+     * @return
+     */
+    @RequestMapping(value = "/enrollment/valideUserName.json", method = RequestMethod.GET)
+    public String doValideUserName(ModelMap modelMap, UserForm userForm) {
+
+        String logonName = userForm.getLogonName();
+        String nickName = userForm.getNickName();
+
+        boolean isValide = enrollmentService.vaildUserName(logonName, nickName);
+
+        modelMap.addAttribute("isValide", isValide);
+
+        return "valideUserName.json";
+    }
 }

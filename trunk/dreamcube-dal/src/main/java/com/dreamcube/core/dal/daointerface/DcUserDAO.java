@@ -86,6 +86,20 @@ public interface DcUserDAO {
     public PageList query(String logonName, String nickName, String certNo, String status, Date gmtCreate, Date gmtModify, int pageSize, int pageNum) throws DataAccessException;
 
 	/**
+	 *  Query DB table <tt>dc_user</tt> for records.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>select * from dc_user where ((logon_name = ?) OR (nick_name = ?))</tt>
+	 *
+	 *	@param logonName
+	 *	@param nickName
+	 *	@return DcUserDO
+	 *	@throws DataAccessException
+	 */	 
+    public DcUserDO loadByLogonNameOrNickName(String logonName, String nickName) throws DataAccessException;
+
+	/**
 	 *  Update DB table <tt>dc_user</tt>.
 	 *
 	 *  <p>

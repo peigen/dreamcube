@@ -116,6 +116,20 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
     }
 
+    /**
+     * @param logonName
+     * @param nickName
+     * @return boolean
+     * @see com.dreamcube.enrollment.biz.service.EnrollmentService#vaildUserName(java.lang.String, java.lang.String)
+     */
+    @Override
+    public boolean vaildUserName(String logonName, String nickName) {
+
+        DcUserDO dcUserDO = dcUserDAO.loadByLogonNameOrNickName(logonName, nickName);
+
+        return (dcUserDO != null) ? false : true;
+    }
+
     // private method
 
     /**
