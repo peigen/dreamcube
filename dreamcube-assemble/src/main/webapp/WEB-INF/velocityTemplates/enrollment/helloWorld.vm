@@ -10,8 +10,10 @@
 $(document).ready(function() {
 	$("p").click(function() {
 		var jsonResponse = jQuery.getJSON('/dreamcube/enrollment/helloworld.json',function(data){
+		
 		alert(data.time);
 		});
+		alert(jsonResponse);
 	});    //end of click function
 });   // end of ready function
 

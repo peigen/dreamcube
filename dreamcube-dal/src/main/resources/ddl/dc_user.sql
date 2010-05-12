@@ -12,7 +12,9 @@ CREATE TABLE `dreamcube`.`dc_user` (
   `gmt_create` TIMESTAMP  DEFAULT '0000-00-00 00:00:00',
   `gmt_modify` TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
   `status` VARCHAR(20)  NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `logon_name_UNIQUE` (`logon_name` ASC),
+  UNIQUE INDEX `nick_name_UNIQUE` (`nick_name` ASC)
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci
