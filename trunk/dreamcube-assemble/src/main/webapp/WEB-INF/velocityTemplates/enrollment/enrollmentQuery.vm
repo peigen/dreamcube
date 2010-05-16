@@ -21,10 +21,6 @@
 			
 			<input type="button" name="clean" value=" 清 空 " onclick="cleanAll();" />&nbsp;
 			<input type="button" name="add" value=" 添 加 " onclick="do_modify_action();" />&nbsp;
-			<select>
-				<option value="selected">xx</option>
-				<option value="">yy</option>
-			</select>
 		</td>
 	</tr>
 	</table>
@@ -60,22 +56,13 @@
 			<td>$!item.nickName &nbsp;</td>
 			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.birthday) &nbsp;</td>
 			<td>$!item.certNo &nbsp;</td>
-			<td>$!item.gender &nbsp;</td>
-			<td>$!jdkEnumUtils.getEnumByCode("DCEnrollmentStatusEnum","$!item.status") &nbsp;</td>
+			<td>$!jdkEnumUtils.getEnumByCode("GenderEnum","$!item.gender") &nbsp;</td>
+			<td>$!jdkEnumUtils.getEnumByCode("DCUserStatusEnum","$!item.status") &nbsp;</td>
 			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtCreate) &nbsp;</td>
 			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.gmtModify) &nbsp;</td>
 			<td width="8%">
 				<form name="enrollment_form_list_$!item.id" method="post" action="doDelete.html">
-				
 					<input type="hidden" name="id" value="$!item.id">
-					<input type="hidden" name="logonName" value="$!item.logonName">
-					<input type="hidden" name="nickName" value="$!item.nickName">
-					<input type="hidden" name="birthday" value="$!item.birthday">
-					<input type="hidden" name="certNo" value="$!item.certNo">
-					<input type="hidden" name="gender" value="$!item.gender">
-					<input type="hidden" name="status" value="$!item.status">
-					<input type="hidden" name="gmtCreate" value="$!item.gmtCreate">
-					<input type="hidden" name="gmtModify" value="$!item.gmtModify">
 					
 					<input type="submit" name="doDelete" value="删除" onClick="return deleteAction()">
     				<input type="button" value="修改" onclick="do_modify_action($!item.id);" />
@@ -117,17 +104,10 @@ function do_modify_action(id){
 	window.open(page, 'newwindow', 'height=600, width=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no');
 	
 }
-##是否确认删除
-function deleteAction() {
-	var alarm = "确定要删除吗?"
-	if(confirm(alarm)){
-	  return true;
-	}
-   return false;
-}
+
 
 $(document).ready(function() {
-	$("#enrollmentName").focus();
+	$("#logonName").focus();
 });
 
 </script>

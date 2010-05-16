@@ -125,9 +125,22 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Override
     public boolean vaildUserName(String logonName, String nickName) {
 
-        DcUserDO dcUserDO = dcUserDAO.loadByLogonNameOrNickName(logonName, nickName);
+        if (StringTool.isNotBlank(nickName)) {
 
-        return (dcUserDO != null) ? false : true;
+            DcUserDO dcUserDO = dcUserDAO.loadByNickName(nickName);
+
+            return (dcUserDO != null) ? false : true;
+        }
+
+        if (StringTool.isNotBlank(logonName)) {
+
+            DcUserDO dcUserDO = dcUserDAO.loadByLogonName(logonName);
+
+            return (dcUserDO != null) ? false : true;
+        }
+
+        return true;
+
     }
 
     // private method

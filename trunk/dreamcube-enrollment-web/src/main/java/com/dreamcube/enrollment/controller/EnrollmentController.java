@@ -87,7 +87,7 @@ public class EnrollmentController {
 
         enrollmentService.removeUser(userForm.getId());
 
-        return "squad/squadQuery.vm";
+        return "enrollment/enrollmentQuery.vm";
     }
 
     /**
@@ -102,7 +102,10 @@ public class EnrollmentController {
         String logonName = userForm.getLogonName();
         String nickName = userForm.getNickName();
 
-        boolean isValide = enrollmentService.vaildUserName(logonName, nickName);
+        boolean isValide = false;
+
+        if (StringTool.isNotBlank(logonName) || StringTool.isNotBlank(nickName))
+            isValide = enrollmentService.vaildUserName(logonName, nickName);
 
         modelMap.addAttribute("isValide", isValide);
 

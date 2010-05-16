@@ -7,7 +7,7 @@
     <appender name="FILE" class="org.apache.log4j.FileAppender">
     	<param name="file" value="~/dreamcube.log"/>
     	<param name="append" value="false"/>
-        <param name="encoding" value="GBK"/>
+        <param name="encoding" value="UTF-8"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n"/>
         </layout>
@@ -56,11 +56,11 @@
 		<appender-ref ref="FILE"/>
 	</logger>
 	<logger name="org.springframework" additivity="true">
-		<level value="debug"/>
+		<level value="error"/>
 		<appender-ref ref="FILE"/>
 	</logger>
 	<logger name="org.mortbay.log" additivity="true">
-		<level value="debug"/>
+		<level value="error"/>
 		<appender-ref ref="FILE"/>
 	</logger>
     

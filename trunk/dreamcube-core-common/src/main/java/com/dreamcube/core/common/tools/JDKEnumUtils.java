@@ -39,7 +39,8 @@ public class JDKEnumUtils {
     private static final String GET_METHOD_PREFIX = "get";
 
     /** 定义被扫描的enum,填到包名即可 */
-    static String[]             enumPackages      = { "com.dreamcube.core.squad.enums." };
+    static String[]             enumPackages      = { "com.dreamcube.core.squad.enums.",
+            "com.dreamcube.core.common.util.enums.", "com.dreamcube.core.enrollment.enums." };
 
     /**
      * 获取枚举Class，支持传入参数enum全路径，用来防止多个enum同个名字。<br>

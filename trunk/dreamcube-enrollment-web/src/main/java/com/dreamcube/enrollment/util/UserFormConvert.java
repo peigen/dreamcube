@@ -1,5 +1,8 @@
 package com.dreamcube.enrollment.util;
 
+import java.text.ParseException;
+
+import com.dreamcube.core.common.tools.DateTool;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.enrollment.domain.DCUser;
 import com.dreamcube.enrollment.form.UserForm;
@@ -34,7 +37,11 @@ public class UserFormConvert {
         if (StringTool.isNotBlank(userForm.getId()))
             user.setId(userForm.getId());
 
-        user.setBirthday(userForm.getBirthday());
+        try {
+            user.setBirthday(DateTool.string2Date(userForm.getBirthday()));
+        } catch (ParseException e) {
+
+        }
         user.setCertNo(userForm.getCertNo());
         user.setGender(userForm.getGender());
         user.setGmtCreate(userForm.getGmtCreate());
@@ -53,7 +60,7 @@ public class UserFormConvert {
     public static UserForm convert(DCUser user) {
         UserForm userForm = new UserForm();
 
-        userForm.setBirthday(user.getBirthday());
+        userForm.setBirthday(DateTool.dtSimpleFormat(user.getBirthday()));
         userForm.setCertNo(user.getCertNo());
         userForm.setGender(user.getGender());
         userForm.setGmtCreate(user.getGmtCreate());

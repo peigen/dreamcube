@@ -170,8 +170,7 @@ public class PathTool {
     public static void main(String[] args) {
         try {
             System.out.println(getPathFromClass(PathTool.class));
-            // System.out.println(getFullPathRelateClass("../test/abc/..",
-            // Path.class));
+            System.out.println(getFullPathRelateClass("../test/abc/..", PathTool.class));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
