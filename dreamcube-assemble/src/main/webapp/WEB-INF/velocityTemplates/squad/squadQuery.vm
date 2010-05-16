@@ -120,14 +120,6 @@ function do_modify_action(id){
 	window.open(page, 'newwindow', 'height=600, width=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no');
 	
 }
-##是否确认删除
-function deleteAction() {
-	var alarm = "确定要删除吗?"
-	if(confirm(alarm)){
-	  return true;
-	}
-   return false;
-}
 
 $(document).ready(function() {
 	$("#squadName").focus();

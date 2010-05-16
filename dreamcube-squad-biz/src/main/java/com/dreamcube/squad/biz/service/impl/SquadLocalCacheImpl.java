@@ -9,7 +9,7 @@ import com.dreamcube.core.common.service.CacheService;
 import com.dreamcube.core.common.service.CacheTool;
 import com.dreamcube.core.common.service.LocalCacheEnum;
 import com.dreamcube.core.common.tools.CacheDump;
-import com.dreamcube.core.common.util.enums.CommonExceptionEnum;
+import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.convert.SquadConvert;

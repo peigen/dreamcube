@@ -144,20 +144,32 @@ public class IbatisDcUserDAO extends SqlMapClientDaoSupport implements DcUserDAO
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_user where ((logon_name = ?) OR (nick_name = ?))</tt>
+	 *  <tt>select * from dc_user where (logon_name = ?)</tt>
 	 *
 	 *	@param logonName
+	 *	@return DcUserDO
+	 *	@throws DataAccessException
+	 */	 
+    public DcUserDO loadByLogonName(String logonName) throws DataAccessException {
+
+        return (DcUserDO) getSqlMapClientTemplate().queryForObject("MS-DC-USER-LOAD-BY-LOGON-NAME", logonName);
+
+    }
+
+	/**
+	 *  Query DB table <tt>dc_user</tt> for records.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>select * from dc_user where (nick_name = ?)</tt>
+	 *
 	 *	@param nickName
 	 *	@return DcUserDO
 	 *	@throws DataAccessException
 	 */	 
-    public DcUserDO loadByLogonNameOrNickName(String logonName, String nickName) throws DataAccessException {
-        Map param = new HashMap();
+    public DcUserDO loadByNickName(String nickName) throws DataAccessException {
 
-        param.put("logonName", logonName);
-        param.put("nickName", nickName);
-
-        return (DcUserDO) getSqlMapClientTemplate().queryForObject("MS-DC-USER-LOAD-BY-LOGON-NAME-OR-NICK-NAME", param);
+        return (DcUserDO) getSqlMapClientTemplate().queryForObject("MS-DC-USER-LOAD-BY-NICK-NAME", nickName);
 
     }
 

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.dreamcube.core.common.service.CacheService;
 import com.dreamcube.core.common.service.CacheTool;
 import com.dreamcube.core.common.service.MongoCache;
-import com.dreamcube.core.common.util.enums.CommonExceptionEnum;
+import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
 import com.mongodb.DBObject;
 
 /**

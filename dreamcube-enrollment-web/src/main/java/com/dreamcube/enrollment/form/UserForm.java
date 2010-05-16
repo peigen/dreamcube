@@ -56,7 +56,7 @@ public class UserForm implements Serializable {
     private String            nickName;
 
     /** 生日 */
-    private Date              birthday;
+    private String            birthday;
 
     /** 身份证 */
     private String            certNo;
@@ -166,7 +166,7 @@ public class UserForm implements Serializable {
     /**
      * @return Returns the birthday
      */
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -174,7 +174,7 @@ public class UserForm implements Serializable {
      * @param birthday
      * The birthday to set.
      */
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

@@ -123,17 +123,14 @@
 				</dynamic>
     </select>
 
-    <!-- mapped statement for IbatisDcUserDAO.loadByLogonNameOrNickName -->
-    <select id="MS-DC-USER-LOAD-BY-LOGON-NAME-OR-NICK-NAME" resultMap="RM-DC-USER">
-        select * from dc_user
-				<dynamic prepend="where">
-					<isNotEmpty prepend="" property="logonName">
-						logon_name = #logonName#
-					</isNotEmpty>
-					<isNotEmpty prepend="" property="nickName">
-						or nick_name = #nickName#
-					</isNotEmpty>
-				</dynamic>
+    <!-- mapped statement for IbatisDcUserDAO.loadByLogonName -->
+    <select id="MS-DC-USER-LOAD-BY-LOGON-NAME" resultMap="RM-DC-USER">
+        select * from dc_user where logon_name = #logonName#;
+    </select>
+
+    <!-- mapped statement for IbatisDcUserDAO.loadByNickName -->
+    <select id="MS-DC-USER-LOAD-BY-NICK-NAME" resultMap="RM-DC-USER">
+        select * from dc_user where nick_name = #nickName#;
     </select>
 
     <!-- mapped statement for IbatisDcUserDAO.update -->

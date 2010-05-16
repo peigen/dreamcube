@@ -9,4 +9,3 @@
 		<option value="$item.code" #if($compare_value && $compare_value==$item.code)selected#end>$item.message</option>	
 	#end
 #end
-

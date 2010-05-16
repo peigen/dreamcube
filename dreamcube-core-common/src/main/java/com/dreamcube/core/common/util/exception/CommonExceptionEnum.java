@@ -1,4 +1,4 @@
-package com.dreamcube.core.common.util.enums;
+package com.dreamcube.core.common.util.exception;
 
 import java.util.ArrayList;
 import java.util.List;

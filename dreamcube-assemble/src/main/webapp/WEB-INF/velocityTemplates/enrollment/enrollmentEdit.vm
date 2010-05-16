@@ -1,89 +1,70 @@
+<script type="text/javascript" src="/js/enrollment/enrollmentEdit.js"></script>
+
 <div class="demo">
 	<form method="POST" id="form_edit" action="doEdit.html">
 	<table>
 		<tr>
 			<td>登录名:</td>
 			<td><input id="logonName" name="logonName" value="$!user.logonName"/></td>
-			<div id="div_logonName"><td><font color="red">"登录名"已被占用</font></td></div>
+			<td>
+				<div id="div_logonName_valide"><img src="/img/ico_valid.gif" alt="校验通过" /></div>
+				<div id="div_logonName_un_valide"><font color="red">"登录名"已被占用</font></div>
+				<div id="div_logonName_null"><font color="red">"登录名"不得为空</font></div>
+			</td>
 		</tr>
 		<tr>
 			<td>登录密码：</td>
-			<td><input name="logonPasswd" value="$!user.logonPasswd"/></td>
+			<td><input id="logonPasswd" name="logonPasswd" type="password" value="$!user.logonPasswd"/></td>
+			<td>
+				<div id="div_logonPasswd_pass"><img src="/img/ico_valid.gif" alt="校验通过" /></div>
+				<div id="div_logonPasswd_un_pass"><font color="red">"登录密码"不得为空</font></div>
+			</td>
 		</tr>
 		<tr>
 			<td>再次输入密码：</td>
-			<td><input name="logonPasswdValid" value="$!user.logonPasswdValid"/></td>
+			<td><input id="logonPasswdValid" name="logonPasswdValid" type="password" value="$!user.logonPasswd"/></td>
+			<td>
+				<div id="div_logonPasswdValid_pass"><img src="/img/ico_valid.gif" alt="校验通过" /></div>
+				<div id="div_logonPasswdValid_un_pass"><font color="red">密码不一致,请重新输入</font></div>
+			</td>
 		</tr>
 		<tr>
 			<td>昵称:</td>
 			<td><input id="nickName" name="nickName" value="$!user.nickName"/></td>
-			<div id="div_nickName"><td><font color="red">"昵称"已被占用</font></td></div>
+			<td>
+				<div id="div_nickName_valide"><img src="/img/ico_valid.gif" alt="校验通过" /></div>
+				<div id="div_nickName_un_valide"><font color="red">"昵称"已被占用</font></div>
+				<div id="div_nickName_null"><font color="red">"昵称"不得为空</font></div>
+			</td>
 		</tr>
 		<tr>
 			<td>生日:</td>
-			<td><input type="text" id="birthday" value="$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!user.birthday)" /></td>
+			<td>
+				<div id='demo'>
+				<input type="text" id="birthday" name="birthday" value="$!user.birthday" />
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>性别:</td>
-			<td><input type="text" id="gender" value="$!user.gender" /></td>
+			<td>
+				<select name="gender">
+				#enumIterator("GenderEnum" "$!user.gender")
+				</select>
+			</td>
 		</tr>
 		<tr>
-			<td><input name="submit" type="submit" value="注册"/></td>
+			
+			<td>
+				<input name="status" type="hidden" value="$!user.status" />
+			#if($!user.id)
+				<input id="id" name="id" type="hidden" value="$!user.id"/>
+				<input name="submit" type="submit" value="修改"/>
+			#else
+				<input name="submit" type="submit" value="注册"/>
+			#end
+			</td>
 			<td><input name="reset" type="reset" value="重置" /></td>
 	</table>
 	</form>
 </div>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#div_nickName").hide();
-		$("#div_logonName").hide();
-	
-		$("#logonName").blur(function() {
-			var logonName = $("#logonName").val();
-			var nickName = $("#nickName").val();
-			
-			var url_suffix = "?logonName="+logonName+"&nickName="+nickName;
-			//alert("url_suffix="+url_suffix);
-		
-			var jsonResponse = jQuery.getJSON('/dreamcube/enrollment/valideUserName.json'+url_suffix,function(data){
-			
-			alert();
-			if(data.isValide == false)
-				$("#div_nickName").show();
-			
-			});
-		});
-		
-		$("#nickName").blur(function() {
-			var logonName = $("#logonName").val();
-			var nickName = $("#nickName").val();
-			
-			var url_suffix = "?logonName="+logonName+"&nickName="+nickName;
-			//alert("url_suffix="+url_suffix);
-		
-			var jsonResponse = jQuery.getJSON('/dreamcube/enrollment/valideUserName.json'+url_suffix,function(data){
-			
-			alert();
-			if(data.isValide == false)
-				$("#div_nickName").show();
-			
-			});
-		});
-		
-		
-	});   // end of ready function
-	
-	
-	// 生日控件
-	$(function() {
-		$('#birthday').datepicker({
-			changeMonth: true,
-			changeYear: true,
-			dateFormat: 'yy-mm-dd',
-			yearRange: 'c-150'		//年限-当前时间往前150年,如果有超过150岁创业者....那........
-		});
-		
-	});
-	
-	
-</script>
