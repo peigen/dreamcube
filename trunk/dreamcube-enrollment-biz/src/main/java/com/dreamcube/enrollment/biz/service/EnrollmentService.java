@@ -1,6 +1,7 @@
 package com.dreamcube.enrollment.biz.service;
 
 import java.util.Date;
+import java.util.List;
 
 import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.enrollment.domain.DCUser;
@@ -77,5 +78,11 @@ public interface EnrollmentService {
      * @return boolean
      */
     public boolean vaildUserName(String logonName, String nickName);
+
+    /**
+     * 获取全部用户名
+     * @return
+     */
+    public List<String> loadAllUserName();
 
 }

@@ -15,10 +15,5 @@
 		<scope>request</scope>
 		<class>com.dreamcube.core.common.tools.JDKEnumUtils</class>
 	</tool>
-	<tool>
-		<key>genderUtils</key>
-		<scope>request</scope>
-		<class>com.dreamcube.core.common.util.enums.GenderEnum</class>
-	</tool>
 	
 </toolbox>

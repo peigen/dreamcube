@@ -1,5 +1,9 @@
 package com.dreamcube.enrollment.controller;
 
+import java.util.List;
+
+import net.sf.json.JSONArray;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -44,6 +48,10 @@ public class EnrollmentController {
 
     @RequestMapping(value = "/enrollment/enrollmentQuery.html", method = RequestMethod.GET)
     public String viewQuery(ModelMap modelMap) {
+
+        List<String> nameList = enrollmentService.loadAllUserName();
+
+        modelMap.addAttribute("names", JSONArray.fromObject(nameList));
 
         return "enrollment/enrollmentQuery.vm";
     }

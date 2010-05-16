@@ -120,6 +120,8 @@ $('#birthday').datepicker({
 	changeYear: true,
 	rangeSelect: true,
 	firstDay: 1,
-	showOn: 'both'});
+	showOn: 'both',
+	yearRange: 'c-100'
+	});
 });
  

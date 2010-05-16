@@ -1,6 +1,8 @@
 package com.dreamcube.enrollment.biz.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -143,8 +145,23 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     }
 
-    // private method
+    /**
+     * @return
+     * @see com.dreamcube.enrollment.biz.service.EnrollmentService#loadAllUserName()
+     */
+    @Override
+    public List<String> loadAllUserName() {
 
+        List<String> nameList = new ArrayList<String>();
+        List<DcUserDO> list = dcUserDAO.load();
+        for (DcUserDO dcUserDO : list) {
+            nameList.add(dcUserDO.getLogonName());
+        }
+
+        return nameList;
+    }
+
+    // private method
     /**
      * 刷缓存
      */
