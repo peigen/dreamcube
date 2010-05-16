@@ -54,7 +54,7 @@
 		<tr>
 			<td>$!item.logonName &nbsp;</td>
 			<td>$!item.nickName &nbsp;</td>
-			<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss',$!item.birthday) &nbsp;</td>
+			<td>$!dateTool.format('yyyy-MM-dd',$!item.birthday) &nbsp;</td>
 			<td>$!item.certNo &nbsp;</td>
 			<td>$!jdkEnumUtils.getEnumByCode("GenderEnum","$!item.gender") &nbsp;</td>
 			<td>$!jdkEnumUtils.getEnumByCode("DCUserStatusEnum","$!item.status") &nbsp;</td>
@@ -85,7 +85,14 @@
 </div>
 
 
-<script  type="text/JavaScript">
+<script type="text/JavaScript">
+$(function() {
+	var names = $!names;
+	
+	$("#logonName").autocomplete({
+		source:names
+	});
+});
 
 function clickSub(obj){
 	cleanField("pageNum");
@@ -109,5 +116,7 @@ function do_modify_action(id){
 $(document).ready(function() {
 	$("#logonName").focus();
 });
+
+
 
 </script>
