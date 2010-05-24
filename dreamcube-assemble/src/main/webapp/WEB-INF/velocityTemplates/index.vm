@@ -1,337 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>The Web News</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="/css/index/style.css" />
+<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/css/index/ie.css" /><![endif]-->
+</head>
+<body>
+<!-- BEGIN wrapper -->
 <div id="wrapper">
-
-<h1>基于jQuery的对象切换插件：<span class="strong">soChange 1.5</span>  <a  class="a_down" href="http://code.google.com/p/sochange-juqeryplugin/downloads/list">(点击下载)</a></h1>
-<div class="allIntro">
-<h2>所有参数：</h2>
-<p class="blue">
-$(obj).soChange({ <br />
-
-&nbsp;&nbsp;&nbsp;&nbsp;thumbObj:null, <span class="green">//导航对象，默认为空</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;botPrev:null, <span class="green">//按钮上一个，默认为空</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;botNext:null, <span class="green">//按钮下一个。默认为空</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;thumbNowClass:'now', <span class="green">//导航对象当前的class,默认为now</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;thumbOverEvent:true,<span class="green">//鼠标经过thumbObj时是否切换对象，默认为true，为false时，只有鼠标点击thumbObj才切换对象</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;slideTime:1000, <span class="green">//对象平滑过渡持续时间，默认为1000ms</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;autoChange:true, <span class="green">//是否自动切换，默认为true</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;clickFalse:true,<span class="green">//导航对象如果有链接，点击是否链接无效，即是否返回return false，默认是return false链接无效，当thumbOverEvent为false时，此项必须为true，否则鼠标点击事件冲突</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;overStop:true,<span class="green">//鼠标经过切换对象时，切换对象是否停止切换，并于鼠标离开后重启自动切换，前提是已开启自动切换，默认开启鼠标经过对象停止切换</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;changeTime:5000, <span class="green">//对象自动切换时间，默认为5000ms，即5秒</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;delayTime:300 <span class="green">//鼠标经过时对象切换迟滞时间，推荐值为300ms</span><br />
-
-});<br />
-</p>
-<p class="p_other">实现对象切换的插件其实网上很多， <br />
-但是应用起来总是不够满意，不够简洁，不够实用，所以干脆自己写了一个， <br />
-本来取名为sGallery，即simpleGallery，<br />但感觉这个插件不仅仅是可以应用在幻灯相册上，确实应该称它为对象切换插件， <br />所以改了名称，simple object change ，简洁考虑直接就soChange，即如此改变，如此切换，<br />我也增加了一个选项卡切换的例子，相信你使用时会觉得它是如此方便和多样， <br />以上为此插件所有参数，从前端开发角度出发，充分利用css样式的灵活性，脚本调用方式简单， <br />基本满足了现在常见开发中遇到的平滑过渡效果，具体实际应用及代码参考以下的例子。 <br /><br /><b class="green">注：此插件大小为3k(min版为1.6k)，兼容全部主流浏览器， <br />图片右上方的小箭头图标考虑美观用了透明的png图片，在ie6下不透明，此和样式有关，请详知。</b></p>
-<p class="p_author"><a href="http://hi.baidu.com/bujichong/" target="_blank">作者：不羁虫</a><br />2009.12.14</p>
+  <!-- BEGIN header -->
+  <div id="header">
+    <ul>
+      <li class="f"><a href="http://www.88web.org/">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="page.html">Demo Page</a></li>
+      <li><a href="contact.html">Contact Page</a></li>
+    </ul>
+    <p class="links">Subscribe: <a href="http://www.88web.org/">Posts</a> | <a href="http://www.88web.org/">Comments</a> | <a href="http://www.88web.org/">Email</a> </p>
+    <div class="break"></div>
+    <div class="logo">
+      <h1><a href="http://www.88web.org/">The Web News</a></h1>
+      <p>Free CSS Template</p>
+    </div>
+    <div class="logon">
+    	<ol>
+    		<li>Email:</li>
+    		<li>密码:</li>
+    		<li>登录</li>
+    		<li>忘记密码</li>
+    	</ol>
+    </div>
+    <div class="break"></div>
+    <ol>
+      <li><a href="http://www.88web.org/">Advertising</a></li>
+      <li><a href="http://www.88web.org/">Entertainment</a></li>
+      <li><a href="http://www.88web.org/">Fashion</a></li>
+      <li><a href="http://www.88web.org/">Lifestyle</a></li>
+      <li><a href="http://www.88web.org/">Pictures</a></li>
+      <li><a href="http://www.88web.org/">Videos</a></li>
+    </ol>
+    <div class="break"></div>
+  </div>
+  <!-- END header -->
+  <!-- BEGIN content -->
+  <div id="content">
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb1.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>嗨! 欢迎使用巴巴唔模板网提供的网页模板,你可以免费将此模板应用与任何地方,个人网站或者商业应用,唯一需要做的就是在此页面保留<a href="http://www.88web.org/" title="免费网站模板">巴巴唔模板网</a>的相关链接. 如果你需要更多的精美<a href="http://www.88web.org/css-templates.htm" title="免费网页模板">网页模板</a>,请随时访问我们的模板页面,我们每周都会发布新模板,敬请关注! </p>
+      <p>mauris suspendisse ligula neque integer non.</p>
+    <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb2.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>Elementum ea, nibh et, velit sed sagittis. Ipsum libero. Viverra integer enim, sed dolor. Inceptos elit, vitae et. Eget eget nec, lectus nisl, vehicula est feugiat. cum condimentum mattis dui fusce ut, vel convallis suspendisse suspendisse sed in. Libero blandit curae at magna ut, id mauris suspendisse ligula neque integer non.</p>
+      <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb1.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>Elementum ea, nibh et, velit sed sagittis. Ipsum libero. Viverra integer enim, sed dolor. Inceptos elit, vitae et. Eget eget nec, lectus nisl, vehicula est feugiat. cum condimentum mattis dui fusce ut, vel convallis suspendisse suspendisse sed in. Libero blandit curae at magna ut, id mauris suspendisse ligula neque integer non.</p>
+      <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb2.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>Elementum ea, nibh et, velit sed sagittis. Ipsum libero. Viverra integer enim, sed dolor. Inceptos elit, vitae et. Eget eget nec, lectus nisl, vehicula est feugiat. cum condimentum mattis dui fusce ut, vel convallis suspendisse suspendisse sed in. Libero blandit curae at magna ut, id mauris suspendisse ligula neque integer non.</p>
+      <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb1.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>Elementum ea, nibh et, velit sed sagittis. Ipsum libero. Viverra integer enim, sed dolor. Inceptos elit, vitae et. Eget eget nec, lectus nisl, vehicula est feugiat. cum condimentum mattis dui fusce ut, vel convallis suspendisse suspendisse sed in. Libero blandit curae at magna ut, id mauris suspendisse ligula neque integer non.</p>
+      <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb2.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>Elementum ea, nibh et, velit sed sagittis. Ipsum libero. Viverra integer enim, sed dolor. Inceptos elit, vitae et. Eget eget nec, lectus nisl, vehicula est feugiat. cum condimentum mattis dui fusce ut, vel convallis suspendisse suspendisse sed in. Libero blandit curae at magna ut, id mauris suspendisse ligula neque integer non.</p>
+      <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb1.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>Elementum ea, nibh et, velit sed sagittis. Ipsum libero. Viverra integer enim, sed dolor. Inceptos elit, vitae et. Eget eget nec, lectus nisl, vehicula est feugiat. cum condimentum mattis dui fusce ut, vel convallis suspendisse suspendisse sed in. Libero blandit curae at magna ut, id mauris suspendisse ligula neque integer non.</p>
+      <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post -->
+    <div class="post">
+      <div class="thumb"><a href="http://www.88web.org/"><img src="/img/index/_thumb2.jpg" alt="" /></a></div>
+      <h2><a href="http://www.88web.org/">A cras tincidunt, ut tellus et Gravida Ipsum</a></h2>
+      <p class="date">Posted on January 7, 2008 by admin</p>
+      <p>Elementum ea, nibh et, velit sed sagittis. Ipsum libero. Viverra integer enim, sed dolor. Inceptos elit, vitae et. Eget eget nec, lectus nisl, vehicula est feugiat. cum condimentum mattis dui fusce ut, vel convallis suspendisse suspendisse sed in. Libero blandit curae at magna ut, id mauris suspendisse ligula neque integer non.</p>
+      <a class="continue" href="http://www.88web.org/">Continue Reading</a> </div>
+    <!-- end post -->
+    <!-- begin post navigation -->
+    <div class="postnav">
+      <ul>
+        <li><a href="http://www.88web.org/">1</a></li>
+        <li><a href="http://www.88web.org/">2</a></li>
+        <li><a href="http://www.88web.org/">&raquo;</a></li>
+      </ul>
+      <div class="break"></div>
+    </div>
+    <!-- end post navigation -->
+  </div>
+  <!-- END content -->
+  <!-- BEGIN sidebar -->
+  <div id="sidebar">
+    <!-- begin ads -->
+    <div class="ads"> <a href="http://www.88web.org/"><img src="/img/index/ad125x125.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/ad125x125.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/ad125x125.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/ad125x125.jpg" alt="" /></a> </div>
+    <!-- end ads -->
+    <!-- begin search -->
+    <form class="search" action="http://www.88web.org/">
+      <input type="text" name="s" id="s" />
+      <button type="submit">Search</button>
+    </form>
+    <!-- end search -->
+    <div class="wrapper">
+      <!-- begin popular posts -->
+      <h2>Popular Posts</h2>
+      <ul>
+        <li><a href="http://www.88web.org/">Make Money Online Creating Websites</a></li>
+        <li><a href="http://www.88web.org/">Top 100 Internet Marketing Tips</a></li>
+        <li><a href="http://www.88web.org/">Tutorial: How to add Videos in your Post</a></li>
+        <li><a href="http://www.88web.org/">Sample Post Unordered List</a></li>
+        <li><a href="http://www.88web.org/">Sample Post Blockquote</a></li>
+      </ul>
+      <!-- end popular posts -->
+      <!-- begin flickr photos -->
+      <h2>Flickr Photos</h2>
+      <div class="flickr"> <a href="http://www.88web.org/"><img src="/img/index/_thumb3.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/_thumb4.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/_thumb5.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/_thumb6.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/_thumb7.jpg" alt="" /></a> <a href="http://www.88web.org/"><img src="/img/index/_thumb8.jpg" alt="" /></a> </div>
+      <!-- end flickr photos -->
+      <!-- begin featured video -->
+      <h2>Featured Video</h2>
+      <div class="video"> <img src="/img/index/_video.jpg" alt="" /> </div>
+      <!-- end featured video -->
+      <!-- begin tags -->
+      <h2>Tags</h2>
+      <div class="tags"> </div>
+      <!-- end tags -->
+      <!-- BEGIN left -->
+      <div class="l sbar">
+        <!-- begin categories -->
+        <h2>Categories</h2>
+        <ul>
+          <li><a href="http://www.88web.org/">Entertainment</a></li>
+          <li><a href="http://www.88web.org/">Fashion</a></li>
+          <li><a href="http://www.88web.org/">Internet</a></li>
+          <li><a href="http://www.88web.org/">Marketing</a></li>
+          <li><a href="http://www.88web.org/">Lifestyle</a></li>
+          <li><a href="http://www.88web.org/">Make Money</a></li>
+          <li><a href="http://www.88web.org/">Online</a></li>
+          <li><a href="http://www.88web.org/">Parenting</a></li>
+        </ul>
+        <!-- end categories -->
+        <!-- begin pages -->
+        <h2>Pages</h2>
+        <ul>
+          <li><a href="http://www.88web.org/">Home</a></li>
+          <li><a href="http://www.88web.org/">About</a></li>
+          <li><a href="http://www.88web.org/">Archives</a></li>
+          <li><a href="http://www.88web.org/">Links</a></li>
+          <li><a href="http://www.88web.org/">Contact</a></li>
+          <li><a href="http://www.88web.org/">Sitemap</a></li>
+        </ul>
+        <!-- end pages -->
+      </div>
+      <!-- END left -->
+      <!-- BEGIN right -->
+      <div class="r sbar">
+        <!-- begin archives -->
+        <h2>Archives</h2>
+        <ul>
+          <li><a href="http://www.88web.org/">August 2008</a></li>
+          <li><a href="http://www.88web.org/">July 2008</a></li>
+          <li><a href="http://www.88web.org/">June 2008</a></li>
+          <li><a href="http://www.88web.org/">May 2008</a></li>
+          <li><a href="http://www.88web.org/">April 2008</a></li>
+          <li><a href="http://www.88web.org/">March 2008</a></li>
+        </ul>
+        <!-- end archives -->
+        <!-- begin blogroll -->
+        <h2>Blogroll</h2>
+        <ul>
+          <li><a href="http://www.88web.org/">Carlos</a></li>
+          <li><a href="http://www.88web.org/">Digital Point Forum</a></li>
+          <li><a href="http://www.88web.org/">Eric's Photo Gallery</a></li>
+          <li><a href="http://www.88web.org/">Fashion Trends</a></li>
+          <li><a href="http://www.88web.org/">Google Scoreboard</a></li>
+          <li><a href="http://www.88web.org/">Marketing Forum</a></li>
+        </ul>
+        <!-- end blogroll -->
+        <!-- begin meta -->
+        <h2>Meta</h2>
+        <ul>
+          <li><a href="http://www.88web.org/">Login</a></li>
+        </ul>
+        <!-- end meta -->
+      </div>
+      <!-- END right -->
+    </div>
+  </div>
+  <!-- END sidebar -->
 </div>
-<!-- 1 -->
-<div class="eachBox">
-<div class="changeBox_a1" id="change_1">
-<a href="#1" class="a_bigImg"><img src="/img/soChange/1.jpg" width="650" height="250" alt="" /></a>
-<a href="#2" class="a_bigImg"><img src="/img/soChange/2.jpg" width="650" height="250" alt="" /></a>
-<a href="#3" class="a_bigImg"><img src="/img/soChange/3.jpg" width="650" height="250" alt="" /></a>
-<a href="#4" class="a_bigImg"><img src="/img/soChange/4.jpg" width="650" height="250" alt="" /></a>
-</div>
-<div class="introArea">
-<h2>1- 默认最简易模式</h2>
-<p class="p_code"><code>$('#change_1 .a_bigImg img').soChange();</code></p>
-<p class="green">
-//最简易模式不带任何参数，即直接切换选择器选择的对象组，所有参数为默认：隔5秒自动切换，图片过渡效果持续1秒 <br /> <br />
-//源对象为自动切换的一个数组，即其本身，非其父包装元素 <br />
-//如要切换图片本身就以图片组为对象，<br />
-//如要切换层就以层组为对象</p>
-</div>
-</div>
-
-
-<!-- 2 -->
-<div class="eachBox">
-<div class="changeBox_a1" id="change_2">
-<a href="#1" class="a_bigImg"><img src="/img/soChange/1.jpg" width="650" height="250" alt="" /></a>
-<a href="#2" class="a_bigImg"><img src="/img/soChange/2.jpg" width="650" height="250" alt="" /></a>
-<a href="#3" class="a_bigImg"><img src="/img/soChange/3.jpg" width="650" height="250" alt="" /></a>
-<a href="#4" class="a_bigImg"><img src="/img/soChange/4.jpg" width="650" height="250" alt="" /></a>
-<a href="#" class="a_last" title="上一个">上一个</a><a href="#" class="a_next" title="下一个">下一个</a>
-</div>
-<div class="introArea">
-<h2>2- 带前后按钮</h2>
-<p class="p_code">
-<code>$('#change_2 .a_bigImg img').soChange({<br />
-		botPrev:'#change_2 .a_last', <span class="green">// 按钮，上一个</span> <br />
-		botNext:'#change_2 .a_next' <span class="green">// 按钮，下一个</span> <br />
-	});</code></p>
-
-</div>
-</div>
-
-<!-- 3 -->
-
-<div class="eachBox">
-<div class="changeBox_a1" id="change_3">
-<a href="#1" class="a_bigImg"><img src="/img/soChange/1.jpg" width="650" height="250" alt="" /></a>
-<a href="#2" class="a_bigImg"><img src="/img/soChange/2.jpg" width="650" height="250" alt="" /></a>
-<a href="#3" class="a_bigImg"><img src="/img/soChange/3.jpg" width="650" height="250" alt="" /></a>
-<a href="#4" class="a_bigImg"><img src="/img/soChange/4.jpg" width="650" height="250" alt="" /></a>
-
-<ul class="ul_change_a2">
-<li><span>1</span></li>
-<li><span>2</span></li>
-<li><span>3</span></li>
-<li><span>4</span></li>
-</ul>
-</div>
-<div class="introArea">
-<h2>3- 使用数字导航切换及自定义当前状态数字的class</h2>
-<p class="p_code">
-<code>$('#change_3 .a_bigImg img').soChange({<br />
-		thumbObj:'#change_3 .ul_change_a2 span', <br /><span class="green">//导航为数字形式，选择器指向包含数字的span对象</span> <br />
-		thumbNowClass:'on', <br /><span class="green">//自定义导航对象当前class为on</span> <br />
-		changeTime:4000<span class="green">//自定义切换时间为4000ms</span> <br />
-	});</code></p>
-
-
-</div>
-</div>
-
-
-
-
-<!-- 32 -->
-
-<div class="eachBox">
-<div class="changeBox_a1" id="change_32">
-<div class="changeDiv">
-<h3><a href="#">图片111111111说明文字，文字标题都绝对定位在div.changeDiv这个层内</a></h3>
-<a href="#1"><img src="/img/soChange/1.jpg" width="650" height="250" alt="" /></a></div>
-<div class="changeDiv">
-<h3><a href="#">图片222222222说明文字，文字标题都绝对定位在div.changeDiv这个层内</a></h3>
-<a href="#2"><img src="/img/soChange/2.jpg" width="650" height="250" alt="" /></a></div>
-<div class="changeDiv">
-<h3><a href="#">图片333333333说明文字，文字标题都绝对定位在div.changeDiv这个层内</a></h3>
-<a href="#3"><img src="/img/soChange/3.jpg" width="650" height="250" alt="" /></a></div>
-<div  class="changeDiv">
-<h3><a href="#">图片444444444说明文字，文字标题都绝对定位在div.changeDiv这个层内</a></h3>
-<a href="#4"><img src="/img/soChange/4.jpg" width="650" height="250" alt="" /></a></div>
-
-<ul class="ul_change_a2">
-<li><span>1</span></li>
-<li><span>2</span></li>
-<li><span>3</span></li>
-<li><span>4</span></li>
-</ul>
-</div>
-<div class="introArea">
-<h2>4- 切换对象为其他，这里为包含图片和标题的层</h2>
-<p class="p_code">
-<code>$('#change_32 div.changeDiv').soChange({<br /><span class="green">对象指向层，层内包含图片及标题</span><br />
-		thumbObj:'#change_32 .ul_change_a2 span', <br />
-		thumbNowClass:'on'<br />
-	});</code></p>
-
-
-
-</div>
-</div>
-
-
-<!-- 33 -->
-
-<div class="eachBox">
-<div class="changeBox_a1" id="change_33">
-<a href="#1" class="a_bigImg"><img src="/img/soChange/1.jpg" width="650" height="250" alt="" /></a>
-<a href="#2" class="a_bigImg"><img src="/img/soChange/2.jpg" width="650" height="250" alt="" /></a>
-<a href="#3" class="a_bigImg"><img src="/img/soChange/3.jpg" width="650" height="250" alt="" /></a>
-<a href="#4" class="a_bigImg"><img src="/img/soChange/4.jpg" width="650" height="250" alt="" /></a>
-
-<ul class="ul_change_a2">
-<li><span>1</span></li>
-<li><span>2</span></li>
-<li><span>3</span></li>
-<li><span>4</span></li>
-</ul>
-</div>
-<div class="introArea">
-<h2>5- 关闭鼠标经过thumbObj切换事件，平滑过渡间歇时间为0</h2>
-<p class="p_code">
-<code>$('#change_33 .a_bigImg img').soChange({<br />
-		thumbObj:'#change_33 .ul_change_a2 span',<br />
-		thumbOverEvent:false,<span class="green">// 关闭鼠标经过thumbObj切换事件，只有点击thumbObj时才切换对象</span><br />
-		thumbNowClass:'on', <br />
-		slideTime:0<span class="green">//平滑过渡间歇为0，意味着直接切换</span> <br />
-	});</code></p>
-
-</div>
-</div>
-
-
-
-<!-- 4 -->
-<div class="eachBox">
-<div class="changeBox_a1" id="change_4">
-<a href="#1" class="a_bigImg"><img src="/img/soChange/1.jpg" width="650" height="250" alt="" /></a>
-<a href="#2" class="a_bigImg"><img src="/img/soChange/2.jpg" width="650" height="250" alt="" /></a>
-<a href="#3" class="a_bigImg"><img src="/img/soChange/3.jpg" width="650" height="250" alt="" /></a>
-<a href="#4" class="a_bigImg"><img src="/img/soChange/4.jpg" width="650" height="250" alt="" /></a>
-
-<a href="#" class="a_last" title="上一个">上一个</a><a href="#" class="a_next" title="下一个">下一个</a>
-
-<ul class="ul_change_a1">
-<li><a href="#"><img src="/img/soChange/1_s.jpg" width="67" height="40" alt="" /></a></li>
-<li><a href="#"><img src="/img/soChange/2_s.jpg" width="67" height="40" alt="" /></a></li>
-<li><a href="#"><img src="/img/soChange/3_s.jpg" width="67" height="40" alt="" /></a></li>
-<li><a href="#"><img src="/img/soChange/4_s.jpg" width="67" height="40" alt="" /></a></li>
-</ul>
-</div>
-<div class="introArea">
-
-<h2>6- 带导航图标及按钮</h2>
-<p class="p_code">
-<code>$('#change_4 .a_bigImg img').soChange({<br />
-		thumbObj:'#change_4 .ul_change_a1 img', <br /><span class="green">//导航图标，选择器直接指向图标对象</span> <br />
-		botPrev:'#change_4 .a_last', <br />
-		botNext:'#change_4 .a_next'<br />
-	});</code></p>
-
-
-</div>
-</div>
-
-
-
-<!-- 5 -->
-<div class="eachBox">
-<div class="changeBox_a1" id="change_5">
-<a href="#1" class="a_bigImg"><img src="/img/soChange/1.jpg" width="650" height="250" alt="" /></a>
-<a href="#2" class="a_bigImg"><img src="/img/soChange/2.jpg" width="650" height="250" alt="" /></a>
-<a href="#3" class="a_bigImg"><img src="/img/soChange/3.jpg" width="650" height="250" alt="" /></a>
-<a href="#4" class="a_bigImg"><img src="/img/soChange/4.jpg" width="650" height="250" alt="" /></a>
-
-<a href="#" class="a_last" title="上一个">上一个</a><a href="#" class="a_next" title="下一个">下一个</a>
-
-<ul class="ul_change_a1">
-<li><a href="#"><img src="/img/soChange/1_s.jpg" width="67" height="40" alt="" /></a></li>
-<li><a href="#"><img src="/img/soChange/2_s.jpg" width="67" height="40" alt="" /></a></li>
-<li><a href="#"><img src="/img/soChange/3_s.jpg" width="67" height="40" alt="" /></a></li>
-<li><a href="#"><img src="/img/soChange/4_s.jpg" width="67" height="40" alt="" /></a></li>
-</ul>
-</div>
-<div class="introArea">
-
-<h2>7- 不自动切换</h2>
-<p class="p_code">
-<code>$('#change_5 .a_bigImg img').soChange({<br />
-		thumbObj:'#change_5 .ul_change_a1 img', <br /><span class="green">//导航图标，选择器直接指向图标对象</span><br />
-		botPrev:'#change_5 .a_last', <br />
-		botNext:'#change_5 .a_next', <br />
-		autoChange:false<span class="green"> //自动切换为 false，默认为true </span> <br />
-	});</code></p>
-
-
-
-</div>
-</div>
-
-<!-- 6 -->
-<div class="eachBox">
-<div class="changeBox_b1" id="change_6">
-<h3><a href="#">标题1</a></h3>
-<div>内容1111111 11111内容111111 111111内容11111 1111111内容1111111 11111</div>
-<h3><a href="#">标题2</a></h3>
-<div>内容2222222 22222内容222222 222222内容22222 2222222内容2222222 22222</div>
-<h3><a href="#">标题3</a></h3>
-<div>内容3333333 33333内容333333 333333内容33333 3333333内容3333333 33333</div>
-<h3><a href="#">标题4</a></h3>
-<div>内容4444444 44444内容444444 444444内容44444 4444444内容4444444 44444</div>
-
-</div>
-<div class="introArea">
-
-<h2>8- 在选项卡上的应用</h2>
-<p class="p_code">
-<code>$('#change_6 div').soChange({<br />
-		thumbObj:'#change_6 h3',<span class="green">//导航对象指向标题h3</span><br />
-		slideTime:0,<br />
-		thumbOverEvent:false,<br />
-		autoChange:false<br />
-	});</code></p>
-
-<p><b>注：</b>这个和相册或者幻灯似乎相差比较远，但是其实原理相同，无非是鼠标触发一个，另一个发生改变，所以，应用时请开动脑筋，充分发挥css在页面特效中的作用</p>
-
-</div>
-</div>
-
-</div>
-
-
-
-
-
-<script type="text/javascript">
-
-$(function () {
-//源对象为自动切换的一个数组，即其本身，非其父包装元素
-//如要切换图片本身就以图片组为对象，
-//如要切换层就以层组为对象
-
-//默认最简易模式
-	$('#change_1 .a_bigImg img').soChange();
-
-//带前后按钮
-	$('#change_2 .a_bigImg img').soChange({
-		botPrev:'#change_2 .a_last',//按钮，上一个
-		botNext:'#change_2 .a_next'//按钮，下一个
-	});
-
-//数字导航切换及自定义当前数字的class
-	$('#change_3 .a_bigImg img').soChange({
-		thumbObj:'#change_3 .ul_change_a2 span',
-		thumbNowClass:'on',//自定义导航对象当前class为on
-		changeTime:4000//自定义切换时间为4000ms
-
-	});
-
-//平滑过渡间歇时间为0
-	$('#change_33 .a_bigImg img').soChange({
-		thumbObj:'#change_33 .ul_change_a2 span',
-		thumbNowClass:'on',
-		thumbOverEvent:false,
-		slideTime:0//平滑过渡间歇为0，意味着直接切换
-	});
-
-//切换对象为其他，这里为包含图片和标题的层
-	$('#change_32 div.changeDiv').soChange({//对象指向层，层内包含图片及标题
-		thumbObj:'#change_32 .ul_change_a2 span',
-		thumbNowClass:'on'//自定义导航对象当前class为on
-	});
-
-
-//带导航图标及按钮
-	$('#change_4 .a_bigImg img').soChange({
-		thumbObj:'#change_4 .ul_change_a1 img',//导航图标
-		botPrev:'#change_4 .a_last',
-		botNext:'#change_4 .a_next'
-	});
-
-
-//不自动切换
-	$('#change_5 .a_bigImg img').soChange({
-		thumbObj:'#change_5 .ul_change_a1 img',
-		botPrev:'#change_5 .a_last',
-		botNext:'#change_5 .a_next',
-		autoChange:false//自动切换为 false，默认为true
-	});
-
-
-//在选项卡上的运用
-	$('#change_6 div').soChange({
-		thumbObj:'#change_6 h3',
-		slideTime:0,
-		thumbOverEvent:false,
-		autoChange:false//自动切换为 false，默认为true
-	});
-
-
-});
-
-</script>
+<!-- END wrapper -->
+</body>
+</html>
