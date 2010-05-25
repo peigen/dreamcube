@@ -1,6 +1,6 @@
 CREATE TABLE `dreamcube`.`dc_user` (
   `id` BIGINT  NOT NULL AUTO_INCREMENT,
-  `logon_name` VARCHAR(20)  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `logon_name` VARCHAR(100)  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Email',
   `logon_passwd` VARCHAR(20)  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `nick_name` VARCHAR(20)  CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '昵称',
   `birthday` TIMESTAMP  DEFAULT '0000-00-00 00:00:00',

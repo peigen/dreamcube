@@ -88,6 +88,19 @@
 			]]>
 		</sqlmap>
 	</operation>
+	
+	<operation name="loadByLogonNameAndPasswd" paramtype="primitive">
+		<sql>
+			<![CDATA[
+				select * from dc_user where logon_name = ? and logon_passwd = ?;
+    		]]>
+		</sql>
+		<sqlmap>
+			<![CDATA[
+				select * from dc_user where logon_name = #logonName# and logon_passwd = #logonPasswd#;
+			]]>
+		</sqlmap>
+	</operation>
 
 	<operation name="update" paramtype="object">
 		<sql>

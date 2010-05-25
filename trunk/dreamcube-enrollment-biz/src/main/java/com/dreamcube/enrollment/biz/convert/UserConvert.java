@@ -33,53 +33,53 @@ import com.dreamcube.core.enrollment.enums.DCUserStatusEnum;
 public class UserConvert {
 
     /**
-     * @param dcUser
+     * @param user
      * @return
      */
-    public static DcUserDO domainToDo(DCUser dcUser) {
-        DcUserDO dcUserDO = new DcUserDO();
+    public static DcUserDO domainToDo(DCUser user) {
+        DcUserDO userDO = new DcUserDO();
 
-        if (StringTool.isNotBlank(dcUser.getId()))
-            dcUserDO.setId(Long.valueOf(dcUser.getId()));
+        if (StringTool.isNotBlank(user.getId()))
+            userDO.setId(Long.valueOf(user.getId()));
 
-        dcUserDO.setBirthday(dcUser.getBirthday());
-        dcUserDO.setCertNo(dcUser.getCertNo());
-        dcUserDO.setGender(dcUser.getGender());
-        dcUserDO.setGmtCreate(dcUser.getGmtCreate());
-        dcUserDO.setGmtModify(dcUser.getGmtModify());
-        dcUserDO.setInfoSite(dcUser.getInfoSite());
-        dcUserDO.setLogonName(dcUser.getLogonName());
-        dcUserDO.setLogonPasswd(dcUser.getLogonPasswd());
-        dcUserDO.setNickName(dcUser.getNickName());
-        dcUserDO.setProjects(dcUser.getProjects());
-        dcUserDO.setStatus(dcUser.getStatus().getCode());
-        dcUserDO.setWorkSite(dcUser.getWorkSite());
+        userDO.setBirthday(user.getBirthday());
+        userDO.setCertNo(user.getCertNo());
+        userDO.setGender(user.getGender());
+        userDO.setGmtCreate(user.getGmtCreate());
+        userDO.setGmtModify(user.getGmtModify());
+        userDO.setInfoSite(user.getInfoSite());
+        userDO.setLogonName(user.getLogonName());
+        userDO.setLogonPasswd(user.getLogonPasswd());
+        userDO.setNickName(user.getNickName());
+        userDO.setProjects(user.getProjects());
+        userDO.setStatus(user.getStatus().getCode());
+        userDO.setWorkSite(user.getWorkSite());
 
-        return dcUserDO;
+        return userDO;
     }
 
     /**
-     * @param dcUserDO
+     * @param userDO
      * @return
      */
-    public static DCUser doToDomain(DcUserDO dcUserDO) {
+    public static DCUser doToDomain(DcUserDO userDO) {
         DCUser user = new DCUser();
 
-        if (dcUserDO.getId() > 0)
-            user.setId(String.valueOf(dcUserDO.getId()));
+        if (userDO.getId() > 0)
+            user.setId(String.valueOf(userDO.getId()));
 
-        user.setBirthday(dcUserDO.getBirthday());
-        user.setCertNo(dcUserDO.getCertNo());
-        user.setGender(dcUserDO.getGender());
-        user.setGmtCreate(dcUserDO.getGmtCreate());
-        user.setGmtModify(dcUserDO.getGmtModify());
-        user.setInfoSite(dcUserDO.getInfoSite());
-        user.setLogonName(dcUserDO.getLogonName());
-        user.setLogonPasswd(dcUserDO.getLogonPasswd());
-        user.setNickName(dcUserDO.getNickName());
-        user.setProjects(dcUserDO.getProjects());
-        user.setStatus(DCUserStatusEnum.getByCode(dcUserDO.getStatus()));
-        user.setWorkSite(dcUserDO.getWorkSite());
+        user.setBirthday(userDO.getBirthday());
+        user.setCertNo(userDO.getCertNo());
+        user.setGender(userDO.getGender());
+        user.setGmtCreate(userDO.getGmtCreate());
+        user.setGmtModify(userDO.getGmtModify());
+        user.setInfoSite(userDO.getInfoSite());
+        user.setLogonName(userDO.getLogonName());
+        user.setLogonPasswd(userDO.getLogonPasswd());
+        user.setNickName(userDO.getNickName());
+        user.setProjects(userDO.getProjects());
+        user.setStatus(DCUserStatusEnum.getByCode(userDO.getStatus()));
+        user.setWorkSite(userDO.getWorkSite());
 
         return user;
     }

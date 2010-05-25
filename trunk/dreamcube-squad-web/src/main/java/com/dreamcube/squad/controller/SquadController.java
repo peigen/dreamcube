@@ -48,12 +48,6 @@ public class SquadController {
     @SuppressWarnings("unused")
     private Logger       log = LoggerFactory.getLogger(SquadController.class);
 
-    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
-    public String index(ModelMap modelMap) {
-
-        return "index.vm";
-    }
-
     @RequestMapping(value = "/squad/squadQuery.html", method = RequestMethod.GET)
     public String viewQuery(ModelMap modelMap) {
 

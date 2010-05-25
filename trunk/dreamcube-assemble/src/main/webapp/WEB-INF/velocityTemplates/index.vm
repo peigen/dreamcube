@@ -23,14 +23,40 @@
       <h1><a href="http://www.88web.org/">The Web News</a></h1>
       <p>Free CSS Template</p>
     </div>
-    <div class="logon">
-    	<ol>
-    		<li>Email:</li>
-    		<li>密码:</li>
-    		<li>登录</li>
-    		<li>忘记密码</li>
-    	</ol>
-    </div>
+    <div class="login">
+    	#if($!user)
+    		<div class="item">
+                <label>欢迎你:$!user.nickName </label>
+            </div>
+    	#else
+	    <form id="logonForm" name="logonForm" method="post" action="logon.html">
+	        <fieldset>
+	            <div class="item">
+	                <label for="logonName">Email: </label>
+	                <input name="logonName" id="logonName" type="text">
+	            </div>
+	            <div class="item">
+	                <label for="logonPasswd">密&nbsp;&nbsp;码: </label>
+	                <input name="logonPasswd" id="logonPasswd" class="text" type="password">
+	                <a href="http://www.douban.com/login?reset=password">忘记密码</a>
+	            </div>
+	            <div class="item1">
+	                <label for="form_remember"><input name="remember" id="form_remember" type="checkbox">记住我</label>
+	            </div>
+	            <div class="item1">
+	                <input value="登 &nbsp; 录" class="bn-submit" type="submit">
+	            </div>
+	        </fieldset>
+	    </form>
+	    <script type="text/javascript">
+	    if($("#form_email").val()){
+	        $("#form_password").focus();
+	    } else {
+	        $("#form_email").focus();
+	    }
+	    </script>
+	    #end
+	</div>
     <div class="break"></div>
     <ol>
       <li><a href="http://www.88web.org/">Advertising</a></li>

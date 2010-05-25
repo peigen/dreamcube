@@ -94,17 +94,14 @@ img {
 			font-weight: bold;
 			padding-left: 10px;
 		}
-	#header .logon {
-		float: right;		
-		padding: 16px 10px;
-	}
-		header .logon ol{
-			background-color: #FFFFFF;
-		}
-		#header .logon ol li{
-			float: left;
-			background-color: #FFFFFF;
-		}
+	#header .login { float:right;width:356px;height:134px;font-size:14px; no-repeat 348px 0; }
+	#header .login form { position:relative;padding:23px 0 0 20px;padding:16px 0 0 20px\9; } 
+	#header .login .item { margin-bottom:10px; } 
+	#header .login .item a { font-size:12px; }
+	#header .login .item1 { float:left;font-size:12px;margin:0 20px 10px 0;color:#666; } 
+	#header .login .item1 label { display:-moz-inline-box;display:inline-block;display:inline\9;*zoom:1;margin-left:4.5em;margin-top:4px; }
+	#header .login .item1 label input { *float:left;margin-right:2px\9;_margin-right:-4px; }
+		
 	#header ol {
 		list-style-type: none;
 		height: 35px;
