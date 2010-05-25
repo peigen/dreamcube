@@ -133,6 +133,11 @@
         select * from dc_user where nick_name = #nickName#;
     </select>
 
+    <!-- mapped statement for IbatisDcUserDAO.loadByLogonNameAndPasswd -->
+    <select id="MS-DC-USER-LOAD-BY-LOGON-NAME-AND-PASSWD" resultMap="RM-DC-USER">
+        select * from dc_user where logon_name = #logonName# and logon_passwd = #logonPasswd#;
+    </select>
+
     <!-- mapped statement for IbatisDcUserDAO.update -->
     <update id="MS-DC-USER-UPDATE">
         update dc_user

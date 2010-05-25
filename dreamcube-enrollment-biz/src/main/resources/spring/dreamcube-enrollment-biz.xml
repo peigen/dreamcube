@@ -8,4 +8,6 @@
 
 	<bean id="enrollmentService" class="com.dreamcube.enrollment.biz.service.impl.EnrollmentServiceImpl" />
 	
+	<bean id="logonService" class="com.dreamcube.enrollment.biz.service.impl.LogonServiceImpl" />
+	
 </beans>
