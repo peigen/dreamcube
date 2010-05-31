@@ -22,11 +22,11 @@
 		<constructor-arg index="1" value="1983" />
 	</bean>
 	
-	<bean id="mongoCache" class="com.dreamcube.core.common.service.impl.MongoCacheImpl" />
+	<bean id="mongoCache" class="com.dreamcube.core.common.service.cache.impl.MongoCacheImpl" />
 	
-	<bean id="cacheService" class="com.dreamcube.core.common.service.impl.CacheServiceImpl" />
+	<bean id="cacheService" class="com.dreamcube.core.common.service.cache.impl.CacheServiceImpl" />
 	
-	<bean id="localCacheManage" class="com.dreamcube.core.common.service.impl.LocalCacheManageImpl" />
+	<bean id="localCacheManage" class="com.dreamcube.core.common.service.cache.impl.LocalCacheManageImpl" />
 	
 	<bean id="levelTool" class="com.dreamcube.core.common.tools.LevelTool" >
 		<property name="level" value="prod" />

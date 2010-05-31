@@ -70,6 +70,8 @@ public class MongoDBStore {
         System.out.println("总耗时:" + (end - start) + "毫秒");
 
         showCollections(db);
+
+        sortByAttention(db.getCollection("dreamcubeConllection"));
     }
 
     private static void showCollections(DB db) {
@@ -104,13 +106,30 @@ public class MongoDBStore {
     }
 
     private static void findOne(DBCollection coll) {
-        DBObject myDoc = coll.findOne();
-        System.out.println(myDoc);
+        DBObject dbo = coll.findOne();
+        System.out.println(dbo);
     }
 
     private static void remove(DBCollection coll) {
-        BasicDBObject doc = new BasicDBObject("name", "peigen");
-        coll.remove(doc);
+        BasicDBObject bdbo = new BasicDBObject("name", "peigen");
+        coll.remove(bdbo);
     }
 
+    private static void sortByAttention(DBCollection coll) {
+
+        DBObject orderBy = new BasicDBObject();
+        orderBy.put("attention", -1);
+        DBCursor cur = coll.find();
+        int count = 3;
+
+        if (count == 0) {
+            cur.sort(orderBy);
+        } else {
+            cur.limit(count).sort(orderBy);
+        }
+
+        while (cur.hasNext()) {
+            System.out.println(cur.next());
+        }
+    }
 }

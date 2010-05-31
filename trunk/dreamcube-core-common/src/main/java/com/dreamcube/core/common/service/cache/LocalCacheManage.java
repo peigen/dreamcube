@@ -1,4 +1,5 @@
-package com.dreamcube.core.common.service;
+package com.dreamcube.core.common.service.cache;
+
 
 /**
  *                       

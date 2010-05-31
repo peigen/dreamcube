@@ -1,4 +1,4 @@
-package com.dreamcube.core.common.service.impl;
+package com.dreamcube.core.common.service.cache.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dreamcube.core.common.service.CacheTool;
-import com.dreamcube.core.common.service.MongoCache;
+import com.dreamcube.core.common.service.cache.CacheTool;
+import com.dreamcube.core.common.service.cache.MongoCache;
 import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -65,7 +65,7 @@ public class MongoCacheImpl implements MongoCache {
 
     /**
      * @return
-     * @see com.dreamcube.core.common.service.MongoCache#drop()
+     * @see com.dreamcube.core.common.service.cache.MongoCache#drop()
      */
     @Override
     public boolean drop() {
@@ -84,7 +84,7 @@ public class MongoCacheImpl implements MongoCache {
     /**
      * @param category
      * @return
-     * @see com.dreamcube.core.common.service.MongoCache#clean(java.lang.String)
+     * @see com.dreamcube.core.common.service.cache.MongoCache#clean(java.lang.String)
      */
     @Override
     public boolean clean(String category) {
@@ -104,13 +104,14 @@ public class MongoCacheImpl implements MongoCache {
      * @param category
      * @param cacheList
      * @return
-     * @see com.dreamcube.core.common.service.MongoCache#refresh(java.lang.String, java.util.List)
+     * @see com.dreamcube.core.common.service.cache.MongoCache#refresh(java.lang.String, java.util.List)
      */
     @Override
     public boolean refresh(String category, List<DBObject> cacheList) {
         boolean isDone = false;
 
         try {
+            clean(category);
             getInstance().insert(cacheList);
 
             isDone = true;
@@ -125,7 +126,7 @@ public class MongoCacheImpl implements MongoCache {
      * @param oldCache
      * @param newCache
      * @return
-     * @see com.dreamcube.core.common.service.MongoCache#update(com.mongodb.DBObject, com.mongodb.DBObject)
+     * @see com.dreamcube.core.common.service.cache.MongoCache#update(com.mongodb.DBObject, com.mongodb.DBObject)
      */
     @Override
     public boolean update(DBObject oldCache, DBObject newCache) {
@@ -143,9 +144,35 @@ public class MongoCacheImpl implements MongoCache {
     }
 
     /**
+     * @param category
+     * @param orderBy
+     * @param count
+     * @return
+     * @see com.dreamcube.core.common.service.cache.MongoCache#sort(java.lang.String, com.mongodb.DBObject, int)
+     */
+    @Override
+    public List<DBObject> sort(String category, DBObject orderBy, int count) {
+        List<DBObject> dbObjectList = new ArrayList<DBObject>();
+
+        DBCursor cur = getInstance().find();
+
+        if (count == 0) {
+            cur.sort(orderBy);
+        } else {
+            cur.limit(count).sort(orderBy);
+        }
+
+        while (cur.hasNext()) {
+            dbObjectList.add(cur.next());
+        }
+
+        return dbObjectList;
+    }
+
+    /**
      * @param cache
      * @return
-     * @see com.dreamcube.core.common.service.MongoCache#getAllDBObject(com.mongodb.DBObject)
+     * @see com.dreamcube.core.common.service.cache.MongoCache#getAllDBObject(com.mongodb.DBObject)
      */
     @Override
     public List<DBObject> getAllDBObject(DBObject cache) {

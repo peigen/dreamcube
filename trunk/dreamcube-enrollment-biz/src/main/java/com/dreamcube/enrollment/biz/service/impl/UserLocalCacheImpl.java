@@ -6,9 +6,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dreamcube.core.common.service.CacheService;
-import com.dreamcube.core.common.service.CacheTool;
-import com.dreamcube.core.common.service.LocalCacheEnum;
+import com.dreamcube.core.common.service.cache.CacheService;
+import com.dreamcube.core.common.service.cache.CacheTool;
+import com.dreamcube.core.common.service.cache.LocalCacheEnum;
 import com.dreamcube.core.common.tools.CacheDump;
 import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
 import com.dreamcube.core.dal.daointerface.DcUserDAO;
@@ -49,7 +49,7 @@ public class UserLocalCacheImpl implements UserLocalCache {
 
     /**
      * 
-     * @see com.dreamcube.core.common.service.LocalCache#dump()
+     * @see com.dreamcube.core.common.service.cache.LocalCache#dump()
      */
     @Override
     public void dump() {
@@ -58,7 +58,7 @@ public class UserLocalCacheImpl implements UserLocalCache {
 
     /**
      * @return
-     * @see com.dreamcube.core.common.service.LocalCache#getCacheName()
+     * @see com.dreamcube.core.common.service.cache.LocalCache#getCacheName()
      */
     @Override
     public LocalCacheEnum getCacheName() {
@@ -67,7 +67,7 @@ public class UserLocalCacheImpl implements UserLocalCache {
 
     /**
      * 
-     * @see com.dreamcube.core.common.service.LocalCache#init()
+     * @see com.dreamcube.core.common.service.cache.LocalCache#init()
      */
     @Override
     public void init() {
@@ -75,9 +75,24 @@ public class UserLocalCacheImpl implements UserLocalCache {
     }
 
     /**
-     * 
-     * @see com.dreamcube.core.common.service.LocalCache#refresh()
+     * @param category
+     * @param oldCache
+     * @param newCache
+     * @see com.dreamcube.core.common.service.cache.LocalCache#refresh(com.dreamcube.core.common.service.cache.LocalCacheEnum, java.lang.Object, java.lang.Object)
      */
+    @Override
+    public void refresh(LocalCacheEnum category, Object oldCache, Object newCache) {
+        if (oldCache == null || newCache == null || category == null)
+            throw new IllegalArgumentException("缓存内容不得为空");
+
+        cacheService.update(category.code(), oldCache, newCache);
+    }
+
+    /**
+     * 
+     * @see com.dreamcube.core.common.service.cache.LocalCache#refresh()
+     */
+    @SuppressWarnings("unchecked")
     @Override
     public void refresh() {
 
@@ -85,9 +100,8 @@ public class UserLocalCacheImpl implements UserLocalCache {
         List<DBObject> dbObjectList = new ArrayList<DBObject>();
 
         try {
-            for (DCUser user : userList) {
-                dbObjectList.add(CacheTool.parseDBObject(user, LocalCacheEnum.DC_USER.code()));
-            }
+            dbObjectList = (List<DBObject>) CacheTool
+                .parseDBObject(userList, getCacheName().code());
         } catch (Exception e) {
             log.error(CommonExceptionEnum.DBOBJECT_PARSE_ERROR.message(), e);
         }

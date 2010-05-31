@@ -1,8 +1,8 @@
-package com.dreamcube.core.common.service.impl;
+package com.dreamcube.core.common.service.cache.impl;
 
-import com.dreamcube.core.common.service.CacheService;
-import com.dreamcube.core.common.service.LocalCacheEnum;
-import com.dreamcube.core.common.service.LocalCacheManage;
+import com.dreamcube.core.common.service.cache.CacheService;
+import com.dreamcube.core.common.service.cache.LocalCacheEnum;
+import com.dreamcube.core.common.service.cache.LocalCacheManage;
 
 /**
  *                       
@@ -32,7 +32,7 @@ public class LocalCacheManageImpl implements LocalCacheManage {
 
     /**
      * 
-     * @see com.dreamcube.core.common.service.LocalCacheManage#init()
+     * @see com.dreamcube.core.common.service.cache.LocalCacheManage#init()
      */
     @Override
     public void init() {
@@ -41,7 +41,7 @@ public class LocalCacheManageImpl implements LocalCacheManage {
 
     /**
      * @param localCache
-     * @see com.dreamcube.core.common.service.LocalCacheManage#refresh(com.dreamcube.core.common.service.LocalCacheEnum)
+     * @see com.dreamcube.core.common.service.cache.LocalCacheManage#refresh(com.dreamcube.core.common.service.cache.LocalCacheEnum)
      */
     @Override
     public void refresh(LocalCacheEnum localCache) {

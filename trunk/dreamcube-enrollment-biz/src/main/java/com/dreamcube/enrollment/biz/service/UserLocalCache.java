@@ -1,6 +1,6 @@
 package com.dreamcube.enrollment.biz.service;
 
-import com.dreamcube.core.common.service.LocalCache;
+import com.dreamcube.core.common.service.cache.LocalCache;
 
 /**
  *                       

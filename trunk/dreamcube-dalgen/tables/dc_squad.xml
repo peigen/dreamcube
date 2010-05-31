@@ -3,9 +3,9 @@
 		<sql>
 			<![CDATA[
 				insert into dc_squad
-					(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify)
+					(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify,attention)
 				values
-					(?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+					(?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,?);
         	]]>
 		</sql>
 	</operation>
@@ -95,7 +95,6 @@
 				delete from dc_squad where id = ?;
 			]]>
 		</sql>
-
 	</operation>
 	
 	<operation name="query" multiplicity="many" paging="true">
@@ -139,6 +138,16 @@
 				</dynamic>
            ]]>
 		</sqlmap>
+	</operation>
+	
+	<operation name="updateAttention">
+		<sql>
+			<![CDATA[
+				update dc_squad
+				set	attention = ?
+				where id = ?
+			]]>
+		</sql>
 	</operation>
 
 </table>

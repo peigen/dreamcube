@@ -39,8 +39,10 @@ public class DCSquad {
     /** 团队简介 */
     private String            squadDesc;
 
+    /** 创建时间 */
     private Date              gmtCreate;
 
+    /** 修改时间 */
     private Date              gmtModify;
 
     /** 发起者 */
@@ -58,17 +60,19 @@ public class DCSquad {
     /** 团队当前状态 */
     private DCSquadStatusEnum status;
 
+    /** 被关注次数 */
+    private String            attTimes;
+
     /**
      * @param squadName
      * @param squadDesc
      * @param axiser
-     * @param cubers
-     * @param followers
      * @param investors
      * @param status
+     * @param attTimes
      */
     public DCSquad(String squadName, String squadDesc, String axiser, String investors,
-                   DCSquadStatusEnum status) {
+                   DCSquadStatusEnum status, String attTimes) {
         this.squadName = squadName;
         this.squadDesc = squadDesc;
         this.axiser = axiser;
@@ -79,6 +83,7 @@ public class DCSquad {
         this.status = DCSquadStatusEnum.MUSTER;
         this.gmtCreate = new Date();
         this.gmtModify = new Date();
+        this.attTimes = "0";
 
     }
 
@@ -169,6 +174,21 @@ public class DCSquad {
 
     public void setStatus(DCSquadStatusEnum status) {
         this.status = status;
+    }
+
+    /**
+     * @return Returns the attTimes
+     */
+    public String getAttTimes() {
+        return attTimes;
+    }
+
+    /**
+     * @param attTimes
+     * The attTimes to set.
+     */
+    public void setAttTimes(String attTimes) {
+        this.attTimes = attTimes;
     }
 
     public String toString() {

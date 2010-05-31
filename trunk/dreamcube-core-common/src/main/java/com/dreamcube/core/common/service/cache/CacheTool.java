@@ -1,4 +1,4 @@
-package com.dreamcube.core.common.service;
+package com.dreamcube.core.common.service.cache;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -71,18 +71,18 @@ public class CacheTool {
      * @throws InvocationTargetException
      * @throws NoSuchMethodException
      */
-    public static DBObject parseDBObject(List<Object> objList, String category)
-                                                                               throws IllegalArgumentException,
-                                                                               IllegalAccessException,
-                                                                               InvocationTargetException,
-                                                                               NoSuchMethodException {
-        BasicDBObject dbObject = new BasicDBObject();
+    public static List<DBObject> parseDBObjectList(List<Object> objList, String category)
+                                                                                         throws IllegalArgumentException,
+                                                                                         IllegalAccessException,
+                                                                                         InvocationTargetException,
+                                                                                         NoSuchMethodException {
+        List<DBObject> dbObjectList = new ArrayList<DBObject>();
 
         for (Object obj : objList) {
-            parseDBObject(obj, category);
+            dbObjectList.add(parseDBObject(obj, category));
         }
 
-        return dbObject;
+        return dbObjectList;
     }
 
     /**
@@ -110,7 +110,7 @@ public class CacheTool {
         for (Field field : cls.getDeclaredFields()) {
 
             // FIXME 怕和mongodb的id冲突
-            if (isId(field.getName())) {
+            if (isId(field.getName()) || field.getName().equals("serialVersionUID")) {
                 continue;
             }
 

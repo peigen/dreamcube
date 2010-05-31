@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>The Web News</title>
+<title>梦想魔方</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="/css/index/style.css" />
 <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/css/index/ie.css" /><![endif]-->
@@ -11,13 +11,7 @@
 <div id="wrapper">
   <!-- BEGIN header -->
   <div id="header">
-    <ul>
-      <li class="f"><a href="http://www.88web.org/">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="page.html">Demo Page</a></li>
-      <li><a href="contact.html">Contact Page</a></li>
-    </ul>
-    <p class="links">Subscribe: <a href="http://www.88web.org/">Posts</a> | <a href="http://www.88web.org/">Comments</a> | <a href="http://www.88web.org/">Email</a> </p>
+    <p class="links">坐而思,不若起而行---peigen(free cuber)</p>
     <div class="break"></div>
     <div class="logo">
       <h1><a href="http://www.88web.org/">The Web News</a></h1>
@@ -45,6 +39,7 @@
 	            </div>
 	            <div class="item1">
 	                <input value="登 &nbsp; 录" class="bn-submit" type="submit">
+	                <font color="red">$!errorMsg</font>
 	            </div>
 	        </fieldset>
 	    </form>
@@ -59,11 +54,11 @@
 	</div>
     <div class="break"></div>
     <ol>
-      <li><a href="http://www.88web.org/">Advertising</a></li>
-      <li><a href="http://www.88web.org/">Entertainment</a></li>
-      <li><a href="http://www.88web.org/">Fashion</a></li>
-      <li><a href="http://www.88web.org/">Lifestyle</a></li>
-      <li><a href="http://www.88web.org/">Pictures</a></li>
+      <li><a href="http://www.88web.org/">首页</a></li>
+      <li><a href="http://www.88web.org/">创意</a></li>
+      <li><a href="http://www.88web.org/">项目</a></li>
+      <li><a href="http://www.88web.org/">团队</a></li>
+      <li><a href="http://www.88web.org/">招募</a></li>
       <li><a href="http://www.88web.org/">Videos</a></li>
     </ol>
     <div class="break"></div>

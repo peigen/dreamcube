@@ -35,6 +35,7 @@
         <result property="status" column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="gmtCreate" column="gmt_create" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
         <result property="gmtModify" column="gmt_modify" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="attention" column="attention" javaType="long" jdbcType="BIGINT" nullValue="0"/>
     </resultMap>
 
 
@@ -44,7 +45,7 @@
     <!-- mapped statement for IbatisDcSquadDAO.insert -->
     <insert id="MS-DC-SQUAD-INSERT">
     <![CDATA[
-        insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify) values (#squadName#, #squadDesc#, #axiser#, #cubers#, #followers#, #investors#, #status#, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify,attention) values (#squadName#, #squadDesc#, #axiser#, #cubers#, #followers#, #investors#, #status#, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #attention#)
     ]]>
     </insert>
 
@@ -182,5 +183,12 @@
 					</isNotEmpty>
 				</dynamic>
     </select>
+
+    <!-- mapped statement for IbatisDcSquadDAO.updateAttention -->
+    <update id="MS-DC-SQUAD-UPDATE-ATTENTION">
+    <![CDATA[
+        update dc_squad set attention=#attention# where (id = #id#)
+    ]]>
+    </update>
 
 </sqlMap>

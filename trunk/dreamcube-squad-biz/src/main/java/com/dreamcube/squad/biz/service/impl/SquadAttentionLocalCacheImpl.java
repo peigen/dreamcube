@@ -1,23 +1,30 @@
 package com.dreamcube.squad.biz.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dreamcube.core.common.service.cache.CacheOrderByEnum;
 import com.dreamcube.core.common.service.cache.CacheService;
 import com.dreamcube.core.common.service.cache.CacheTool;
 import com.dreamcube.core.common.service.cache.LocalCacheEnum;
+import com.dreamcube.core.common.service.cache.entity.AttentionCache;
+import com.dreamcube.core.common.service.cache.entity.AttentionCategoryEnum;
 import com.dreamcube.core.common.tools.CacheDump;
 import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.convert.SquadConvert;
-import com.dreamcube.squad.biz.service.SquadLocalCache;
+import com.dreamcube.squad.biz.service.SquadAttentionLocalCache;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 
 /**
  *                       
- * Filename: SquadLocalCache.java
+ * Filename: SquadAttentionLocalCacheImpl.java
  *
  * Description: 
  *
@@ -32,27 +39,57 @@ import com.dreamcube.squad.biz.service.SquadLocalCache;
  *       
  * History:<br>
  *<li>Author: peigen</li>
- *<li>Date: 2010-4-25</li>
+ *<li>Date: 2010-5-30</li>
  *<li>Version: 0.1</li>
  *<li>Content: create</li>
  *
  */
-public class SquadLocalCacheImpl implements SquadLocalCache {
+public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
 
     private CacheService  cacheService;
 
     private DcSquadDAO    dcSquadDAO;
 
-    private static Logger log = LoggerFactory.getLogger(SquadLocalCacheImpl.class);
+    private static Logger log = LoggerFactory.getLogger(SquadAttentionLocalCacheImpl.class);
 
     /**
+     * @param category
+     * @param orderByStr
+     * @param orderByType
+     * @param count
      * @return
-     * @see com.dreamcube.squad.biz.service.SquadLocalCache#queryAll()
+     * @see com.dreamcube.squad.biz.service.SquadAttentionLocalCache#sort(java.lang.String, java.lang.String, com.dreamcube.core.common.service.cache.CacheOrderByEnum, int)
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<DCSquad> queryAll() {
+    public List<AttentionCache> sort(String category, String orderByStr,
+                                     CacheOrderByEnum orderByType, int count) {
+        DBObject orderBy = new BasicDBObject();
+        orderBy.put(orderByStr, orderByType.code());
 
+        List dbObjectList = cacheService.sort(category, orderBy, count);
+        try {
+            dbObjectList = CacheTool.parseDBObjectToDCObjectForList(dbObjectList,
+                AttentionCache.class);
+        } catch (InstantiationException e) {
+            log.error("", e);
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+        } catch (InvocationTargetException e) {
+            log.error("", e);
+        } catch (NoSuchMethodException e) {
+            log.error("", e);
+        }
+        return dbObjectList;
+    }
+
+    /**
+     * @return
+     * @see com.dreamcube.squad.biz.service.SquadAttentionLocalCache#queryAllSquadAttention()
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<AttentionCache> queryAllSquadAttention() {
         List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
 
         attemptRefresh(cacheList, false);
@@ -81,7 +118,7 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
      */
     @Override
     public LocalCacheEnum getCacheName() {
-        return LocalCacheEnum.DC_SQUAD;
+        return LocalCacheEnum.SQUAD_ATTENTION;
     }
 
     /**
@@ -103,10 +140,11 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
 
         List<DCSquad> squadList = SquadConvert.doToDomainList(dcSquadDAO.load());
 
-        cacheService.refresh(LocalCacheEnum.DC_SQUAD.code(), squadList);
+        // 转换成通用被关注对象
+        List<AttentionCache> attCacheList = squadToAtt(squadList);
+        cacheService.refresh(LocalCacheEnum.SQUAD_ATTENTION.code(), attCacheList);
 
         dump();
-
     }
 
     /**
@@ -132,11 +170,30 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
             refresh();
     }
 
-    // DI ~~~
+    private List<AttentionCache> squadToAtt(List<DCSquad> squadList) {
+        List<AttentionCache> attCacheList = new ArrayList<AttentionCache>();
+        for (DCSquad dcSquad : squadList) {
+            AttentionCache attCache = new AttentionCache(dcSquad.getId(), dcSquad.getSquadName(),
+                Long.valueOf(dcSquad.getAttTimes()), AttentionCategoryEnum.SQUAD);
+            attCacheList.add(attCache);
+        }
+
+        return attCacheList;
+    }
+
+    // DI~~~
+    /**
+     * @param cacheService
+     * The cacheService to set.
+     */
     public void setCacheService(CacheService cacheService) {
         this.cacheService = cacheService;
     }
 
+    /**
+     * @param dcSquadDAO
+     * The dcSquadDAO to set.
+     */
     public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
         this.dcSquadDAO = dcSquadDAO;
     }

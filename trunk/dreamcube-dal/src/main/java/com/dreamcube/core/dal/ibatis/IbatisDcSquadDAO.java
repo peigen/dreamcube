@@ -41,7 +41,7 @@ public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadD
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)</tt>
+	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify,attention) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)</tt>
 	 *
 	 *	@param dcSquad
 	 *	@return long
@@ -195,6 +195,27 @@ public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadD
         }
         
         return pageList;
+    }
+
+	/**
+	 *  Update DB table <tt>dc_squad</tt>.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>update dc_squad set attention=? where (id = ?)</tt>
+	 *
+	 *	@param attention
+	 *	@param id
+	 *	@return int
+	 *	@throws DataAccessException
+	 */	 
+    public int updateAttention(long attention, long id) throws DataAccessException {
+        Map param = new HashMap();
+
+        param.put("attention", new Long(attention));
+        param.put("id", new Long(id));
+
+        return getSqlMapClientTemplate().update("MS-DC-SQUAD-UPDATE-ATTENTION", param);
     }
 
 }

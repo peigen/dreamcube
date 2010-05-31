@@ -1,4 +1,5 @@
-package com.dreamcube.core.common.service;
+package com.dreamcube.core.common.service.cache;
+
 
 /**
  *                       
@@ -30,9 +31,17 @@ public interface LocalCache {
     void init();
 
     /**
-     * 刷新本地缓存信息
+     * 刷新本地缓存
      */
     void refresh();
+
+    /**
+     * 单刷缓存中的某一个
+     * @param category      缓存类别
+     * @param oldCache      "旧"的缓存对象
+     * @param newCache      "新"的缓存对象
+     */
+    void refresh(LocalCacheEnum category, Object oldCache, Object newCache);
 
     /**
      * 获取本地缓存的名称
@@ -45,4 +54,5 @@ public interface LocalCache {
      * @return
      */
     void dump();
+
 }
