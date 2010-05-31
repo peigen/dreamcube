@@ -49,7 +49,11 @@ public class LogonController {
     public String logon(ModelMap modelMap, UserForm userForm) {
         DCUser user = logonService.logon(UserFormConvert.convert(userForm));
 
-        modelMap.addAttribute("user", UserFormConvert.convert(user));
+        if (user == null) {
+            modelMap.addAttribute("errorMsg", "用户名&密码有误");
+        } else {
+            modelMap.addAttribute("user", UserFormConvert.convert(user));
+        }
 
         return "index.vm";
     }

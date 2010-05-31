@@ -9,8 +9,8 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dreamcube.core.common.service.LocalCache;
-import com.dreamcube.core.common.service.LocalCacheEnum;
+import com.dreamcube.core.common.service.cache.LocalCache;
+import com.dreamcube.core.common.service.cache.LocalCacheEnum;
 
 /**
  *                       

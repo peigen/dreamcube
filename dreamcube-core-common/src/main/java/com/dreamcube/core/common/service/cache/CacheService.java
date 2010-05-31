@@ -1,6 +1,8 @@
-package com.dreamcube.core.common.service;
+package com.dreamcube.core.common.service.cache;
 
 import java.util.List;
+
+import com.mongodb.DBObject;
 
 /**
  *                       
@@ -66,4 +68,18 @@ public interface CacheService {
      * @return
      */
     public List<?> getAllCacheObject(String category);
+
+    /**
+     * 缓存内容排序
+     * 
+     * @param category  缓存类别
+     * @param orderBy   缓存排序方式.如:
+     * 
+     * <li>DBObject orderBy = new BasicDBObject();</li>
+     * <li>orderBy.put("attention", -1);//-1为逆序(desc),1为正序(asc)</li>
+     * 
+     * @param count     取几个.默认0为全部.
+     * @return
+     */
+    public List<?> sort(String category, DBObject orderBy, int count);
 }

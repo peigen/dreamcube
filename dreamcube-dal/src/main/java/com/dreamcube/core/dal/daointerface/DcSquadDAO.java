@@ -32,7 +32,7 @@ public interface DcSquadDAO {
 	 *
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)</tt>
+	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify,attention) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)</tt>
 	 *
 	 *	@param dcSquad
 	 *	@return long
@@ -125,5 +125,19 @@ public interface DcSquadDAO {
 	 *	@throws DataAccessException
 	 */	 
     public PageList query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify, int pageSize, int pageNum) throws DataAccessException;
+
+	/**
+	 *  Update DB table <tt>dc_squad</tt>.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>update dc_squad set attention=? where (id = ?)</tt>
+	 *
+	 *	@param attention
+	 *	@param id
+	 *	@return int
+	 *	@throws DataAccessException
+	 */	 
+    public int updateAttention(long attention, long id) throws DataAccessException;
 
 }

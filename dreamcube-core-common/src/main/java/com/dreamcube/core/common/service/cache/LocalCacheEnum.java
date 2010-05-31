@@ -1,4 +1,4 @@
-package com.dreamcube.core.common.service;
+package com.dreamcube.core.common.service.cache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ import java.util.List;
  *
  */
 public enum LocalCacheEnum {
+    SQUAD_ATTENTION("SQUAD_ATTENTION", "团队关注度"),
 
     DC_SQUAD("DC_SQUAD", "团队"),
 

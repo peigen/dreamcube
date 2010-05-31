@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
+import com.dreamcube.core.common.service.cache.CacheOrderByEnum;
+import com.dreamcube.core.common.service.cache.LocalCacheEnum;
+import com.dreamcube.core.common.service.cache.entity.AttentionCache;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
@@ -14,6 +17,7 @@ import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 import com.dreamcube.squad.biz.convert.SquadConvert;
+import com.dreamcube.squad.biz.service.SquadAttentionLocalCache;
 import com.dreamcube.squad.biz.service.SquadLocalCache;
 import com.dreamcube.squad.biz.service.SquadService;
 
@@ -41,11 +45,15 @@ import com.dreamcube.squad.biz.service.SquadService;
  */
 public class SquadServiceImpl implements SquadService {
 
-    private static Logger   log = LoggerFactory.getLogger(SquadServiceImpl.class);
+    private static Logger            log        = LoggerFactory.getLogger(SquadServiceImpl.class);
 
-    private DcSquadDAO      dcSquadDAO;
+    private DcSquadDAO               dcSquadDAO;
 
-    private SquadLocalCache squadLocalCache;
+    private SquadLocalCache          squadLocalCache;
+
+    private SquadAttentionLocalCache squadAttentionLocalCache;
+
+    private final static String      orderByStr = "attention";
 
     /**
      * @return
@@ -99,6 +107,7 @@ public class SquadServiceImpl implements SquadService {
             dcSquadDAO.insert(SquadConvert.domainToDo(dcsquad));
         }
 
+        // TODO 以后刷新策略改成单刷
         refreshLocalCache();
 
     }
@@ -147,8 +156,17 @@ public class SquadServiceImpl implements SquadService {
         }
     }
 
-    // private method
+    /**
+     * @return
+     * @see com.dreamcube.squad.biz.service.SquadService#getMostAttentionSquad()
+     */
+    @Override
+    public List<AttentionCache> getMostAttentionSquad() {
+        return squadAttentionLocalCache.sort(LocalCacheEnum.SQUAD_ATTENTION.code(), orderByStr,
+            CacheOrderByEnum.DESC, 5);
+    }
 
+    // private method
     /**
      * 刷缓存
      */
@@ -157,10 +175,27 @@ public class SquadServiceImpl implements SquadService {
     }
 
     //~~~DI
+
+    /**
+     * @param squadAttentionLocalCache
+     * The squadAttentionLocalCache to set.
+     */
+    public void setSquadAttentionLocalCache(SquadAttentionLocalCache squadAttentionLocalCache) {
+        this.squadAttentionLocalCache = squadAttentionLocalCache;
+    }
+
+    /**
+     * @param dcSquadDAO
+     * The dcSquadDAO to set.
+     */
     public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
         this.dcSquadDAO = dcSquadDAO;
     }
 
+    /**
+     * @param squadLocalCache
+     * The squadLocalCache to set.
+     */
     public void setSquadLocalCache(SquadLocalCache squadLocalCache) {
         this.squadLocalCache = squadLocalCache;
     }

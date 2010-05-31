@@ -1,3 +1,6 @@
+-- 初始化
+drop table dc_squad;
+
 CREATE TABLE `dreamcube`.`dc_squad` (
   `id` BIGINT  NOT NULL AUTO_INCREMENT,
   `squad_name` VARCHAR(40)  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -9,73 +12,74 @@ CREATE TABLE `dreamcube`.`dc_squad` (
   `status` VARCHAR(20)  NOT NULL,
   `gmt_create` TIMESTAMP  DEFAULT '0000-00-00 00:00:00',
   `gmt_modify` TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
+  `attention` BIGINT NOT NULL DEFAULT 0 COMMENT '团队被关注次数',
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
---初始化
-drop table dc_squad;
+--  数据准备
 
---数据
-INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_1','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+truncate table `dreamcube`.`dc_squad`;
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_2','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_1','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,10);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_3','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_2','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,20);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_4','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_3','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,30);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_5','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_4','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,40);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_6','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_5','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,50);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_7','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_6','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_8','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_7','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_9','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_8','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_10','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_9','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_11','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_10','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_12','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_11','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_13','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_12','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_14','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_13','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
 INSERT INTO dc_squad 
-(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify)
-VALUES('dreamcube_15','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_14','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
+
+INSERT INTO dc_squad 
+(squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
+VALUES('dreamcube_15','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 

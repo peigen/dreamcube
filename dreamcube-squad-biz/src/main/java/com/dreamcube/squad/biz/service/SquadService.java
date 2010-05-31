@@ -3,6 +3,7 @@ package com.dreamcube.squad.biz.service;
 import java.util.Date;
 import java.util.List;
 
+import com.dreamcube.core.common.service.cache.entity.AttentionCache;
 import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
@@ -80,4 +81,11 @@ public interface SquadService {
      * @param id
      */
     public void removeSquad(String id);
+
+    /**
+     * 查询最受关注的团队(从缓存中)<br>
+     * 暂定使用定时任务计算出最受关注的团队
+     * @return
+     */
+    public List<AttentionCache> getMostAttentionSquad();
 }

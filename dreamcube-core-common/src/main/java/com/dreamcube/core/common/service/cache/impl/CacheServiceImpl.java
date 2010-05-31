@@ -1,4 +1,4 @@
-package com.dreamcube.core.common.service.impl;
+package com.dreamcube.core.common.service.cache.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dreamcube.core.common.service.CacheService;
-import com.dreamcube.core.common.service.CacheTool;
-import com.dreamcube.core.common.service.MongoCache;
+import com.dreamcube.core.common.service.cache.CacheService;
+import com.dreamcube.core.common.service.cache.CacheTool;
+import com.dreamcube.core.common.service.cache.MongoCache;
 import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
 import com.mongodb.DBObject;
 
@@ -43,7 +43,7 @@ public class CacheServiceImpl implements CacheService {
 
     /**
      * @return
-     * @see com.dreamcube.core.common.service.CacheService#init()
+     * @see com.dreamcube.core.common.service.cache.CacheService#init()
      */
     @Override
     public boolean init() {
@@ -53,7 +53,7 @@ public class CacheServiceImpl implements CacheService {
     /**
      * @param category
      * @return
-     * @see com.dreamcube.core.common.service.CacheService#clean(java.lang.String)
+     * @see com.dreamcube.core.common.service.cache.CacheService#clean(java.lang.String)
      */
     @Override
     public boolean clean(String category) {
@@ -64,19 +64,21 @@ public class CacheServiceImpl implements CacheService {
      * @param category
      * @param cacheList
      * @return
-     * @see com.dreamcube.core.common.service.CacheService#refresh(java.lang.String, java.util.List)
+     * @see com.dreamcube.core.common.service.cache.CacheService#refresh(java.lang.String, java.util.List)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public boolean refresh(String category, List<?> cacheList) {
 
         List<DBObject> dbObjectList = new ArrayList<DBObject>();
 
         try {
-            for (Object object : cacheList) {
-                dbObjectList.add(CacheTool.parseDBObject(object, category));
-            }
+
+            dbObjectList = (List<DBObject>) CacheTool.parseDBObjectList((List<Object>) cacheList,
+                category);
         } catch (Exception e) {
             log.error(CommonExceptionEnum.DBOBJECT_PARSE_ERROR.message(), e);
+            return false;
         }
 
         return mongoCache.refresh(category, dbObjectList);
@@ -86,7 +88,7 @@ public class CacheServiceImpl implements CacheService {
      * @param oldCache
      * @param newCache
      * @return
-     * @see com.dreamcube.core.common.service.CacheService#update(java.lang.Object, java.lang.Object)
+     * @see com.dreamcube.core.common.service.cache.CacheService#update(java.lang.Object, java.lang.Object)
      */
     @Override
     public boolean update(String category, Object oldCache, Object newCache) {
@@ -106,8 +108,20 @@ public class CacheServiceImpl implements CacheService {
 
     /**
      * @param category
+     * @param orderBy
+     * @param count
      * @return
-     * @see com.dreamcube.core.common.service.CacheService#getAllCacheObject(java.lang.String)
+     * @see com.dreamcube.core.common.service.cache.CacheService#sort(java.lang.String, com.mongodb.DBObject, int)
+     */
+    @Override
+    public List<?> sort(String category, DBObject orderBy, int count) {
+        return mongoCache.sort(category, orderBy, count);
+    }
+
+    /**
+     * @param category
+     * @return
+     * @see com.dreamcube.core.common.service.cache.CacheService#getAllCacheObject(java.lang.String)
      */
     @Override
     public List<?> getAllCacheObject(String category) {

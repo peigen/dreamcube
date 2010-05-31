@@ -2,7 +2,7 @@ package com.dreamcube.squad.biz.service;
 
 import java.util.List;
 
-import com.dreamcube.core.common.service.LocalCache;
+import com.dreamcube.core.common.service.cache.LocalCache;
 import com.dreamcube.core.squad.domain.DCSquad;
 
 /**
