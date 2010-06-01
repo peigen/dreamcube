@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.dreamcube.core.common.service.cache.CacheService;
 import com.dreamcube.core.common.service.cache.LocalCacheEnum;
-import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 import com.dreamcube.test.service.DreamCubeServiceTestBase;
 
@@ -38,41 +35,26 @@ public class MongoDBStoreServiceTest extends DreamCubeServiceTestBase {
 
     private static Logger log = LoggerFactory.getLogger(MongoDBStoreServiceTest.class);
 
-    @Autowired
-    private DcSquadDAO    dcSquadDAO;
-
-    @Autowired
-    private CacheService  cacheService;
-
-    public void ntestStoreCache() {
+    public void testStoreCache() {
         List<DcSquadDO> squadDOList = dcSquadDAO.load();
 
+        log.info("=================清空缓存对象====================");
         cacheService.clean(LocalCacheEnum.DC_SQUAD.code());
+
+        log.info("=================创建缓存对象====================");
         cacheService.refresh(LocalCacheEnum.DC_SQUAD.code(), squadDOList);
 
     }
 
     public void testQueryCache() {
+        log.info("=================查询缓存对象====================");
         List<?> cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
+
+        assertEquals(true, cacheList.size() > 0);
+
         for (Object object : cacheList) {
             log.error(object.toString());
         }
-    }
-
-    /**
-     * @param dcSquadDAO
-     * The dcSquadDAO to set.
-     */
-    public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
-        this.dcSquadDAO = dcSquadDAO;
-    }
-
-    /**
-     * @param cacheService
-     * The cacheService to set.
-     */
-    public void setCacheService(CacheService cacheService) {
-        this.cacheService = cacheService;
     }
 
 }

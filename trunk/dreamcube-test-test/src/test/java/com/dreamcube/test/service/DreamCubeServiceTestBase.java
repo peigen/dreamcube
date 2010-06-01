@@ -2,6 +2,10 @@ package com.dreamcube.test.service;
 
 import org.springframework.test.AbstractTransactionalSpringContextTests;
 
+import com.dreamcube.core.common.service.cache.CacheService;
+import com.dreamcube.core.dal.daointerface.DcSquadDAO;
+import com.dreamcube.squad.biz.service.SquadAttentionLocalCache;
+
 /**
  *                       
  * Filename: DreamCubeServiceTestBase.java
@@ -34,6 +38,37 @@ public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContext
     protected String[] getConfigLocations() {
         String[] config = new String[] { "classpath:/spring/applicationContext-test.xml" };
         return config;
+    }
+
+    // 成员变量
+    public DcSquadDAO               dcSquadDAO;
+
+    public CacheService             cacheService;
+
+    public SquadAttentionLocalCache squadAttentionLocalCache;
+
+    /**
+     * @param dcSquadDAO
+     * The dcSquadDAO to set.
+     */
+    public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
+        this.dcSquadDAO = dcSquadDAO;
+    }
+
+    /**
+     * @param cacheService
+     * The cacheService to set.
+     */
+    public void setCacheService(CacheService cacheService) {
+        this.cacheService = cacheService;
+    }
+
+    /**
+     * @param squadAttentionLocalCache
+     * The squadAttentionLocalCache to set.
+     */
+    public void setSquadAttentionLocalCache(SquadAttentionLocalCache squadAttentionLocalCache) {
+        this.squadAttentionLocalCache = squadAttentionLocalCache;
     }
 
 }

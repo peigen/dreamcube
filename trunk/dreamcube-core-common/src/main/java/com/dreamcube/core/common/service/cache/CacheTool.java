@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.dreamcube.core.common.tools.StringTool;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
@@ -109,12 +108,10 @@ public class CacheTool {
 
         for (Field field : cls.getDeclaredFields()) {
 
-            // FIXME 怕和mongodb的id冲突
-            if (isId(field.getName()) || field.getName().equals("serialVersionUID")) {
+            if (field.getName().equals("serialVersionUID"))
                 continue;
-            }
 
-            String object;
+            Object object;
 
             try {
                 // 根据field名组装mongodb对象
@@ -154,7 +151,7 @@ public class CacheTool {
             if (dbObject.containsField(field.getName())) {
 
                 // 根据field名组装cache对象
-                BeanUtils.setProperty(object, field.getName(), dbObject.get(field.getName()));
+                BeanUtils.copyProperty(object, field.getName(), dbObject.get(field.getName()));
             }
 
         }
@@ -187,13 +184,4 @@ public class CacheTool {
         return list;
     }
 
-    // private
-    private static boolean isId(String id) {
-        if (StringTool.equals(id, "id")) {
-            return true;
-
-        } else {
-            return false;
-        }
-    }
 }

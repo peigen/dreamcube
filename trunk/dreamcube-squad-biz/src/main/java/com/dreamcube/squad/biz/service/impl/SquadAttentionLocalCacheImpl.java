@@ -15,10 +15,9 @@ import com.dreamcube.core.common.service.cache.entity.AttentionCache;
 import com.dreamcube.core.common.service.cache.entity.AttentionCategoryEnum;
 import com.dreamcube.core.common.tools.CacheDump;
 import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
-import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.squad.domain.DCSquad;
-import com.dreamcube.squad.biz.convert.SquadConvert;
 import com.dreamcube.squad.biz.service.SquadAttentionLocalCache;
+import com.dreamcube.squad.biz.service.SquadLocalCache;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
@@ -46,11 +45,15 @@ import com.mongodb.DBObject;
  */
 public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
 
-    private CacheService  cacheService;
+    private CacheService        cacheService;
+    private static Logger       log        = LoggerFactory
+                                               .getLogger(SquadAttentionLocalCacheImpl.class);
 
-    private DcSquadDAO    dcSquadDAO;
+    private SquadLocalCache     squadLocalCache;
 
-    private static Logger log = LoggerFactory.getLogger(SquadAttentionLocalCacheImpl.class);
+    private final static String orderByStr = "attention";
+
+    private final static int    count      = 3;
 
     /**
      * @param category
@@ -90,12 +93,12 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
     @SuppressWarnings("unchecked")
     @Override
     public List<AttentionCache> queryAllSquadAttention() {
-        List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
+        List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.SQUAD_ATTENTION.code());
 
         attemptRefresh(cacheList, false);
 
         try {
-            cacheList = CacheTool.parseDBObjectToDCObjectForList(cacheList, DCSquad.class);
+            cacheList = CacheTool.parseDBObjectToDCObjectForList(cacheList, AttentionCache.class);
         } catch (Exception e) {
             log.error(CommonExceptionEnum.DBOBJECT_PARSE_ERROR.message(), e);
         }
@@ -138,7 +141,8 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
     public void refresh() {
         init();
 
-        List<DCSquad> squadList = SquadConvert.doToDomainList(dcSquadDAO.load());
+        List<DCSquad> squadList = squadLocalCache.sort(LocalCacheEnum.DC_SQUAD.code(), orderByStr,
+            CacheOrderByEnum.DESC, count);
 
         // 转换成通用被关注对象
         List<AttentionCache> attCacheList = squadToAtt(squadList);
@@ -172,9 +176,12 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
 
     private List<AttentionCache> squadToAtt(List<DCSquad> squadList) {
         List<AttentionCache> attCacheList = new ArrayList<AttentionCache>();
+
         for (DCSquad dcSquad : squadList) {
+
             AttentionCache attCache = new AttentionCache(dcSquad.getId(), dcSquad.getSquadName(),
                 Long.valueOf(dcSquad.getAttTimes()), AttentionCategoryEnum.SQUAD);
+
             attCacheList.add(attCache);
         }
 
@@ -191,11 +198,11 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
     }
 
     /**
-     * @param dcSquadDAO
-     * The dcSquadDAO to set.
+     * @param squadLocalCache
+     * The squadLocalCache to set.
      */
-    public void setDcSquadDAO(DcSquadDAO dcSquadDAO) {
-        this.dcSquadDAO = dcSquadDAO;
+    public void setSquadLocalCache(SquadLocalCache squadLocalCache) {
+        this.squadLocalCache = squadLocalCache;
     }
 
 }
