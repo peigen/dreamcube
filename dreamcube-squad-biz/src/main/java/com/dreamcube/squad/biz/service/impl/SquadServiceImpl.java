@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
-import com.dreamcube.core.common.service.cache.CacheOrderByEnum;
-import com.dreamcube.core.common.service.cache.LocalCacheEnum;
 import com.dreamcube.core.common.service.cache.entity.AttentionCache;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
@@ -45,15 +43,13 @@ import com.dreamcube.squad.biz.service.SquadService;
  */
 public class SquadServiceImpl implements SquadService {
 
-    private static Logger            log        = LoggerFactory.getLogger(SquadServiceImpl.class);
+    private static Logger            log = LoggerFactory.getLogger(SquadServiceImpl.class);
 
     private DcSquadDAO               dcSquadDAO;
 
     private SquadLocalCache          squadLocalCache;
 
     private SquadAttentionLocalCache squadAttentionLocalCache;
-
-    private final static String      orderByStr = "attention";
 
     /**
      * @return
@@ -162,8 +158,7 @@ public class SquadServiceImpl implements SquadService {
      */
     @Override
     public List<AttentionCache> getMostAttentionSquad() {
-        return squadAttentionLocalCache.sort(LocalCacheEnum.SQUAD_ATTENTION.code(), orderByStr,
-            CacheOrderByEnum.DESC, 5);
+        return squadAttentionLocalCache.queryAllSquadAttention();
     }
 
     // private method

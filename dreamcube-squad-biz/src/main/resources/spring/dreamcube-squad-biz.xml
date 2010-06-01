@@ -9,5 +9,7 @@
 	<bean id="squadService" class="com.dreamcube.squad.biz.service.impl.SquadServiceImpl" />
 	
 	<bean id="squadLocalCache" class="com.dreamcube.squad.biz.service.impl.SquadLocalCacheImpl" />
+	
+	<bean id="squadAttentionLocalCache" class="com.dreamcube.squad.biz.service.impl.SquadAttentionLocalCacheImpl" />
 
 </beans>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dreamcube.core.common.service.cache.CacheOrderByEnum;
 import com.dreamcube.core.common.service.cache.CacheService;
 import com.dreamcube.core.common.service.cache.CacheTool;
 import com.dreamcube.core.common.service.cache.LocalCacheEnum;
@@ -14,6 +15,8 @@ import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.convert.SquadConvert;
 import com.dreamcube.squad.biz.service.SquadLocalCache;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 
 /**
  *                       
@@ -44,6 +47,32 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
     private DcSquadDAO    dcSquadDAO;
 
     private static Logger log = LoggerFactory.getLogger(SquadLocalCacheImpl.class);
+
+    /**
+     * @param category
+     * @param orderByStr
+     * @param orderByType
+     * @param count
+     * @return
+     * @see com.dreamcube.squad.biz.service.SquadLocalCache#sort(java.lang.String, java.lang.String, com.dreamcube.core.common.service.cache.CacheOrderByEnum, int)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<DCSquad> sort(String category, String orderByStr, CacheOrderByEnum orderByType,
+                              int count) {
+
+        DBObject orderBy = new BasicDBObject();
+        orderBy.put(orderByStr, orderByType.code());
+
+        List dbObjectList = cacheService.sort(category, orderBy, count);
+        try {
+            dbObjectList = CacheTool.parseDBObjectToDCObjectForList(dbObjectList, DCSquad.class);
+        } catch (Exception e) {
+            log.error(CommonExceptionEnum.DBOBJECT_PARSE_ERROR.message(), e);
+        }
+
+        return dbObjectList;
+    }
 
     /**
      * @return
