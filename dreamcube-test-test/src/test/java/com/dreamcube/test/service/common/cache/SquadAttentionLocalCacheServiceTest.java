@@ -42,14 +42,16 @@ public class SquadAttentionLocalCacheServiceTest extends DreamCubeServiceTestBas
 
     }
 
+    @SuppressWarnings("unchecked")
     public void testQueryCache() {
-        log.info("=================查询缓存对象====================");
-        List<AttentionCache> cacheList = squadAttentionLocalCache.queryAllSquadAttention();
+        List<AttentionCache> cacheList = (List<AttentionCache>) squadAttentionLocalCache
+            .getAllCache();
 
         assertEquals(true, cacheList.size() > 0);
 
+        log.info("=================查询缓存对象====================");
         for (Object object : cacheList) {
-            log.error(object.toString());
+            log.info(object.toString());
         }
 
     }

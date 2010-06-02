@@ -5,6 +5,7 @@ import org.springframework.test.AbstractTransactionalSpringContextTests;
 import com.dreamcube.core.common.service.cache.CacheService;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.squad.biz.service.SquadAttentionLocalCache;
+import com.dreamcube.squad.biz.service.SquadLocalCache;
 
 /**
  *                       
@@ -47,6 +48,10 @@ public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContext
 
     public SquadAttentionLocalCache squadAttentionLocalCache;
 
+    public SquadLocalCache          squadLocalCache;
+
+    // DI~~~
+
     /**
      * @param dcSquadDAO
      * The dcSquadDAO to set.
@@ -69,6 +74,14 @@ public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContext
      */
     public void setSquadAttentionLocalCache(SquadAttentionLocalCache squadAttentionLocalCache) {
         this.squadAttentionLocalCache = squadAttentionLocalCache;
+    }
+
+    /**
+     * @param squadLocalCache
+     * The squadLocalCache to set.
+     */
+    public void setSquadLocalCache(SquadLocalCache squadLocalCache) {
+        this.squadLocalCache = squadLocalCache;
     }
 
 }

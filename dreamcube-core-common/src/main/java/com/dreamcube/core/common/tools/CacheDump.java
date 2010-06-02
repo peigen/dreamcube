@@ -46,6 +46,7 @@ public class CacheDump {
      * @param localCache
      * @return
      */
+    @SuppressWarnings("unchecked")
     public static String dump(LocalCache localCache) {
 
         LocalCacheEnum localCacheEnum = localCache.getCacheName();
@@ -58,9 +59,13 @@ public class CacheDump {
 
                 StringBuffer sb = new StringBuffer();
 
-                sb.append(ENTERSTR + SEPARATOR + "开始输出缓存" + cacheName + "信息" + SEPARATOR);
+                List<Object> list = (List<Object>) localCache.getAllCache();
+                sb.append(ENTERSTR + SEPARATOR + "开始输出缓存" + cacheName + "(" + list.size() + ")信息"
+                          + SEPARATOR);
 
-                //TODO
+                for (Object object : list) {
+                    sb.append(object).append(ENTERSTR);
+                }
 
                 sb.append(ENTERSTR + SEPARATOR + "结束输出缓存" + cacheName + "信息" + SEPARATOR);
 

@@ -27,13 +27,13 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 public class AttentionCache {
 
-    private String                key;
+    private String                id;
 
     private String                name;
 
     private long                  times;
 
-    private AttentionCategoryEnum category;
+    private AttentionCategoryEnum attentionCategory;
 
     /**
      * 
@@ -43,32 +43,33 @@ public class AttentionCache {
     }
 
     /**
-     * @param key
+     * @param id
      * @param name
      * @param times
-     * @param category
+     * @param attentionCategory
      */
-    public AttentionCache(String key, String name, long times, AttentionCategoryEnum category) {
+    public AttentionCache(String id, String name, long times,
+                          AttentionCategoryEnum attentionCategory) {
         super();
-        this.key = key;
+        this.id = id;
         this.name = name;
         this.times = times;
-        this.category = category;
+        this.attentionCategory = attentionCategory;
     }
 
     /**
-     * @return Returns the key
+     * @return Returns the id
      */
-    public String getKey() {
-        return key;
+    public String getId() {
+        return id;
     }
 
     /**
-     * @param key
-     * The key to set.
+     * @param id
+     * The id to set.
      */
-    public void setKey(String key) {
-        this.key = key;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -102,18 +103,26 @@ public class AttentionCache {
     }
 
     /**
-     * @return Returns the category
+     * @return Returns the attentionCategory
      */
-    public AttentionCategoryEnum getCategory() {
-        return category;
+    public AttentionCategoryEnum getAttentionCategory() {
+        return attentionCategory;
     }
 
     /**
-     * @param category
-     * The category to set.
+     * @param attentionCategory
+     * The attentionCategory to set.
      */
-    public void setCategory(AttentionCategoryEnum category) {
-        this.category = category;
+    public void setAttentionCategory(AttentionCategoryEnum attentionCategory) {
+        this.attentionCategory = attentionCategory;
+    }
+
+    /**
+     * @param attentionCategory
+     * The attentionCategory to set.
+     */
+    public void setAttentionCategoryByEnum(AttentionCategoryEnum attentionCategory) {
+        this.attentionCategory = attentionCategory;
     }
 
     @Override

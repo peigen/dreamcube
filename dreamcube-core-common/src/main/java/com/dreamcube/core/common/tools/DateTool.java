@@ -382,10 +382,12 @@ public class DateTool {
      * @throws ParseException
      */
     public static final Date simpleFormatDate(String dateString) throws ParseException {
-        if (dateString == null) {
+
+        if (dateString == null || dateString.trim().length() == 0) {
             return null;
         }
-        return getFormat(simpleFormat).parse(dateString);
+
+        return getFormat(simpleFormat).parse(dateString.trim());
     }
 
     /**

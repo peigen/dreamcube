@@ -31,11 +31,6 @@ import com.dreamcube.core.common.service.cache.entity.AttentionCache;
 public interface SquadAttentionLocalCache extends LocalCache {
 
     /**
-     * @return
-     */
-    public List<AttentionCache> queryAllSquadAttention();
-
-    /**
      * 缓存内容排序
      * 
      * @param category      缓存类型

@@ -61,7 +61,7 @@ public class DCSquad {
     private DCSquadStatusEnum status;
 
     /** 被关注次数 */
-    private String            attTimes;
+    private String            attention;
 
     /**
      * @param squadName
@@ -69,10 +69,10 @@ public class DCSquad {
      * @param axiser
      * @param investors
      * @param status
-     * @param attTimes
+     * @param attention
      */
     public DCSquad(String squadName, String squadDesc, String axiser, String investors,
-                   DCSquadStatusEnum status, String attTimes) {
+                   DCSquadStatusEnum status, String attention) {
         this.squadName = squadName;
         this.squadDesc = squadDesc;
         this.axiser = axiser;
@@ -83,7 +83,7 @@ public class DCSquad {
         this.status = DCSquadStatusEnum.MUSTER;
         this.gmtCreate = new Date();
         this.gmtModify = new Date();
-        this.attTimes = "0";
+        this.attention = "0";
 
     }
 
@@ -172,23 +172,27 @@ public class DCSquad {
         return status;
     }
 
-    public void setStatus(DCSquadStatusEnum status) {
+    public void setStatusByEnum(DCSquadStatusEnum status) {
         this.status = status;
     }
 
-    /**
-     * @return Returns the attTimes
-     */
-    public String getAttTimes() {
-        return attTimes;
+    public void setStatus(String status) {
+        this.status = DCSquadStatusEnum.getByCode(status);
     }
 
     /**
-     * @param attTimes
-     * The attTimes to set.
+     * @return Returns the attention
      */
-    public void setAttTimes(String attTimes) {
-        this.attTimes = attTimes;
+    public String getAttention() {
+        return attention;
+    }
+
+    /**
+     * @param attention
+     * The attention to set.
+     */
+    public void setAttention(String attention) {
+        this.attention = attention;
     }
 
     public String toString() {

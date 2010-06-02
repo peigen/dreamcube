@@ -31,13 +31,6 @@ import com.dreamcube.core.squad.domain.DCSquad;
 public interface SquadLocalCache extends LocalCache {
 
     /**
-     * 查询全部团队信息
-     * 
-     * @return
-     */
-    public List<DCSquad> queryAll();
-
-    /**
      * 缓存内容排序
      * 
      * @param category      缓存类型

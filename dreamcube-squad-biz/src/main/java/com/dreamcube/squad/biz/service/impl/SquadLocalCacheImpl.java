@@ -76,12 +76,11 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
 
     /**
      * @return
-     * @see com.dreamcube.squad.biz.service.SquadLocalCache#queryAll()
+     * @see com.dreamcube.core.common.service.cache.LocalCache#getAllCache()
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<DCSquad> queryAll() {
-
+    public List<?> getAllCache() {
         List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
 
         attemptRefresh(cacheList, false);
