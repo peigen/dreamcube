@@ -72,7 +72,7 @@ public class SquadConvert {
         squad.setGmtCreate(squadDO.getGmtCreate());
         squad.setGmtModify(squadDO.getGmtModify());
         squad.setInvestors(squadDO.getInvestors());
-        squad.setStatus(DCSquadStatusEnum.valueOf(squadDO.getStatus()));
+        squad.setStatusByEnum(DCSquadStatusEnum.valueOf(squadDO.getStatus()));
 
         return squad;
     }

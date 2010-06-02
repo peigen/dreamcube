@@ -55,9 +55,10 @@ public class SquadServiceImpl implements SquadService {
      * @return
      * @see com.dreamcube.squad.biz.service.SquadService#queryAllSquadCache()
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<DCSquad> queryAllSquadCache() {
-        return squadLocalCache.queryAll();
+        return (List<DCSquad>) squadLocalCache.getAllCache();
     }
 
     /**
@@ -99,7 +100,7 @@ public class SquadServiceImpl implements SquadService {
         } else {
             //TODO 将来权限系统起来要重构掉的，取当前操作员名称
             dcsquad.setAxiser("x");
-            dcsquad.setStatus(DCSquadStatusEnum.MUSTER);
+            dcsquad.setStatusByEnum(DCSquadStatusEnum.MUSTER);
             dcSquadDAO.insert(SquadConvert.domainToDo(dcsquad));
         }
 
@@ -156,9 +157,10 @@ public class SquadServiceImpl implements SquadService {
      * @return
      * @see com.dreamcube.squad.biz.service.SquadService#getMostAttentionSquad()
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<AttentionCache> getMostAttentionSquad() {
-        return squadAttentionLocalCache.queryAllSquadAttention();
+        return (List<AttentionCache>) squadAttentionLocalCache.getAllCache();
     }
 
     // private method

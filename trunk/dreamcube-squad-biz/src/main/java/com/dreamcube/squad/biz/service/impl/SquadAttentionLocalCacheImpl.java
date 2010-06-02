@@ -1,6 +1,7 @@
 package com.dreamcube.squad.biz.service.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import com.dreamcube.core.common.service.cache.CacheTool;
 import com.dreamcube.core.common.service.cache.LocalCacheEnum;
 import com.dreamcube.core.common.service.cache.entity.AttentionCache;
 import com.dreamcube.core.common.service.cache.entity.AttentionCategoryEnum;
-import com.dreamcube.core.common.tools.CacheDump;
 import com.dreamcube.core.common.util.exception.CommonExceptionEnum;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.service.SquadAttentionLocalCache;
@@ -80,19 +80,28 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
             log.error("", e);
         } catch (InvocationTargetException e) {
             log.error("", e);
-        } catch (NoSuchMethodException e) {
+        } catch (ParseException e) {
             log.error("", e);
         }
         return dbObjectList;
     }
 
     /**
+     * 
+     * @see com.dreamcube.core.common.service.cache.LocalCache#dump()
+     */
+    @Override
+    public void dump() {
+        //        CacheDump.dump(this);
+    }
+
+    /**
      * @return
-     * @see com.dreamcube.squad.biz.service.SquadAttentionLocalCache#queryAllSquadAttention()
+     * @see com.dreamcube.core.common.service.cache.LocalCache#getAllCache()
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<AttentionCache> queryAllSquadAttention() {
+    public List<?> getAllCache() {
         List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.SQUAD_ATTENTION.code());
 
         attemptRefresh(cacheList, false);
@@ -104,15 +113,6 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
         }
 
         return cacheList;
-    }
-
-    /**
-     * 
-     * @see com.dreamcube.core.common.service.cache.LocalCache#dump()
-     */
-    @Override
-    public void dump() {
-        CacheDump.dump(this);
     }
 
     /**
@@ -180,7 +180,7 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
         for (DCSquad dcSquad : squadList) {
 
             AttentionCache attCache = new AttentionCache(dcSquad.getId(), dcSquad.getSquadName(),
-                Long.valueOf(dcSquad.getAttTimes()), AttentionCategoryEnum.SQUAD);
+                Long.valueOf(dcSquad.getAttention()), AttentionCategoryEnum.SQUAD);
 
             attCacheList.add(attCache);
         }

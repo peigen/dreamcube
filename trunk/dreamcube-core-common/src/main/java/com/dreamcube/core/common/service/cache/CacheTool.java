@@ -2,11 +2,15 @@ package com.dreamcube.core.common.service.cache;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.dreamcube.core.common.tools.BeanUtilsBeanEx;
+import com.dreamcube.core.common.tools.DateTool;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
@@ -111,13 +115,22 @@ public class CacheTool {
             if (field.getName().equals("serialVersionUID"))
                 continue;
 
-            Object object;
+            Object object = null;
 
             try {
                 // 根据field名组装mongodb对象
                 object = BeanUtils.getProperty(obj, field.getName());
+                if (field.getType().equals(Date.class)) {
+                    object = BeanUtilsBeanEx.getInstance().getPropertyValue(obj, field.getName());
+                    object = DateTool.simpleFormat((Date) object);
+                }
+
             } catch (IllegalArgumentException e) {
                 continue;
+            } catch (SecurityException e) {
+                //                log.error("", e);
+            } catch (NoSuchFieldException e) {
+                //                log.error("", e);
             }
 
             dbObject.put(field.getName(), object);
@@ -135,23 +148,33 @@ public class CacheTool {
      * @return
      * @throws IllegalAccessException 
      * @throws InstantiationException 
-     * @throws NoSuchMethodException 
      * @throws InvocationTargetException 
+     * @throws ParseException 
      */
     public static Object parseDBObjectToDCObject(DBObject dbObject, Class<?> cls)
                                                                                  throws InstantiationException,
                                                                                  IllegalAccessException,
                                                                                  InvocationTargetException,
-                                                                                 NoSuchMethodException {
+                                                                                 ParseException {
 
         Object object = cls.newInstance();
 
+        //        BeanUtilEx.copyProperties(object, dbObject);
+
         for (Field field : cls.getDeclaredFields()) {
 
+            // 根据field名组装cache对象
             if (dbObject.containsField(field.getName())) {
 
-                // 根据field名组装cache对象
-                BeanUtils.copyProperty(object, field.getName(), dbObject.get(field.getName()));
+                if (field.getType().equals(Date.class)) {
+                    String dateStr = (String) dbObject.get(field.getName());
+                    Date date = DateTool.simpleFormatDate(dateStr);
+                    BeanUtils.copyProperty(object, field.getName(), date);
+                } else {
+
+                    BeanUtils.copyProperty(object, field.getName(), dbObject.get(field.getName()));
+                }
+
             }
 
         }
@@ -165,17 +188,17 @@ public class CacheTool {
      * @param dbObjectList  DBObject对象
      * @param cls           要转换成哪个对象
      * @return
-     * @throws InstantiationException
-     * @throws IllegalAccessException
-     * @throws InvocationTargetException
-     * @throws NoSuchMethodException
+     * @throws ParseException 
+     * @throws InvocationTargetException 
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
      */
     public static List<Object> parseDBObjectToDCObjectForList(List<DBObject> dbObjectList,
                                                               Class<?> cls)
                                                                            throws InstantiationException,
                                                                            IllegalAccessException,
                                                                            InvocationTargetException,
-                                                                           NoSuchMethodException {
+                                                                           ParseException {
         List<Object> list = new ArrayList<Object>();
 
         for (DBObject dbObject : dbObjectList) {

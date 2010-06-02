@@ -1,5 +1,6 @@
 package com.dreamcube.core.common.service.cache;
 
+import java.util.List;
 
 /**
  *                       
@@ -48,6 +49,13 @@ public interface LocalCache {
      * @return
      */
     LocalCacheEnum getCacheName();
+
+    /**
+     * 获取全部缓存内容,由子类实现,主要给dump()用.
+     * 
+     * @return
+     */
+    List<?> getAllCache();
 
     /**
      * 打印缓存信息

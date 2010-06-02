@@ -58,6 +58,16 @@ public class UserLocalCacheImpl implements UserLocalCache {
 
     /**
      * @return
+     * @see com.dreamcube.core.common.service.cache.LocalCache#getAllCache()
+     */
+    @Override
+    public List<?> getAllCache() {
+        // TODO
+        return null;
+    }
+
+    /**
+     * @return
      * @see com.dreamcube.core.common.service.cache.LocalCache#getCacheName()
      */
     @Override
