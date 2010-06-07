@@ -100,7 +100,7 @@ public class SquadServiceImpl implements SquadService {
         } else {
             //TODO 将来权限系统起来要重构掉的，取当前操作员名称
             dcsquad.setAxiser("x");
-            dcsquad.setStatusByEnum(DCSquadStatusEnum.MUSTER);
+            dcsquad.setStatus(DCSquadStatusEnum.MUSTER);
             dcSquadDAO.insert(SquadConvert.domainToDo(dcsquad));
         }
 

@@ -46,4 +46,7 @@ public class BeanUtilEx extends BeanUtils {
         }
     }
 
+    public static void regiest(Class<?> cls) {
+        ConvertUtils.register(new DateConvert(), cls);
+    }
 }

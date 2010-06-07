@@ -34,6 +34,7 @@ public class SquadLocalCacheServiceTest extends DreamCubeServiceTestBase {
     private static Logger log = LoggerFactory.getLogger(SquadLocalCacheServiceTest.class);
 
     public void testStoreCache() {
+        squadLocalCache.refresh();
 
     }
 
