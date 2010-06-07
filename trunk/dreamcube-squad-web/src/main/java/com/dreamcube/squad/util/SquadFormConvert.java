@@ -47,7 +47,7 @@ public class SquadFormConvert {
         squad.setInvestors(squadForm.getInvestors());
         squad.setSquadDesc(squadForm.getSquadDesc());
         squad.setSquadName(squadForm.getSquadName());
-        squad.setStatusByEnum(squadForm.getStatus());
+        squad.setStatus(squadForm.getStatus());
 
         return squad;
     }

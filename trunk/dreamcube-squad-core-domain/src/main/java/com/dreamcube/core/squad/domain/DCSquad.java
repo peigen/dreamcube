@@ -172,12 +172,12 @@ public class DCSquad {
         return status;
     }
 
-    public void setStatusByEnum(DCSquadStatusEnum status) {
+    /**
+     * @param status
+     * The status to set.
+     */
+    public void setStatus(DCSquadStatusEnum status) {
         this.status = status;
-    }
-
-    public void setStatus(String status) {
-        this.status = DCSquadStatusEnum.getByCode(status);
     }
 
     /**

@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.dreamcube.core.common.tools.BeanUtilEx;
 import com.dreamcube.core.common.tools.BeanUtilsBeanEx;
 import com.dreamcube.core.common.tools.DateTool;
 import com.mongodb.BasicDBObject;
@@ -120,6 +121,7 @@ public class CacheTool {
             try {
                 // 根据field名组装mongodb对象
                 object = BeanUtils.getProperty(obj, field.getName());
+
                 if (field.getType().equals(Date.class)) {
                     object = BeanUtilsBeanEx.getInstance().getPropertyValue(obj, field.getName());
                     object = DateTool.simpleFormat((Date) object);
@@ -159,8 +161,6 @@ public class CacheTool {
 
         Object object = cls.newInstance();
 
-        //        BeanUtilEx.copyProperties(object, dbObject);
-
         for (Field field : cls.getDeclaredFields()) {
 
             // 根据field名组装cache对象
@@ -169,10 +169,10 @@ public class CacheTool {
                 if (field.getType().equals(Date.class)) {
                     String dateStr = (String) dbObject.get(field.getName());
                     Date date = DateTool.simpleFormatDate(dateStr);
-                    BeanUtils.copyProperty(object, field.getName(), date);
+                    //                    BeanUtilEx.regiest(field.getType());
+                    BeanUtilEx.copyProperty(object, field.getName(), date);
                 } else {
-
-                    BeanUtils.copyProperty(object, field.getName(), dbObject.get(field.getName()));
+                    BeanUtilEx.copyProperty(object, field.getName(), dbObject.get(field.getName()));
                 }
 
             }
