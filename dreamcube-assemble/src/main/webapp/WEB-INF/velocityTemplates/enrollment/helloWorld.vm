@@ -5,7 +5,7 @@
 <a href="">Link</a>
 <p id="xxx">json点击测试</p>
 <img src="/dreamcube/picCode.checkcode"/>
-
+$moduleRender.setTargetModule("/index.html")
 <script type="text/javascript">
 $(document).ready(function() {
 	$("p").click(function() {
