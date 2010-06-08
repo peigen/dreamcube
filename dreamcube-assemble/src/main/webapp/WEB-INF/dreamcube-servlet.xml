@@ -23,7 +23,7 @@
 
 	<!-- velocity view config -->
 	<bean name="velocityViewResolver"
-		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		class="com.dreamcube.framework.viewresolver.DreamCubeVelocityViewResolver">
 		<property name="cache" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
 		<property name="prefix" value=""></property>
@@ -35,8 +35,11 @@
 		<property name="toolboxConfigLocation"
 			value="WEB-INF/config/velocity-toolbox.xml"></property>
 		<property name="viewClass"
-			value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
+			value="com.dreamcube.framework.views.DreamCubeVelocityView" />
 		<property name="layoutUrl" value="layout/layout.vm" />
+		<property name="beanToolManager">
+		   <ref bean="beanToolManager" />
+		</property>
 	</bean>
 
 	<bean id="velocityConfig"
@@ -98,4 +101,12 @@
 	<!-- BeanValidator -->
 	<bean id="validator" class="org.springmodules.validation.bean.BeanValidator"
 		p:configurationLoader-ref="configurationLoader" />
+		
+	<bean id="beanToolManager" class ="com.dreamcube.framework.components.BeanToolManager">
+		<property name="beanToolsList">
+			<list>
+				<value>com.dreamcube.framework.components.ModuleRenderBeanTool</value>
+			</list>
+		</property>
+	</bean>	
 </beans>
