@@ -26,106 +26,106 @@ import org.springframework.web.servlet.RequestToViewNameTranslator;
  * @author holly May 27, 2010
  * 
  */
+@SuppressWarnings( { "unchecked", "unused" })
 public class ModuleRenderBeanTool extends BeanTool {
 
-	private static Logger logger = LoggerFactory.getLogger(ModuleRenderBeanTool.class);
+    private static Logger               logger      = LoggerFactory
+                                                        .getLogger(ModuleRenderBeanTool.class);
 
-	private ThreadLocal<String> threadLocal = new ThreadLocal<String>();
+    private ThreadLocal<String>         threadLocal = new ThreadLocal<String>();
 
-	public static String TOOL_KEY = "moduleRender";
+    public static String                TOOL_KEY    = "moduleRender";
 
-	/** List of HandlerMappings used by this servlet */
-	private List handlerMappings;
-	
-	/** List of HandlerAdapters used by this servlet */
-	private List handlerAdapters;
+    /** List of HandlerMappings used by this servlet */
+    private List                        handlerMappings;
 
-	/** List of HandlerExceptionResolvers used by this servlet */
-	private List handlerExceptionResolvers;
+    /** List of HandlerAdapters used by this servlet */
+    private List                        handlerAdapters;
 
-	/** RequestToViewNameTranslator used by this servlet */
-	private RequestToViewNameTranslator viewNameTranslator;
+    /** List of HandlerExceptionResolvers used by this servlet */
+    private List                        handlerExceptionResolvers;
 
-	/** List of ViewResolvers used by this servlet */
-	private List viewResolvers;
-	
-	/** LocaleResolver used by this servlet */
-	private LocaleResolver localeResolver;
-	
-	/** MultipartResolver used by this servlet */
-	private MultipartResolver multipartResolver;
+    /** RequestToViewNameTranslator used by this servlet */
+    private RequestToViewNameTranslator viewNameTranslator;
 
-	/**
-	 * 设置该tool的名称关键字
-	 */
-	@Override
-	public String getToolKey() {
-		return TOOL_KEY;
-	}
+    /** List of ViewResolvers used by this servlet */
+    private List                        viewResolvers;
 
+    /** LocaleResolver used by this servlet */
+    private LocaleResolver              localeResolver;
 
-	/**
-	 * 
-	 * @param targetModule
-	 *            路径模块名称，需要符合requestMapping
-	 * @return ModuleRenderBeanTool 本身
-	 */
-	public ModuleRenderBeanTool setTargetModule(String targetModule) {
-		threadLocal.set(targetModule);
-		return this;
-	}
+    /** MultipartResolver used by this servlet */
+    private MultipartResolver           multipartResolver;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.dreamcube.framework.components.BeanTool#render()
-	 */
-	public String render() {
-		String targetModule = threadLocal.get();
-		try{
-			return renderModule(targetModule);
-		}catch(Exception e){
-			//:TODO 打印日志
-			return ComponentConstants.NONE_CONTENT;
-		}
-		
-	}
+    /**
+     * 设置该tool的名称关键字
+     */
+    @Override
+    public String getToolKey() {
+        return TOOL_KEY;
+    }
 
-	/**
-	 * 渲染该模块<br>
-	 * 
-	 * @param targetModule
-	 *            路径模块名称，需要符合requestMapping 并且必须符合context路径标准<br>
-	 *            <p>
-	 *                比如 要请求http://www.dreamcube.com/dream/enrollment/index.html则需要写成<br> /dream/enrollment/index.html
-	 *            </p>
-	 * @return renderd content
-	 */
-	private String renderModule(String targetModule)  throws Exception {
-		
-		//do render work
-		HttpServletRequest request = this.getRequest();
-		HttpServletResponse response =  this.getResponse();
-		
-		//设置该渲染为moduleRender方式的渲染
-		// 在request中设置ComponentConstants.IS_MODULE_RENDERED属性说明是moduleRender的处理
-		request.setAttribute(ComponentConstants.IS_MODULE_RENDERED, "true");
-		
-		//内部转发进行渲染
-		request.getRequestDispatcher(targetModule).include(request, response);
-		
-		//获取request中的ComponentConstants.MODULE_REDERDED_CONTENT，此为StringWriter对象
-		
-	//	StringWriter writer =  (StringWriter)request.getAttribute(ComponentConstants.MODULE_REDERDED_CONTENT);
-		StringWriter writer  =  (StringWriter) ModuleRenderContentLocal.getModuleRenderContext();
-		// 返回渲染的内容
-		return writer.getBuffer().toString();
-	}
-	
+    /**
+     * 
+     * @param targetModule
+     *            路径模块名称，需要符合requestMapping
+     * @return ModuleRenderBeanTool 本身
+     */
+    public ModuleRenderBeanTool setTargetModule(String targetModule) {
+        threadLocal.set(targetModule);
+        return this;
+    }
 
-	@Override
-	public String toString() {
-		return render();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.dreamcube.framework.components.BeanTool#render()
+     */
+    public String render() {
+        String targetModule = threadLocal.get();
+        try {
+            return renderModule(targetModule);
+        } catch (Exception e) {
+            //:TODO 打印日志
+            return ComponentConstants.NONE_CONTENT;
+        }
+
+    }
+
+    /**
+     * 渲染该模块<br>
+     * 
+     * @param targetModule
+     *            路径模块名称，需要符合requestMapping 并且必须符合context路径标准<br>
+     *            <p>
+     *                比如 要请求http://www.dreamcube.com/dream/enrollment/index.html则需要写成<br> /dream/enrollment/index.html
+     *            </p>
+     * @return renderd content
+     */
+    private String renderModule(String targetModule) throws Exception {
+
+        //do render work
+        HttpServletRequest request = this.getRequest();
+        HttpServletResponse response = this.getResponse();
+
+        //设置该渲染为moduleRender方式的渲染
+        // 在request中设置ComponentConstants.IS_MODULE_RENDERED属性说明是moduleRender的处理
+        request.setAttribute(ComponentConstants.IS_MODULE_RENDERED, "true");
+
+        //内部转发进行渲染
+        request.getRequestDispatcher(targetModule).include(request, response);
+
+        //获取request中的ComponentConstants.MODULE_REDERDED_CONTENT，此为StringWriter对象
+
+        //	StringWriter writer =  (StringWriter)request.getAttribute(ComponentConstants.MODULE_REDERDED_CONTENT);
+        StringWriter writer = (StringWriter) ModuleRenderContentLocal.getModuleRenderContext();
+        // 返回渲染的内容
+        return writer.getBuffer().toString();
+    }
+
+    @Override
+    public String toString() {
+        return render();
+    }
 
 }

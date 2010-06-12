@@ -14,29 +14,26 @@ import com.dreamcube.framework.views.DreamCubeVelocityView;
  *
  */
 public class DreamCubeVelocityViewResolver extends VelocityLayoutViewResolver {
-	private BeanToolManager beanToolManager;
-	
-	/**
-	 * Requires DreamCubeVelocityView.
-	 * @see DreamCubeVelocityView
-	 */
-	@Override
-	protected Class requiredViewClass() {
-		return DreamCubeVelocityView.class;
-	}
+    private BeanToolManager beanToolManager;
 
-	@Override
-	protected AbstractUrlBasedView buildView(String viewName) throws Exception {
-		DreamCubeVelocityView view = (DreamCubeVelocityView)super.buildView(viewName);
-		view.setBeanToolManager(beanToolManager);
-		return view;
-	}
+    /**
+     * Requires DreamCubeVelocityView.
+     * @see DreamCubeVelocityView
+     */
+    @Override
+    protected Class<?> requiredViewClass() {
+        return DreamCubeVelocityView.class;
+    }
 
-	public void setBeanToolManager(BeanToolManager beanToolManager) {
-		this.beanToolManager = beanToolManager;
-	}
-	
-	
-	
-	
+    @Override
+    protected AbstractUrlBasedView buildView(String viewName) throws Exception {
+        DreamCubeVelocityView view = (DreamCubeVelocityView) super.buildView(viewName);
+        view.setBeanToolManager(beanToolManager);
+        return view;
+    }
+
+    public void setBeanToolManager(BeanToolManager beanToolManager) {
+        this.beanToolManager = beanToolManager;
+    }
+
 }
