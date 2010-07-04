@@ -175,11 +175,10 @@ public class Base64Tool {
         return buf.toByteArray();
     }
 
-    @SuppressWarnings("unchecked")
     public static byte[] getBytes(InputStream is) throws Exception {
         byte[] data = null;
 
-        Collection chunks = new ArrayList();
+        Collection<byte[]> chunks = new ArrayList<byte[]>();
         byte[] buffer = new byte[1024 * 1000];
         int read = -1;
         int size = 0;
@@ -197,7 +196,7 @@ public class Base64Tool {
             ByteArrayOutputStream bos = null;
             try {
                 bos = new ByteArrayOutputStream(size);
-                for (Iterator itr = chunks.iterator(); itr.hasNext();) {
+                for (Iterator<byte[]> itr = chunks.iterator(); itr.hasNext();) {
                     byte[] chunk = (byte[]) itr.next();
                     bos.write(chunk);
                 }

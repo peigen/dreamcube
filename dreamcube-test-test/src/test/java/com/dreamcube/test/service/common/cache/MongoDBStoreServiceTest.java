@@ -2,12 +2,14 @@ package com.dreamcube.test.service.common.cache;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.dreamcube.core.common.service.cache.CacheKeyNameEnum;
+import com.dreamcube.core.common.service.cache.CacheTool;
 import com.dreamcube.core.common.service.cache.LocalCacheEnum;
+import com.dreamcube.core.common.tools.ByteTool;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
+import com.dreamcube.squad.biz.convert.SquadConvert;
 import com.dreamcube.test.service.DreamCubeServiceTestBase;
+import com.mongodb.BasicDBObject;
 
 /**
  *                       
@@ -33,28 +35,48 @@ import com.dreamcube.test.service.DreamCubeServiceTestBase;
  */
 public class MongoDBStoreServiceTest extends DreamCubeServiceTestBase {
 
-    private static Logger log = LoggerFactory.getLogger(MongoDBStoreServiceTest.class);
-
+    /**
+     * 初始化缓存对象
+     */
     public void testStoreCache() {
         List<DcSquadDO> squadDOList = dcSquadDAO.load();
 
-        log.info("=================清空缓存对象====================");
-        cacheService.clean(LocalCacheEnum.DC_SQUAD.code());
+        print("清空缓存对象");
+        cacheService.clean(LocalCacheEnum.DC_SQUAD);
 
-        log.info("=================创建缓存对象====================");
-        cacheService.refresh(LocalCacheEnum.DC_SQUAD.code(), squadDOList);
+        print("创建缓存对象");
+        cacheService.refresh(LocalCacheEnum.DC_SQUAD, CacheKeyNameEnum.SQUAD,
+            SquadConvert.doToDomainListForSerializ(squadDOList));
 
     }
 
-    public void testQueryCache() {
-        log.info("=================查询缓存对象====================");
-        List<?> cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
+    /**
+     * 查询缓存对象
+     * @throws Exception 
+     */
+    public void testQueryCache() throws Exception {
+        print("查询缓存对象");
+        List<?> cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD);
 
         assertEquals(true, cacheList.size() > 0);
 
         for (Object object : cacheList) {
-            log.error(object.toString());
+            print(object.toString());
+            transDCObject(object);
         }
+    }
+
+    /**
+     * @param obj
+     * @throws Exception 
+     */
+    private void transDCObject(Object obj) throws Exception {
+
+        print(ByteTool.getObjectFromBytes((byte[]) ((BasicDBObject) obj).get(CacheTool.CACHE)));
+
+        Object category = ((BasicDBObject) obj).get(CacheTool.CATEGORY);
+        print(category);
+
     }
 
 }

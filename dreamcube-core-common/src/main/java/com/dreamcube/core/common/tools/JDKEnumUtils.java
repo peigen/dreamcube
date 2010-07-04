@@ -48,6 +48,7 @@ public class JDKEnumUtils {
      * @param className
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static Class<Enum> getJDKEnumClass(String className) {
         Class<Enum> clazz = null;
         for (String enumPackage : enumPackages) {
@@ -75,6 +76,7 @@ public class JDKEnumUtils {
      * @param enumClass
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static List getEnumList(Class enumClass) {
         return new ArrayList(EnumSet.allOf(enumClass));
     }
@@ -85,10 +87,12 @@ public class JDKEnumUtils {
      * @param enumName
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static List getEnumList(String enumName) {
         return new ArrayList(EnumSet.allOf(getJDKEnumClass(enumName)));
     }
 
+    @SuppressWarnings("rawtypes")
     public static Map getEnumMap(Class enumClass) {
         HashMap map = new HashMap();
         Iterator itr = EnumUtils.iterator(enumClass);
@@ -107,6 +111,7 @@ public class JDKEnumUtils {
      * @param compareValue      比较值
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static String getJDKEnumMessage(String className, String compareProperty,
                                            String messageProperty, String compareValue) {
         Class<Enum> enumClass = getJDKEnumClass(className);

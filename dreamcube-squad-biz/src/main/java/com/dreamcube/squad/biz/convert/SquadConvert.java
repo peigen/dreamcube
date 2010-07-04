@@ -1,5 +1,6 @@
 package com.dreamcube.squad.biz.convert;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +85,21 @@ public class SquadConvert {
      */
     public static List<DCSquad> doToDomainList(List<DcSquadDO> doList) {
         List<DCSquad> squadList = new ArrayList<DCSquad>();
+
+        for (DcSquadDO dcSquad : doList) {
+            squadList.add(doToDomain(dcSquad));
+        }
+
+        return squadList;
+    }
+
+    /**
+     * 集合型
+     * @param doList
+     * @return
+     */
+    public static List<Serializable> doToDomainListForSerializ(List<DcSquadDO> doList) {
+        List<Serializable> squadList = new ArrayList<Serializable>();
 
         for (DcSquadDO dcSquad : doList) {
             squadList.add(doToDomain(dcSquad));

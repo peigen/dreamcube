@@ -1,5 +1,6 @@
 package com.dreamcube.enrollment.biz.convert;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +103,7 @@ public class UserConvert {
      * @param domainList
      * @return
      */
-    public List<DcUserDO> domainToDoList(List<DCUser> domainList) {
+    public static List<DcUserDO> domainToDoList(List<DCUser> domainList) {
         List<DcUserDO> doList = new ArrayList<DcUserDO>();
 
         for (DCUser user : domainList) {
@@ -110,5 +111,19 @@ public class UserConvert {
         }
 
         return doList;
+    }
+
+    /**
+     * @param doList
+     * @return
+     */
+    public static List<Serializable> doToDomainListForSerializ(List<DcUserDO> doList) {
+        List<Serializable> domainlist = new ArrayList<Serializable>();
+
+        for (DcUserDO userDO : doList) {
+            domainlist.add(doToDomain(userDO));
+        }
+
+        return domainlist;
     }
 }

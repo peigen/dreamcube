@@ -1,5 +1,7 @@
 package com.dreamcube.core.common.service.cache.entity;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -25,7 +27,9 @@ import org.apache.commons.lang.builder.ToStringStyle;
  *<li>Content: create</li>
  *
  */
-public class AttentionCache {
+public class AttentionCache implements Serializable {
+
+    private static final long     serialVersionUID = -6035319696849752802L;
 
     private String                id;
 

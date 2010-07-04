@@ -9,9 +9,8 @@ package com.dreamcube.framework.components;
  * @author holly Jun 8, 2010
  *
  */
-@SuppressWarnings("unchecked")
 public class ModuleRenderContentLocal {
-    public static ThreadLocal threadLocal = new ThreadLocal();
+    public static ThreadLocal<Object> threadLocal = new ThreadLocal<Object>();
 
     public static void addModuleRenderContent(Object object) {
         threadLocal.set(object);

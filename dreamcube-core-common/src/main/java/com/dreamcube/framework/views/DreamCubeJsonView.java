@@ -28,162 +28,153 @@ import org.springframework.web.servlet.view.json.writer.sojo.SojoJsonStringWrite
  * @author holly Apr 8, 2010
  *
  */
+@SuppressWarnings("rawtypes")
 public class DreamCubeJsonView extends AbstractUrlBasedView {
-private static final String DEFAULT_ENCODING = "UTF-8";
-	
-	public static final String DEFAULT_JSON_CONTENT_TYPE = "application/json";
-	private static final String REQUEST_CONTEXT_ATTRIBUTE =  RequestContext.class.toString();
-	public static final String DEFAULT_HIJACKSAVE_PREFIX_POSTFIX = "JSON";
-	
-	private List<JsonErrorHandler> jsonErrors = new ArrayList<JsonErrorHandler>();
-	private JsonStringWriter jsonWriter = new SojoJsonStringWriter();
-	private String encoding;
-	
-	private String hijackSafePrefixPostFix = DEFAULT_HIJACKSAVE_PREFIX_POSTFIX;
-	private boolean hijackSafe = false;
-	
-	
-	public DreamCubeJsonView(){
-		super();
-		setRequestContextAttribute(REQUEST_CONTEXT_ATTRIBUTE);
-		setContentType(DEFAULT_JSON_CONTENT_TYPE);
-		setEncoding(DEFAULT_ENCODING);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void renderMergedOutputModel(Map model, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		response.setContentType(getContentType());
-		RequestContext rc = getRequestContext(model);
-		BindingResult br = getBindingResult( model);
-		JsonWriterConfiguratorTemplateRegistry configuratorTemplateRegistry = getConfiguratorTemplateRegistry(request);
-		
-		if(hasErrors(rc, br)){
-			populateErrors(model, rc, br);
-			triggerJsonErrors(model, rc, br, request, response);
-		}
-		
-		if (hijackSafe)
-        {
+    private static final String    DEFAULT_ENCODING                  = "UTF-8";
+
+    public static final String     DEFAULT_JSON_CONTENT_TYPE         = "application/json";
+    private static final String    REQUEST_CONTEXT_ATTRIBUTE         = RequestContext.class
+                                                                         .toString();
+    public static final String     DEFAULT_HIJACKSAVE_PREFIX_POSTFIX = "JSON";
+
+    private List<JsonErrorHandler> jsonErrors                        = new ArrayList<JsonErrorHandler>();
+    private JsonStringWriter       jsonWriter                        = new SojoJsonStringWriter();
+    private String                 encoding;
+
+    private String                 hijackSafePrefixPostFix           = DEFAULT_HIJACKSAVE_PREFIX_POSTFIX;
+    private boolean                hijackSafe                        = false;
+
+    public DreamCubeJsonView() {
+        super();
+        setRequestContextAttribute(REQUEST_CONTEXT_ATTRIBUTE);
+        setContentType(DEFAULT_JSON_CONTENT_TYPE);
+        setEncoding(DEFAULT_ENCODING);
+    }
+
+    public void renderMergedOutputModel(Map model, HttpServletRequest request,
+                                        HttpServletResponse response) throws Exception {
+        response.setContentType(getContentType());
+        RequestContext rc = getRequestContext(model);
+        BindingResult br = getBindingResult(model);
+        JsonWriterConfiguratorTemplateRegistry configuratorTemplateRegistry = getConfiguratorTemplateRegistry(request);
+
+        if (hasErrors(rc, br)) {
+            populateErrors(model, rc, br);
+            triggerJsonErrors(model, rc, br, request, response);
+        }
+
+        if (hijackSafe) {
             response.getWriter().print("/*" + hijackSafePrefixPostFix);
         }
-        
-		jsonWriter.convertAndWrite(model, configuratorTemplateRegistry, response.getWriter(), br);
 
-        if (hijackSafe)
-        {
+        jsonWriter.convertAndWrite(model, configuratorTemplateRegistry, response.getWriter(), br);
+
+        if (hijackSafe) {
             response.getWriter().print(hijackSafePrefixPostFix + "*/");
         }
-	}
-	
-	@SuppressWarnings("unchecked")
-	protected void populateErrors(Map model, RequestContext rc, BindingResult br) {
-		
-		List<String> globalErrors = new ArrayList<String>();
-		for (Object er: br.getGlobalErrors()){
-			ObjectError error = (ObjectError)er;
-			String message = rc.getMessage(error);
-			globalErrors.add(message);
-		}
-		
-		model.put("hasGlobalErrors", br.hasGlobalErrors());
-		if(!globalErrors.isEmpty())
-			model.put("globalerrors", globalErrors);
-		
-		
-		Map<String, String> feldErrors = new HashMap<String, String>();
-		for (Object er: br.getFieldErrors()){
-			FieldError error = (FieldError)er;
-			String objName = error.getField();
-			String message = rc.getMessage(error);
-			feldErrors.put(objName, message);
-		}
-		
-		model.put("hasFieldErrors", br.hasFieldErrors());
-		if(!feldErrors.isEmpty())
-			model.put("fielderrors", feldErrors);
-		
-		
-	}
+    }
 
-	protected boolean hasErrors(RequestContext rc, BindingResult br) {
-		if(br == null)
-			return false;
-		return br.hasErrors();
-	}
+    @SuppressWarnings("unchecked")
+    protected void populateErrors(Map model, RequestContext rc, BindingResult br) {
 
-	@SuppressWarnings("unchecked")
-	protected void triggerJsonErrors(Map model, RequestContext rc,
-			BindingResult br, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		
-		if(jsonErrors == null || jsonErrors.size() == 0)
-			return;
-		
-		for(JsonErrorHandler error: jsonErrors){
-				error.triggerError(model, rc, br, request, response);
-		}
-		
-		
-	}
-	
-	@SuppressWarnings("unchecked")
-	protected  BindingResult getBindingResult(Map model){
-		for(Object key : model.keySet() ){
-		    if(((String)key).startsWith(BindingResult.MODEL_KEY_PREFIX))
-			return (BindingResult) model.remove(key);
-		}
-		return null;
-	}
-	
-	@SuppressWarnings("unchecked")
-	protected  RequestContext getRequestContext(Map model){
-		return (RequestContext) model.remove(getRequestContextAttribute());
-	}
-	
-	protected  JsonWriterConfiguratorTemplateRegistry getConfiguratorTemplateRegistry(HttpServletRequest request){
-		return JsonWriterConfiguratorTemplateRegistry.load(request);
-	}
+        List<String> globalErrors = new ArrayList<String>();
+        for (Object er : br.getGlobalErrors()) {
+            ObjectError error = (ObjectError) er;
+            String message = rc.getMessage(error);
+            globalErrors.add(message);
+        }
 
-	public List<JsonErrorHandler> getJsonErrors() {
-		return jsonErrors;
-	}
+        model.put("hasGlobalErrors", br.hasGlobalErrors());
+        if (!globalErrors.isEmpty())
+            model.put("globalerrors", globalErrors);
 
-	public void setJsonErrors(List<JsonErrorHandler> jsonErrors) {
-		this.jsonErrors = jsonErrors;
-	}
+        Map<String, String> feldErrors = new HashMap<String, String>();
+        for (Object er : br.getFieldErrors()) {
+            FieldError error = (FieldError) er;
+            String objName = error.getField();
+            String message = rc.getMessage(error);
+            feldErrors.put(objName, message);
+        }
 
-	public JsonStringWriter getJsonWriter() {
-		return jsonWriter;
-	}
+        model.put("hasFieldErrors", br.hasFieldErrors());
+        if (!feldErrors.isEmpty())
+            model.put("fielderrors", feldErrors);
 
-	public void setJsonWriter(JsonStringWriter jsonWriter) {
-		this.jsonWriter = jsonWriter;
-	}
+    }
 
-	public String getEncoding() {
-		return encoding;
-	}
+    protected boolean hasErrors(RequestContext rc, BindingResult br) {
+        if (br == null)
+            return false;
+        return br.hasErrors();
+    }
 
-	public void setEncoding(String encoding) {
-		this.encoding = encoding;
-	}
+    protected void triggerJsonErrors(Map model, RequestContext rc, BindingResult br,
+                                     HttpServletRequest request, HttpServletResponse response)
+                                                                                              throws Exception {
 
-	public boolean getHijackSafe() {
-		return hijackSafe;
-	}
+        if (jsonErrors == null || jsonErrors.size() == 0)
+            return;
 
-	public void setHijackSafe(boolean hijackSafe) {
-		this.hijackSafe = hijackSafe;
-	}
+        for (JsonErrorHandler error : jsonErrors) {
+            error.triggerError(model, rc, br, request, response);
+        }
 
-	public String getHijackSafePrefixPostFix() {
-		return hijackSafePrefixPostFix;
-	}
+    }
 
-	public void setHijackSafePrefixPostFix(String hijackSafePrefixPostFix) {
-		this.hijackSafePrefixPostFix = hijackSafePrefixPostFix;
-	}
-	
-	
+    protected BindingResult getBindingResult(Map model) {
+        for (Object key : model.keySet()) {
+            if (((String) key).startsWith(BindingResult.MODEL_KEY_PREFIX))
+                return (BindingResult) model.remove(key);
+        }
+        return null;
+    }
+
+    protected RequestContext getRequestContext(Map model) {
+        return (RequestContext) model.remove(getRequestContextAttribute());
+    }
+
+    protected JsonWriterConfiguratorTemplateRegistry getConfiguratorTemplateRegistry(HttpServletRequest request) {
+        return JsonWriterConfiguratorTemplateRegistry.load(request);
+    }
+
+    public List<JsonErrorHandler> getJsonErrors() {
+        return jsonErrors;
+    }
+
+    public void setJsonErrors(List<JsonErrorHandler> jsonErrors) {
+        this.jsonErrors = jsonErrors;
+    }
+
+    public JsonStringWriter getJsonWriter() {
+        return jsonWriter;
+    }
+
+    public void setJsonWriter(JsonStringWriter jsonWriter) {
+        this.jsonWriter = jsonWriter;
+    }
+
+    public String getEncoding() {
+        return encoding;
+    }
+
+    public void setEncoding(String encoding) {
+        this.encoding = encoding;
+    }
+
+    public boolean getHijackSafe() {
+        return hijackSafe;
+    }
+
+    public void setHijackSafe(boolean hijackSafe) {
+        this.hijackSafe = hijackSafe;
+    }
+
+    public String getHijackSafePrefixPostFix() {
+        return hijackSafePrefixPostFix;
+    }
+
+    public void setHijackSafePrefixPostFix(String hijackSafePrefixPostFix) {
+        this.hijackSafePrefixPostFix = hijackSafePrefixPostFix;
+    }
+
 }

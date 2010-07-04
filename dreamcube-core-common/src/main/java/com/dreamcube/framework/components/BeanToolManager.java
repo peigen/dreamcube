@@ -64,7 +64,7 @@ public class BeanToolManager implements ApplicationContextAware, InitializingBea
      * @see
      * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
     @Override
     public void afterPropertiesSet() throws Exception {
         Iterator<String> iterator = beanToolsList.iterator();

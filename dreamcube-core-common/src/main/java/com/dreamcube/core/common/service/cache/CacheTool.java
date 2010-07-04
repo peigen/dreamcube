@@ -1,5 +1,6 @@
 package com.dreamcube.core.common.service.cache;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
@@ -10,7 +11,7 @@ import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.dreamcube.core.common.tools.BeanUtilEx;
-import com.dreamcube.core.common.tools.BeanUtilsBeanEx;
+import com.dreamcube.core.common.tools.ByteTool;
 import com.dreamcube.core.common.tools.DateTool;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
@@ -40,6 +41,7 @@ import com.mongodb.DBObject;
 public class CacheTool {
 
     public static final String CATEGORY = "category";
+    public static final String CACHE    = "cache_object";
 
     /**
      * 帮助缓存创建一个基础的缓存对象。<br>
@@ -47,9 +49,9 @@ public class CacheTool {
      * 
      * @param category
      */
-    public static DBObject createDBObject(String category, DBObject obj) {
-        obj.put(CATEGORY, category);
-        return obj;
+    public static DBObject createDBObject(String category, DBObject cache) {
+        cache.put(CATEGORY, category);
+        return cache;
     }
 
     /**
@@ -67,77 +69,49 @@ public class CacheTool {
     /**
      * 
      * 
-     * @param objList
+     * @param cacheList
      * @param category  缓存组
      * @return
-     * @throws IllegalArgumentException
-     * @throws IllegalAccessException
-     * @throws InvocationTargetException
-     * @throws NoSuchMethodException
+     * @throws Exception 
      */
-    public static List<DBObject> parseDBObjectList(List<Object> objList, String category)
-                                                                                         throws IllegalArgumentException,
-                                                                                         IllegalAccessException,
-                                                                                         InvocationTargetException,
-                                                                                         NoSuchMethodException {
+    public static List<DBObject> parseDBObjectList(String category, String keyName,
+                                                   List<Serializable> cacheList) throws Exception {
         List<DBObject> dbObjectList = new ArrayList<DBObject>();
 
-        for (Object obj : objList) {
-            dbObjectList.add(parseDBObject(obj, category));
+        for (Serializable obj : cacheList) {
+            dbObjectList.add(parseDBObject(category, keyName, obj));
         }
 
         return dbObjectList;
     }
 
     /**
-     * 转换一个普通对象成DBObject
-     * 
-     * @param obj       普通对象
      * @param category  缓存组
-     * 
+     * @param keyName   缓存key
+     * @param cache     普通对象
      * @return
-     * @throws IllegalAccessException 
-     * @throws IllegalArgumentException 
-     * @throws NoSuchMethodException 
-     * @throws InvocationTargetException 
+     * @throws Exception 
      */
-    public static DBObject parseDBObject(Object obj, String category)
-                                                                     throws IllegalArgumentException,
-                                                                     IllegalAccessException,
-                                                                     InvocationTargetException,
-                                                                     NoSuchMethodException {
+    public static DBObject parseDBObject(String category, String keyName, Serializable cache)
+                                                                                             throws Exception {
         BasicDBObject dbObject = new BasicDBObject();
+
+        // 1. 缓存分类
         dbObject.put(CATEGORY, category);
 
-        Class<?> cls = obj.getClass();
+        Class<?> cls = cache.getClass();
 
+        // 2. 缓存的key
         for (Field field : cls.getDeclaredFields()) {
 
-            if (field.getName().equals("serialVersionUID"))
-                continue;
-
-            Object object = null;
-
-            try {
-                // 根据field名组装mongodb对象
-                object = BeanUtils.getProperty(obj, field.getName());
-
-                if (field.getType().equals(Date.class)) {
-                    object = BeanUtilsBeanEx.getInstance().getPropertyValue(obj, field.getName());
-                    object = DateTool.simpleFormat((Date) object);
-                }
-
-            } catch (IllegalArgumentException e) {
-                continue;
-            } catch (SecurityException e) {
-                //                log.error("", e);
-            } catch (NoSuchFieldException e) {
-                //                log.error("", e);
-            }
-
-            dbObject.put(field.getName(), object);
+            if (field.getName().equals(keyName))
+                dbObject.put(field.getName(), BeanUtils.getProperty(cache, field.getName()));
 
         }
+
+        // 3. 缓存对象
+
+        dbObject.put(CACHE, ByteTool.getBytesFromObject(cache));
 
         return dbObject;
     }

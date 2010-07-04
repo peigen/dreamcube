@@ -1,5 +1,6 @@
 package com.dreamcube.core.squad.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -29,7 +30,9 @@ import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
  *<li>Content: create</li>
  *
  */
-public class DCSquad {
+public class DCSquad implements Serializable {
+
+    private static final long serialVersionUID = -7724085100005390124L;
 
     private String            id;
 

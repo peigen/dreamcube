@@ -26,7 +26,7 @@ import org.springframework.web.servlet.RequestToViewNameTranslator;
  * @author holly May 27, 2010
  * 
  */
-@SuppressWarnings( { "unchecked", "unused" })
+@SuppressWarnings("unused")
 public class ModuleRenderBeanTool extends BeanTool {
 
     private static Logger               logger      = LoggerFactory
@@ -37,19 +37,19 @@ public class ModuleRenderBeanTool extends BeanTool {
     public static String                TOOL_KEY    = "moduleRender";
 
     /** List of HandlerMappings used by this servlet */
-    private List                        handlerMappings;
+    private List<?>                     handlerMappings;
 
     /** List of HandlerAdapters used by this servlet */
-    private List                        handlerAdapters;
+    private List<?>                     handlerAdapters;
 
     /** List of HandlerExceptionResolvers used by this servlet */
-    private List                        handlerExceptionResolvers;
+    private List<?>                     handlerExceptionResolvers;
 
     /** RequestToViewNameTranslator used by this servlet */
     private RequestToViewNameTranslator viewNameTranslator;
 
     /** List of ViewResolvers used by this servlet */
-    private List                        viewResolvers;
+    private List<?>                     viewResolvers;
 
     /** LocaleResolver used by this servlet */
     private LocaleResolver              localeResolver;

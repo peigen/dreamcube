@@ -87,8 +87,7 @@ public class CacheDump {
      * @return StringBuffer
      */
 
-    @SuppressWarnings("unchecked")
-    public static StringBuffer mapStringAndObject(Map map) {
+    public static StringBuffer mapStringAndObject(Map<String, ?> map) {
 
         StringBuffer cacheMessage = new StringBuffer();
 
@@ -113,8 +112,7 @@ public class CacheDump {
      * @param List<Object>
      * @return StringBuffer
      */
-    @SuppressWarnings("unchecked")
-    public static StringBuffer listObject(List list) {
+    public static StringBuffer listObject(List<?> list) {
 
         StringBuffer cacheMessage = new StringBuffer();
 
@@ -159,8 +157,7 @@ public class CacheDump {
      * @return StringBuffer
      */
 
-    @SuppressWarnings("unchecked")
-    public static StringBuffer mapStringAndString(Map map) {
+    public static StringBuffer mapStringAndString(Map<String, ?> map) {
 
         StringBuffer cacheMessage = new StringBuffer();
 
