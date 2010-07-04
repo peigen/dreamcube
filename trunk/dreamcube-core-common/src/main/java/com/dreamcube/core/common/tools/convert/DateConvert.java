@@ -40,7 +40,7 @@ public class DateConvert implements Converter {
      * @return
      * @see org.apache.commons.beanutils.Converter#convert(java.lang.Class, java.lang.Object)
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
     @Override
     public Object convert(Class type, Object value) {
         String p = (String) value;

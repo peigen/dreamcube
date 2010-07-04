@@ -22,7 +22,6 @@ import java.security.ProtectionDomain;
  * Content: create</li>
  * 
  */
-@SuppressWarnings("unchecked")
 public class PathTool {
     /**
      * 获取一个类的class文件所在的绝对路径。 这个类可以是JDK自身的类，也可以是用户自定义的类，或者是第三方开发包里的类。
@@ -32,6 +31,7 @@ public class PathTool {
      *            一个对象的Class属性
      * @return 这个类的class文件位置的绝对路径。 如果没有这个类的定义，则返回null。
      */
+    @SuppressWarnings("rawtypes")
     public static String getPathFromClass(Class cls) throws IOException {
         String path = null;
         if (cls == null) {
@@ -64,6 +64,7 @@ public class PathTool {
      *            一个对象的Class属性
      * @return 这个类的class文件位置的绝对路径。 如果没有这个类的定义，则返回null。
      */
+    @SuppressWarnings("rawtypes")
     public String getClassParentPath(Class cls) throws IOException {
         String path = null;
         if (cls == null) {
@@ -103,6 +104,7 @@ public class PathTool {
      * @throws IOException
      *             因为本方法将查询文件系统，所以可能抛出IO异常
      */
+    @SuppressWarnings("rawtypes")
     public static String getFullPathRelateClass(String relatedPath, Class cls) throws IOException {
         String path = null;
         if (relatedPath == null) {
@@ -119,6 +121,7 @@ public class PathTool {
     /**
      * 获取类的class文件位置的URL。这个方法是本类最基础的方法，供其它方法调用。
      */
+    @SuppressWarnings("rawtypes")
     private static URL getClassLocationURL(final Class cls) {
         if (cls == null)
             throw new IllegalArgumentException("null input: cls");

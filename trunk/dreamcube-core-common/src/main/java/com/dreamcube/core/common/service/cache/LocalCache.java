@@ -1,5 +1,6 @@
 package com.dreamcube.core.common.service.cache;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public interface LocalCache {
      * @param oldCache      "旧"的缓存对象
      * @param newCache      "新"的缓存对象
      */
-    void refresh(LocalCacheEnum category, Object oldCache, Object newCache);
+    void refresh(LocalCacheEnum category, Serializable oldCache, Serializable newCache);
 
     /**
      * 获取本地缓存的名称

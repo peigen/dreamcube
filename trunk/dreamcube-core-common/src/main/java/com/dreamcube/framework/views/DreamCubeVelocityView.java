@@ -29,7 +29,7 @@ import com.dreamcube.framework.components.ModuleRenderContentLocal;
  * @author holly May 26, 2010
  * 
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class DreamCubeVelocityView extends VelocityLayoutView {
     private BeanToolManager beanToolManager;
 

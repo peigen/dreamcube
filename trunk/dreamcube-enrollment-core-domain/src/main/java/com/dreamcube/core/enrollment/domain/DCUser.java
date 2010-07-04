@@ -4,6 +4,7 @@
  */
 package com.dreamcube.core.enrollment.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -34,44 +35,46 @@ import com.dreamcube.core.enrollment.enums.DCUserStatusEnum;
  *<li>Content: create</li> 
  */
 
-public class DCUser {
+public class DCUser implements Serializable {
 
-    private String           id;
+    private static final long serialVersionUID = 8794608794656667306L;
+
+    private String            id;
 
     /** 登录名 */
-    private String           logonName;
+    private String            logonName;
 
     /** 登录密码 */
-    private String           logonPasswd;
+    private String            logonPasswd;
 
     /** 昵称 */
-    private String           nickName;
+    private String            nickName;
 
     /** 生日 */
-    private Date             birthday;
+    private Date              birthday;
 
     /** 身份证 */
-    private String           certNo;
+    private String            certNo;
 
     /** 性别:0,female;1,male 很形象 */
-    private int              gender;
+    private int               gender;
 
     /** 工作经历JSON格式 */
-    private String           workSite;
+    private String            workSite;
 
     /** 参与项目JSON格式 */
     // TODO 重构为对象
-    private String           projects;
+    private String            projects;
 
     /** SNS信息:twitter/fackbook */
-    private String           infoSite;
+    private String            infoSite;
 
-    private Date             gmtCreate;
+    private Date              gmtCreate;
 
-    private Date             gmtModify;
+    private Date              gmtModify;
 
     /** 当前状态 */
-    private DCUserStatusEnum status;
+    private DCUserStatusEnum  status;
 
     /**
      * @param logonName

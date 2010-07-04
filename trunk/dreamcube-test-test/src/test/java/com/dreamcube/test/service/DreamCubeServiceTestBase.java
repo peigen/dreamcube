@@ -1,5 +1,7 @@
 package com.dreamcube.test.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.AbstractTransactionalSpringContextTests;
 
 import com.dreamcube.core.common.service.cache.CacheService;
@@ -30,6 +32,19 @@ import com.dreamcube.squad.biz.service.SquadLocalCache;
  *
  */
 public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContextTests {
+
+    private static Logger log = LoggerFactory.getLogger(DreamCubeServiceTestBase.class);
+
+    /**
+     * 打印输出
+     * 
+     * @param object
+     */
+    protected void print(Object object) {
+        log.info("=====================================");
+        log.info(object.toString());
+        log.info("=====================================");
+    }
 
     /**
      * @return

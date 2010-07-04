@@ -1,5 +1,7 @@
+create database dreamcube;
 -- 初始化
 drop table dc_squad;
+
 
 CREATE TABLE `dreamcube`.`dc_squad` (
   `id` BIGINT  NOT NULL AUTO_INCREMENT,

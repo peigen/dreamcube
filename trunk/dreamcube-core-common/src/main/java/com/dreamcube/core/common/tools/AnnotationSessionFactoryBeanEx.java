@@ -47,7 +47,6 @@ import org.springframework.util.CollectionUtils;
  *<li>Content: create</li>
  * 
  */
-@SuppressWarnings("unchecked")
 public class AnnotationSessionFactoryBeanEx extends AnnotationSessionFactoryBean {
     private static final Logger logger = Logger.getLogger(AnnotationSessionFactoryBeanEx.class);
 
@@ -81,6 +80,7 @@ public class AnnotationSessionFactoryBeanEx extends AnnotationSessionFactoryBean
     /**
      * @see AnnotationSessionFactoryBean#postProcessAnnotationConfiguration(org.hibernate.cfg.AnnotationConfiguration)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     protected void postProcessAnnotationConfiguration(AnnotationConfiguration config)
                                                                                      throws HibernateException {
@@ -99,6 +99,7 @@ public class AnnotationSessionFactoryBeanEx extends AnnotationSessionFactoryBean
      * @return Set of the annotated classes, if no matched class, return empty
      *         Set.
      */
+    @SuppressWarnings("rawtypes")
     private Set<Class> scanAnnotatedClasses() {
         ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
         MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(

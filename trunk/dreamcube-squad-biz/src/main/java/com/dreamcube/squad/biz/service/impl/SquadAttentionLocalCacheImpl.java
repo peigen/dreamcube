@@ -1,5 +1,6 @@
 package com.dreamcube.squad.biz.service.impl;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dreamcube.core.common.service.cache.CacheKeyNameEnum;
 import com.dreamcube.core.common.service.cache.CacheOrderByEnum;
 import com.dreamcube.core.common.service.cache.CacheService;
 import com.dreamcube.core.common.service.cache.CacheTool;
@@ -61,11 +63,11 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
      * @param orderByType
      * @param count
      * @return
-     * @see com.dreamcube.squad.biz.service.SquadAttentionLocalCache#sort(java.lang.String, java.lang.String, com.dreamcube.core.common.service.cache.CacheOrderByEnum, int)
+     * @see com.dreamcube.squad.biz.service.SquadAttentionLocalCache#sort(com.dreamcube.core.common.service.cache.LocalCacheEnum, java.lang.String, com.dreamcube.core.common.service.cache.CacheOrderByEnum, int)
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public List<AttentionCache> sort(String category, String orderByStr,
+    public List<AttentionCache> sort(LocalCacheEnum category, String orderByStr,
                                      CacheOrderByEnum orderByType, int count) {
         DBObject orderBy = new BasicDBObject();
         orderBy.put(orderByStr, orderByType.code());
@@ -99,10 +101,10 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
      * @return
      * @see com.dreamcube.core.common.service.cache.LocalCache#getAllCache()
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public List<?> getAllCache() {
-        List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.SQUAD_ATTENTION.code());
+        List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.SQUAD_ATTENTION);
 
         attemptRefresh(cacheList, false);
 
@@ -130,7 +132,7 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
      */
     @Override
     public void init() {
-        cacheService.clean(getCacheName().code());
+        cacheService.clean(getCacheName());
     }
 
     /**
@@ -141,12 +143,13 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
     public void refresh() {
         init();
 
-        List<DCSquad> squadList = squadLocalCache.sort(LocalCacheEnum.DC_SQUAD.code(), orderByStr,
+        List<DCSquad> squadList = squadLocalCache.sort(LocalCacheEnum.DC_SQUAD, orderByStr,
             CacheOrderByEnum.DESC, count);
 
         // 转换成通用被关注对象
         List<AttentionCache> attCacheList = squadToAtt(squadList);
-        cacheService.refresh(LocalCacheEnum.SQUAD_ATTENTION.code(), attCacheList);
+        cacheService.refresh(LocalCacheEnum.SQUAD_ATTENTION, CacheKeyNameEnum.SQUAD_ATTENTION,
+            domainToSerializable(attCacheList));
 
         dump();
     }
@@ -155,11 +158,11 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
      * @param category
      * @param oldCache
      * @param newCache
-     * @see com.dreamcube.core.common.service.cache.LocalCache#refresh(com.dreamcube.core.common.service.cache.LocalCacheEnum, java.lang.Object, java.lang.Object)
+     * @see com.dreamcube.core.common.service.cache.LocalCache#refresh(com.dreamcube.core.common.service.cache.LocalCacheEnum, java.io.Serializable, java.io.Serializable)
      */
     @Override
-    public void refresh(LocalCacheEnum category, Object oldCache, Object newCache) {
-        cacheService.update(category.code(), oldCache, newCache);
+    public void refresh(LocalCacheEnum category, Serializable oldCache, Serializable newCache) {
+        cacheService.update(category, CacheKeyNameEnum.SQUAD_ATTENTION, oldCache, newCache);
     }
 
     // private
@@ -174,6 +177,10 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
             refresh();
     }
 
+    /**
+     * @param squadList
+     * @return
+     */
     private List<AttentionCache> squadToAtt(List<DCSquad> squadList) {
         List<AttentionCache> attCacheList = new ArrayList<AttentionCache>();
 
@@ -186,6 +193,18 @@ public class SquadAttentionLocalCacheImpl implements SquadAttentionLocalCache {
         }
 
         return attCacheList;
+    }
+
+    /**
+     * @param squadList
+     * @return
+     */
+    private List<Serializable> domainToSerializable(List<AttentionCache> squadList) {
+        List<Serializable> ss = new ArrayList<Serializable>();
+        for (AttentionCache dcSquad : squadList) {
+            ss.add(dcSquad);
+        }
+        return ss;
     }
 
     // DI~~~

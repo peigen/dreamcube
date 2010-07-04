@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
  * 
  * @author holly Apr 8, 2010
  */
+@SuppressWarnings("rawtypes")
 public class DreamCubeCheckCodeView extends AbstractUrlBasedView {
 
     /**
@@ -29,7 +30,6 @@ public class DreamCubeCheckCodeView extends AbstractUrlBasedView {
         setContentType("image/jpeg");
     }
 
-    @SuppressWarnings("unchecked")
     protected void renderMergedOutputModel(final Map model, HttpServletRequest request,
                                            HttpServletResponse response) throws Exception {
         prepareResponse(model, response);
@@ -51,7 +51,6 @@ public class DreamCubeCheckCodeView extends AbstractUrlBasedView {
      * @return
      * @throws IOException
      */
-    @SuppressWarnings("unchecked")
     protected byte[] prepareSourceData(final Map model, HttpServletRequest request,
                                        HttpServletResponse response) throws IOException {
         byte[] sourceData = (byte[]) model.get("checkCode");
@@ -65,7 +64,6 @@ public class DreamCubeCheckCodeView extends AbstractUrlBasedView {
      * @param response 
      * @throws UnsupportedEncodingException 
      */
-    @SuppressWarnings("unchecked")
     protected void prepareResponse(final Map model, HttpServletResponse response)
                                                                                  throws UnsupportedEncodingException {
         response.setContentType(getContentType());

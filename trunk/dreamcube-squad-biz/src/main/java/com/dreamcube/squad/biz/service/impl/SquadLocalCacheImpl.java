@@ -1,10 +1,12 @@
 package com.dreamcube.squad.biz.service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dreamcube.core.common.service.cache.CacheKeyNameEnum;
 import com.dreamcube.core.common.service.cache.CacheOrderByEnum;
 import com.dreamcube.core.common.service.cache.CacheService;
 import com.dreamcube.core.common.service.cache.CacheTool;
@@ -54,12 +56,12 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
      * @param orderByType
      * @param count
      * @return
-     * @see com.dreamcube.squad.biz.service.SquadLocalCache#sort(java.lang.String, java.lang.String, com.dreamcube.core.common.service.cache.CacheOrderByEnum, int)
+     * @see com.dreamcube.squad.biz.service.SquadLocalCache#sort(com.dreamcube.core.common.service.cache.LocalCacheEnum, java.lang.String, com.dreamcube.core.common.service.cache.CacheOrderByEnum, int)
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public List<DCSquad> sort(String category, String orderByStr, CacheOrderByEnum orderByType,
-                              int count) {
+    public List<DCSquad> sort(LocalCacheEnum category, String orderByStr,
+                              CacheOrderByEnum orderByType, int count) {
 
         DBObject orderBy = new BasicDBObject();
         orderBy.put(orderByStr, orderByType.code());
@@ -78,10 +80,10 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
      * @return
      * @see com.dreamcube.core.common.service.cache.LocalCache#getAllCache()
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public List<?> getAllCache() {
-        List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD.code());
+        List cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD);
 
         attemptRefresh(cacheList, false);
 
@@ -118,7 +120,7 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
      */
     @Override
     public void init() {
-        cacheService.clean(getCacheName().code());
+        cacheService.clean(getCacheName());
     }
 
     /**
@@ -129,9 +131,9 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
     public void refresh() {
         init();
 
-        List<DCSquad> squadList = SquadConvert.doToDomainList(dcSquadDAO.load());
+        List<Serializable> squadList = SquadConvert.doToDomainListForSerializ(dcSquadDAO.load());
 
-        cacheService.refresh(LocalCacheEnum.DC_SQUAD.code(), squadList);
+        cacheService.refresh(LocalCacheEnum.DC_SQUAD, CacheKeyNameEnum.SQUAD, squadList);
 
         dump();
 
@@ -144,8 +146,8 @@ public class SquadLocalCacheImpl implements SquadLocalCache {
      * @see com.dreamcube.core.common.service.cache.LocalCache#refresh(com.dreamcube.core.common.service.cache.LocalCacheEnum, java.lang.Object, java.lang.Object)
      */
     @Override
-    public void refresh(LocalCacheEnum category, Object oldCache, Object newCache) {
-        cacheService.update(category.code(), oldCache, newCache);
+    public void refresh(LocalCacheEnum category, Serializable oldCache, Serializable newCache) {
+        cacheService.update(category, CacheKeyNameEnum.SQUAD, oldCache, newCache);
     }
 
     // private

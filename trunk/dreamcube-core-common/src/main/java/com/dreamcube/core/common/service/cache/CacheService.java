@@ -1,5 +1,6 @@
 package com.dreamcube.core.common.service.cache;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.mongodb.DBObject;
@@ -32,10 +33,12 @@ public interface CacheService {
      * 刷新
      * 
      * @param category      缓存类别
+     * @param keyName       缓存的key
      * @param cacheList     缓存对象集
      * @return
      */
-    public boolean refresh(String category, List<?> cacheList);
+    public boolean refresh(LocalCacheEnum category, CacheKeyNameEnum keyName,
+                           List<Serializable> cacheList);
 
     /**
      * 清空缓存
@@ -43,7 +46,7 @@ public interface CacheService {
      * @param category      缓存类别
      * @return
      */
-    public boolean clean(String category);
+    public boolean clean(LocalCacheEnum category);
 
     /**
      * 初始化
@@ -56,18 +59,20 @@ public interface CacheService {
      * 此更新方法支持批量更新，小心哦。
      * 
      * @param category      缓存类别
+     * @param keyName       缓存的key
      * @param oldCache      老缓存对象
      * @param newCache      新缓存对象
      * @return
      */
-    public boolean update(String category, Object oldCache, Object newCache);
+    public boolean update(LocalCacheEnum category, CacheKeyNameEnum keyName, Serializable oldCache,
+                          Serializable newCache);
 
     /**
      * 
      * @param category
      * @return
      */
-    public List<?> getAllCacheObject(String category);
+    public List<?> getAllCacheObject(LocalCacheEnum category);
 
     /**
      * 缓存内容排序
@@ -81,5 +86,5 @@ public interface CacheService {
      * @param count     取几个.默认0为全部.
      * @return
      */
-    public List<?> sort(String category, DBObject orderBy, int count);
+    public List<?> sort(LocalCacheEnum category, DBObject orderBy, int count);
 }

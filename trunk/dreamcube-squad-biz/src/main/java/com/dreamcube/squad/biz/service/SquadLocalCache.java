@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dreamcube.core.common.service.cache.CacheOrderByEnum;
 import com.dreamcube.core.common.service.cache.LocalCache;
+import com.dreamcube.core.common.service.cache.LocalCacheEnum;
 import com.dreamcube.core.squad.domain.DCSquad;
 
 /**
@@ -39,7 +40,7 @@ public interface SquadLocalCache extends LocalCache {
      * @param count         取多少条
      * @return
      */
-    public List<DCSquad> sort(String category, String orderByStr, CacheOrderByEnum orderByType,
-                              int count);
+    public List<DCSquad> sort(LocalCacheEnum category, String orderByStr,
+                              CacheOrderByEnum orderByType, int count);
 
 }

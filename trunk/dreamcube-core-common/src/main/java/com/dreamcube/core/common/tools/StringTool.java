@@ -1095,8 +1095,8 @@ public class StringTool {
             return str;
         }
 
-        return new StringBuffer(strLen).append(Character.toTitleCase(str.charAt(0))).append(
-            str.substring(1)).toString();
+        return new StringBuffer(strLen).append(Character.toTitleCase(str.charAt(0)))
+            .append(str.substring(1)).toString();
     }
 
     /**
@@ -1126,8 +1126,8 @@ public class StringTool {
             return str;
         }
 
-        return new StringBuffer(strLen).append(Character.toLowerCase(str.charAt(0))).append(
-            str.substring(1)).toString();
+        return new StringBuffer(strLen).append(Character.toLowerCase(str.charAt(0)))
+            .append(str.substring(1)).toString();
     }
 
     /**
@@ -1302,8 +1302,7 @@ public class StringTool {
     /** 解析单词的解析器。 */
     private static final WordTokenizer CAMEL_CASE_TOKENIZER                  = new WordTokenizer() {
                                                                                  @Override
-                                                                                 protected void startSentence(
-                                                                                                              StringBuffer buffer,
+                                                                                 protected void startSentence(StringBuffer buffer,
                                                                                                               char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1311,8 +1310,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startWord(
-                                                                                                          StringBuffer buffer,
+                                                                                 protected void startWord(StringBuffer buffer,
                                                                                                           char ch) {
                                                                                      if (!isDelimiter(buffer
                                                                                          .charAt(buffer
@@ -1328,8 +1326,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inWord(
-                                                                                                       StringBuffer buffer,
+                                                                                 protected void inWord(StringBuffer buffer,
                                                                                                        char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1337,32 +1334,28 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitSentence(
-                                                                                                                   StringBuffer buffer,
+                                                                                 protected void startDigitSentence(StringBuffer buffer,
                                                                                                                    char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitWord(
-                                                                                                               StringBuffer buffer,
+                                                                                 protected void startDigitWord(StringBuffer buffer,
                                                                                                                char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDigitWord(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDigitWord(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDelimiter(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDelimiter(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      if (ch != UNDERSCORE) {
                                                                                          buffer
@@ -1373,8 +1366,7 @@ public class StringTool {
 
     private static final WordTokenizer PASCAL_CASE_TOKENIZER                 = new WordTokenizer() {
                                                                                  @Override
-                                                                                 protected void startSentence(
-                                                                                                              StringBuffer buffer,
+                                                                                 protected void startSentence(StringBuffer buffer,
                                                                                                               char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1382,8 +1374,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startWord(
-                                                                                                          StringBuffer buffer,
+                                                                                 protected void startWord(StringBuffer buffer,
                                                                                                           char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1391,8 +1382,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inWord(
-                                                                                                       StringBuffer buffer,
+                                                                                 protected void inWord(StringBuffer buffer,
                                                                                                        char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1400,32 +1390,28 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitSentence(
-                                                                                                                   StringBuffer buffer,
+                                                                                 protected void startDigitSentence(StringBuffer buffer,
                                                                                                                    char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitWord(
-                                                                                                               StringBuffer buffer,
+                                                                                 protected void startDigitWord(StringBuffer buffer,
                                                                                                                char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDigitWord(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDigitWord(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDelimiter(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDelimiter(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      if (ch != UNDERSCORE) {
                                                                                          buffer
@@ -1436,8 +1422,7 @@ public class StringTool {
 
     private static final WordTokenizer UPPER_CASE_WITH_UNDERSCORES_TOKENIZER = new WordTokenizer() {
                                                                                  @Override
-                                                                                 protected void startSentence(
-                                                                                                              StringBuffer buffer,
+                                                                                 protected void startSentence(StringBuffer buffer,
                                                                                                               char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1445,8 +1430,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startWord(
-                                                                                                          StringBuffer buffer,
+                                                                                 protected void startWord(StringBuffer buffer,
                                                                                                           char ch) {
                                                                                      if (!isDelimiter(buffer
                                                                                          .charAt(buffer
@@ -1461,8 +1445,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inWord(
-                                                                                                       StringBuffer buffer,
+                                                                                 protected void inWord(StringBuffer buffer,
                                                                                                        char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1470,16 +1453,14 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitSentence(
-                                                                                                                   StringBuffer buffer,
+                                                                                 protected void startDigitSentence(StringBuffer buffer,
                                                                                                                    char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitWord(
-                                                                                                               StringBuffer buffer,
+                                                                                 protected void startDigitWord(StringBuffer buffer,
                                                                                                                char ch) {
                                                                                      if (!isDelimiter(buffer
                                                                                          .charAt(buffer
@@ -1493,16 +1474,14 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDigitWord(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDigitWord(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDelimiter(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDelimiter(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      buffer
                                                                                          .append(ch);
@@ -1511,8 +1490,7 @@ public class StringTool {
 
     private static final WordTokenizer LOWER_CASE_WITH_UNDERSCORES_TOKENIZER = new WordTokenizer() {
                                                                                  @Override
-                                                                                 protected void startSentence(
-                                                                                                              StringBuffer buffer,
+                                                                                 protected void startSentence(StringBuffer buffer,
                                                                                                               char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1520,8 +1498,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startWord(
-                                                                                                          StringBuffer buffer,
+                                                                                 protected void startWord(StringBuffer buffer,
                                                                                                           char ch) {
                                                                                      if (!isDelimiter(buffer
                                                                                          .charAt(buffer
@@ -1536,8 +1513,7 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inWord(
-                                                                                                       StringBuffer buffer,
+                                                                                 protected void inWord(StringBuffer buffer,
                                                                                                        char ch) {
                                                                                      buffer
                                                                                          .append(Character
@@ -1545,16 +1521,14 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitSentence(
-                                                                                                                   StringBuffer buffer,
+                                                                                 protected void startDigitSentence(StringBuffer buffer,
                                                                                                                    char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void startDigitWord(
-                                                                                                               StringBuffer buffer,
+                                                                                 protected void startDigitWord(StringBuffer buffer,
                                                                                                                char ch) {
                                                                                      if (!isDelimiter(buffer
                                                                                          .charAt(buffer
@@ -1568,16 +1542,14 @@ public class StringTool {
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDigitWord(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDigitWord(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      buffer
                                                                                          .append(ch);
                                                                                  }
 
                                                                                  @Override
-                                                                                 protected void inDelimiter(
-                                                                                                            StringBuffer buffer,
+                                                                                 protected void inDelimiter(StringBuffer buffer,
                                                                                                             char ch) {
                                                                                      buffer
                                                                                          .append(ch);
@@ -1854,6 +1826,7 @@ public class StringTool {
      * 
      * @return 分割后的字符串数组，如果原字符串为<code>null</code>，则返回<code>null</code>
      */
+    @SuppressWarnings("rawtypes")
     public static String[] split(String str, char separatorChar) {
         if (str == null) {
             return null;
@@ -1948,6 +1921,7 @@ public class StringTool {
      * 
      * @return 分割后的字符串数组，如果原字符串为<code>null</code>，则返回<code>null</code>
      */
+    @SuppressWarnings("rawtypes")
     public static String[] split(String str, String separatorChars, int max) {
         if (str == null) {
             return null;
@@ -2182,6 +2156,7 @@ public class StringTool {
      * 
      * @return 连接后的字符串，如果原数组为<code>null</code>，则返回<code>null</code>
      */
+    @SuppressWarnings("rawtypes")
     public static String join(Iterator iterator, char separator) {
         if (iterator == null) {
             return null;
@@ -2224,7 +2199,7 @@ public class StringTool {
      * 
      * @return 连接后的字符串，如果原数组为<code>null</code>，则返回<code>null</code>
      */
-    public static String join(Iterator iterator, String separator) {
+    public static String join(Iterator<?> iterator, String separator) {
         if (iterator == null) {
             return null;
         }
@@ -3895,8 +3870,8 @@ public class StringTool {
             end = temp;
         }
 
-        return new StringBuffer((len + start) - end + overlay.length() + 1).append(
-            str.substring(0, start)).append(overlay).append(str.substring(end)).toString();
+        return new StringBuffer((len + start) - end + overlay.length() + 1)
+            .append(str.substring(0, start)).append(overlay).append(str.substring(end)).toString();
     }
 
     /*
