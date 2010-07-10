@@ -161,11 +161,25 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return nameList;
     }
 
+    /**
+     * @param size
+     * @return
+     * @see com.dreamcube.enrollment.biz.service.EnrollmentService#loadAttention(int)
+     */
+    @Override
+    public List<DCUser> loadAttention(int size) {
+
+        List<DcUserDO> doList = dcUserDAO.loadForAttention(size);
+
+        return UserConvert.doToDomainList(doList);
+    }
+
     // private method
     /**
      * 刷缓存
      */
     private void refreshLocalCache() {
+
     }
 
     // DI ~~~

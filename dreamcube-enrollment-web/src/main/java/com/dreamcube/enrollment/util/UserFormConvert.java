@@ -1,6 +1,8 @@
 package com.dreamcube.enrollment.util;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.dreamcube.core.common.tools.DateTool;
 import com.dreamcube.core.common.tools.StringTool;
@@ -31,6 +33,10 @@ import com.dreamcube.enrollment.form.UserForm;
  */
 public class UserFormConvert {
 
+    /**
+     * @param userForm
+     * @return
+     */
     public static DCUser convert(UserForm userForm) {
         DCUser user = new DCUser();
 
@@ -57,6 +63,10 @@ public class UserFormConvert {
         return user;
     }
 
+    /**
+     * @param user
+     * @return
+     */
     public static UserForm convert(DCUser user) {
         UserForm userForm = new UserForm();
 
@@ -75,6 +85,20 @@ public class UserFormConvert {
         userForm.setWorkSite(user.getWorkSite());
 
         return userForm;
+    }
+
+    /**
+     * @param users
+     * @return
+     */
+    public static List<UserForm> convert(List<DCUser> users) {
+
+        List<UserForm> forms = new ArrayList<UserForm>();
+
+        for (DCUser user : users) {
+            forms.add(convert(user));
+        }
+        return forms;
     }
 
 }

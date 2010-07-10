@@ -136,6 +136,10 @@ public class SendMail {
 
     }
 
+    /**
+     * @param email
+     * @param host
+     */
     private static void isGmail(Email email, String host) {
         String[] hostArr = StringTool.split(host, ".");
         if (ArrayTool.contains(hostArr, "gmail")) {

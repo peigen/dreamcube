@@ -151,4 +151,17 @@ public interface DcUserDAO {
 	 */	 
     public int deleteById(long id) throws DataAccessException;
 
+	/**
+	 *  Query DB table <tt>dc_user</tt> for records.
+	 *
+	 *  <p>
+	 *  The sql statement for this operation is <br>
+	 *  <tt>select * from dc_user</tt>
+	 *
+	 *	@param size
+	 *	@return List<DcUserDO>
+	 *	@throws DataAccessException
+	 */	 
+    public List<DcUserDO> loadForAttention(Integer size) throws DataAccessException;
+
 }

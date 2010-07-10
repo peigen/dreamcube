@@ -190,4 +190,9 @@
     ]]>
     </delete>
 
+    <!-- mapped statement for IbatisDcUserDAO.loadForAttention -->
+    <select id="MS-DC-USER-LOAD-FOR-ATTENTION" resultMap="RM-DC-USER">
+        select * from dc_user order by attention desc limit 0,#size#;
+    </select>
+
 </sqlMap>

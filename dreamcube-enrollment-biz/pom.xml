@@ -2,8 +2,8 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>parent</artifactId>
 		<groupId>com.dreamcube</groupId>
+		<artifactId>dreamcube-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.dreamcube</groupId>
@@ -13,17 +13,15 @@
 	<name>dreamcube-enrollment-biz</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-		
-	  	<!-- dreamcube -->
-	  	<dependency>
-	  		<groupId>com.dreamcube</groupId>
-	  		<artifactId>dreamcube-enrollment-core-domain</artifactId>
-	  		<version>1.0-SNAPSHOT</version>
-	  	</dependency>
+
+		<!-- dreamcube -->
+		<dependency>
+			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-enrollment-core-domain</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.dreamcube</groupId>
 			<artifactId>dreamcube-dal</artifactId>
-			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
