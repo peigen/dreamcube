@@ -1,5 +1,7 @@
 package com.dreamcube.enrollment.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dreamcube.core.enrollment.domain.DCUser;
+import com.dreamcube.enrollment.biz.service.EnrollmentService;
 import com.dreamcube.enrollment.biz.service.LogonService;
 import com.dreamcube.enrollment.form.UserForm;
 import com.dreamcube.enrollment.util.UserFormConvert;
@@ -37,10 +40,16 @@ import com.dreamcube.enrollment.util.UserFormConvert;
 public class LogonController {
 
     @Autowired
-    private LogonService logonService;
+    private LogonService      logonService;
+
+    @Autowired
+    private EnrollmentService enrollmentService;
 
     @RequestMapping(value = "/index.html", method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
+        List<DCUser> users = enrollmentService.loadAttention(3);
+
+        modelMap.addAttribute("users", UserFormConvert.convert(users));
 
         return "index.vm";
     }

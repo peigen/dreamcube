@@ -176,4 +176,22 @@
 
 	</operation>
 	
+	
+	<operation name="loadForAttention" multiplicity="many">
+		<extraparams>
+			<param name="size" javatype="java.lang.Integer" />
+        </extraparams>
+        
+		<sql>
+			<![CDATA[
+				select * from dc_user;
+    		]]>
+		</sql>
+		<sqlmap>
+			<![CDATA[
+				select * from dc_user order by attention desc limit 0,#size#;
+			]]>
+		</sqlmap>
+
+	</operation>
 </table>

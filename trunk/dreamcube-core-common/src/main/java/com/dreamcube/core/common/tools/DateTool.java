@@ -344,7 +344,7 @@ public class DateTool {
         if (d == null) {
             return null;
         }
-        return new Long(d.getTime());
+        return Long.valueOf(d.getTime());
     }
 
     /**
@@ -652,7 +652,7 @@ public class DateTool {
      *
      * @throws ParseException
      */
-    public static final String StringToStringDate(String stringDate) {
+    public static final String stringToStringDate(String stringDate) {
         if (stringDate == null) {
             return null;
         }

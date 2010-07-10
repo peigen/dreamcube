@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.enums.EnumUtils;
+import org.apache.log4j.Logger;
 import org.springframework.util.ReflectionUtils;
 
 /**
@@ -41,6 +42,8 @@ public class JDKEnumUtils {
     /** 定义被扫描的enum,填到包名即可 */
     static String[]             enumPackages      = { "com.dreamcube.core.squad.enums.",
             "com.dreamcube.core.common.util.enums.", "com.dreamcube.core.enrollment.enums." };
+
+    private static final Logger log               = Logger.getLogger(JDKEnumUtils.class);
 
     /**
      * 获取枚举Class，支持传入参数enum全路径，用来防止多个enum同个名字。<br>
@@ -142,6 +145,7 @@ public class JDKEnumUtils {
             }
         } catch (Exception e) {
             // do nothing
+            log.warn("获取枚举信息异常！" + e);
         }
 
         return null;

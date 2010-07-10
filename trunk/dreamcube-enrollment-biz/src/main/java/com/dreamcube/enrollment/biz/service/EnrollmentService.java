@@ -85,4 +85,11 @@ public interface EnrollmentService {
      */
     public List<String> loadAllUserName();
 
+    /**
+     * 获取被关注的用户前几名用户
+     * 
+     * @return
+     */
+    public List<DCUser> loadAttention(int size);
+
 }

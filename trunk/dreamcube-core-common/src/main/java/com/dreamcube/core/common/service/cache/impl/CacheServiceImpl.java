@@ -1,7 +1,6 @@
 package com.dreamcube.core.common.service.cache.impl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -76,7 +75,7 @@ public class CacheServiceImpl implements CacheService {
     public boolean refresh(LocalCacheEnum category, CacheKeyNameEnum keyName,
                            List<Serializable> cacheList) {
 
-        List<DBObject> dbObjectList = new ArrayList<DBObject>();
+        List<DBObject> dbObjectList;
 
         try {
 

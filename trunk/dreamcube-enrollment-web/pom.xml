@@ -2,21 +2,24 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>parent</artifactId>
 		<groupId>com.dreamcube</groupId>
+		<artifactId>dreamcube-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
+
 	<groupId>com.dreamcube</groupId>
 	<artifactId>dreamcube-enrollment-web</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+
 	<name>dreamcube-enrollment-web</name>
 	<url>http://maven.apache.org</url>
+
+	<packaging>jar</packaging>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.dreamcube</groupId>
 			<artifactId>dreamcube-enrollment-biz</artifactId>
-			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
