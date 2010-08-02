@@ -435,10 +435,8 @@
 		<module>dreamcube-assemble-test</module>
 		
 		<module>dreamcube-common-web</module>
-		
 		<module>dreamcube-front-web</module>
 		<module>dreamcube-front-biz</module>
-		
 		<module>dreamcube-enrollment-core-domain</module>
 		<module>dreamcube-enrollment-biz</module>
 		<module>dreamcube-enrollment-web</module>
@@ -449,5 +447,7 @@
 
 		<!-- Test -->
 		<module>dreamcube-test-test</module>
+    <module>dreamcube-front-biz</module>
+    <module>dreamcube-front-web</module>
   </modules>
 </project>
