@@ -175,9 +175,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>apache-beanutils</groupId>
+			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>1.7.0</version>
+			<version>1.8.0</version>
 		</dependency>
 
 		<dependency>
@@ -199,7 +199,7 @@
 		</dependency>
 		
 		<!-- dal -->
-		<!--<dependency>
+		<dependency>
 			<groupId>com.ibatis</groupId>
 			<artifactId>ibatis2-common</artifactId>
 			<version>2.1.7.597</version>
@@ -208,7 +208,7 @@
 			<groupId>com.ibatis</groupId>
 			<artifactId>ibatis2-dao</artifactId>
 			<version>2.1.7.597</version>
-		</dependency>-->
+		</dependency>
 		
 		<!--使用ibatis1.3.1是因为以前使用ibatis2的时候会报错，可能是新ibatis2的接口有所改变-->
 		<dependency>
@@ -419,7 +419,14 @@
 		
 		<repository>
 			<id>projectlombok.org</id>
+			<name>projectlombok.org</name>
 			<url>http://projectlombok.org/mavenrepo</url>
+		</repository>
+
+		<repository>
+			<id>mvn.net</id>
+			<name>mvn.net</name>
+			<url>http://maven.net.cn/content/repositories/central</url>
 		</repository>
 
 	</repositories>
@@ -447,7 +454,5 @@
 
 		<!-- Test -->
 		<module>dreamcube-test-test</module>
-    <module>dreamcube-front-biz</module>
-    <module>dreamcube-front-web</module>
   </modules>
 </project>
