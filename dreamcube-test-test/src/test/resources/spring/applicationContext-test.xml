@@ -11,4 +11,5 @@
 
 	<import resource="classpath:spring/dreamcube-core-common.xml"/>
 	<import resource="classpath:spring/dreamcube-squad-biz.xml"/>
+	<import resource="classpath:spring/dreamcube-enrollment-biz.xml"/>
 </beans>

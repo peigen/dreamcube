@@ -6,6 +6,7 @@ import org.springframework.test.AbstractTransactionalSpringContextTests;
 
 import com.dreamcube.core.common.service.cache.CacheService;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
+import com.dreamcube.enrollment.biz.service.EnrollmentService;
 import com.dreamcube.squad.biz.service.SquadAttentionLocalCache;
 import com.dreamcube.squad.biz.service.SquadLocalCache;
 
@@ -33,7 +34,7 @@ import com.dreamcube.squad.biz.service.SquadLocalCache;
  */
 public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContextTests {
 
-    private static Logger log = LoggerFactory.getLogger(DreamCubeServiceTestBase.class);
+    private final Logger log = LoggerFactory.getLogger(DreamCubeServiceTestBase.class);
 
     /**
      * 打印输出
@@ -57,13 +58,17 @@ public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContext
     }
 
     // 成员变量
+    // Dao
     public DcSquadDAO               dcSquadDAO;
 
+    // service
     public CacheService             cacheService;
 
     public SquadAttentionLocalCache squadAttentionLocalCache;
 
     public SquadLocalCache          squadLocalCache;
+
+    public EnrollmentService        enrollmentService;
 
     // DI~~~
 
@@ -97,6 +102,14 @@ public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContext
      */
     public void setSquadLocalCache(SquadLocalCache squadLocalCache) {
         this.squadLocalCache = squadLocalCache;
+    }
+
+    /**
+     * @param enrollmentService
+     * The enrollmentService to set.
+     */
+    public void setEnrollmentService(EnrollmentService enrollmentService) {
+        this.enrollmentService = enrollmentService;
     }
 
     public void testDummy() {

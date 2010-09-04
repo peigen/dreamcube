@@ -42,7 +42,7 @@ public class MongoDBStoreServiceTest extends DreamCubeServiceTestBase {
     /**
      * 初始化缓存对象
      */
-    public void ntestStoreCache() {
+    public void testStoreCache() {
         List<DcSquadDO> squadDOList = dcSquadDAO.load();
 
         print("清空缓存对象");

@@ -36,7 +36,7 @@ public interface EnrollmentService {
      * @param id
      * @return
      */
-    public DCUser loadById(String id);
+    public DCUser loadUserById(String id);
 
     /**
      * 用户信息修改
