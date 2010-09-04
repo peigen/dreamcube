@@ -1,5 +1,6 @@
 package com.dreamcube.enrollment.biz.service.impl;
 
+import com.dreamcube.core.common.tools.MD5Tool;
 import com.dreamcube.core.dal.daointerface.DcUserDAO;
 import com.dreamcube.core.dal.dataobject.DcUserDO;
 import com.dreamcube.core.enrollment.domain.DCUser;
@@ -39,8 +40,10 @@ public class LogonServiceImpl implements LogonService {
      */
     @Override
     public DCUser logon(DCUser user) {
-        DcUserDO userDO = dcUserDAO.loadByLogonNameAndPasswd(user.getLogonName(), user
-            .getLogonPasswd());
+
+        String passwd = MD5Tool.MD5Encode(user.getLogonPasswd());
+
+        DcUserDO userDO = dcUserDAO.loadByLogonNameAndPasswd(user.getLogonName(), passwd);
 
         if (userDO == null) {
             return null;

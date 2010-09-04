@@ -31,17 +31,28 @@
 		</dependency>
 
 		<!-- dreamcube -->
+		
+		<dependency>
+			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-dal</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.dreamcube</groupId>
 			<artifactId>dreamcube-squad-core-domain</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.dreamcube</groupId>
-			<artifactId>dreamcube-dal</artifactId>
+			<artifactId>dreamcube-squad-biz</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.dreamcube</groupId>
+			<artifactId>dreamcube-enrollment-core-domain</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.dreamcube</groupId>
-			<artifactId>dreamcube-squad-biz</artifactId>
+			<artifactId>dreamcube-enrollment-biz</artifactId>
 		</dependency>
 
 	</dependencies>

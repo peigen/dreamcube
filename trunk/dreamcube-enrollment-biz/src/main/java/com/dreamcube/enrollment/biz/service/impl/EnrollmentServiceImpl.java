@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
+import com.dreamcube.core.common.tools.MD5Tool;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcUserDAO;
 import com.dreamcube.core.dal.dataobject.DcUserDO;
@@ -52,10 +53,13 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Override
     public void editUser(DCUser dcUser) {
 
+        dcUser.check();
+
         if (StringTool.isNotBlank(dcUser.getId())) {
             dcUserDAO.update(UserConvert.domainToDo(dcUser));
         } else {
             dcUser.setStatus(DCUserStatusEnum.UN_CERTIFIED);
+            dcUser.setLogonPasswd(MD5Tool.MD5Encode(dcUser.getLogonPasswd()));
             dcUserDAO.insert(UserConvert.domainToDo(dcUser));
         }
 
@@ -66,10 +70,10 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     /**
      * @param id
      * @return
-     * @see com.dreamcube.enrollment.biz.service.EnrollmentService#loadById(java.lang.String)
+     * @see com.dreamcube.enrollment.biz.service.EnrollmentService#loadUserById(java.lang.String)
      */
     @Override
-    public DCUser loadById(String id) {
+    public DCUser loadUserById(String id) {
         if (StringTool.isBlank(id))
             throw new IllegalArgumentException("id不得为空");
 
@@ -129,19 +133,27 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         if (StringTool.isNotBlank(nickName)) {
 
-            DcUserDO dcUserDO = dcUserDAO.loadByNickName(nickName);
+            DcUserDO user = dcUserDAO.loadByNickName(nickName);
 
-            return (dcUserDO != null) ? false : true;
+            if (user != null && StringTool.equals(user.getNickName(), nickName)) {
+                return false;
+            }
+
+            return true;
         }
 
         if (StringTool.isNotBlank(logonName)) {
 
-            DcUserDO dcUserDO = dcUserDAO.loadByLogonName(logonName);
+            DcUserDO user = dcUserDAO.loadByLogonName(logonName);
 
-            return (dcUserDO != null) ? false : true;
+            if (user != null && StringTool.equals(user.getLogonName(), logonName)) {
+                return false;
+            }
+
+            return true;
         }
 
-        return true;
+        return false;
 
     }
 

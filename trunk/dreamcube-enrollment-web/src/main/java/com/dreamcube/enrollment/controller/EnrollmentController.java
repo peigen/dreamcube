@@ -75,7 +75,7 @@ public class EnrollmentController {
         String userId = userForm.getId();
         if (StringTool.isNotBlank(userId)) {
 
-            DCUser user = enrollmentService.loadById(userId);
+            DCUser user = enrollmentService.loadUserById(userId);
             modelMap.addAttribute("user", UserFormConvert.convert(user));
         }
 

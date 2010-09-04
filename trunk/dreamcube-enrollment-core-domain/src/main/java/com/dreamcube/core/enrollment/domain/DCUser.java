@@ -109,6 +109,23 @@ public class DCUser implements Serializable {
     }
 
     /**
+     * 简化的构造体
+     * 
+     * @param logonName
+     * @param logonPasswd
+     */
+    public DCUser(String logonName, String logonPasswd) {
+        super();
+        this.logonName = logonName;
+        this.logonPasswd = logonPasswd;
+        this.nickName = logonName;
+
+        this.gmtCreate = new Date();
+        this.gmtModify = gmtCreate;
+        this.status = DCUserStatusEnum.UN_CERTIFIED;
+    }
+
+    /**
      * 空对象
      */
     public DCUser() {
@@ -122,6 +139,8 @@ public class DCUser implements Serializable {
 
         Assert.notNull(logonName);
         Assert.notNull(logonPasswd);
+        Assert.notNull(gmtCreate);
+        Assert.notNull(gmtModify);
 
     }
 
