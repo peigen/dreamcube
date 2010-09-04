@@ -99,4 +99,8 @@ public class DreamCubeServiceTestBase extends AbstractTransactionalSpringContext
         this.squadLocalCache = squadLocalCache;
     }
 
+    public void testDummy() {
+
+    }
+
 }

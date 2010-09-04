@@ -70,7 +70,7 @@
 			value="com.dreamcube.framework.views.DreamCubeJsonView" />
 	</bean>
 	
-		<!-- checkcode view config -->
+	<!-- checkcode view config -->
 	<bean name="checkCodeViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="cache" value="true" />
