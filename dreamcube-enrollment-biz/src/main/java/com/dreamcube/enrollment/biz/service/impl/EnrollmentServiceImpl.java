@@ -41,9 +41,9 @@ import com.dreamcube.enrollment.biz.service.EnrollmentService;
  */
 public class EnrollmentServiceImpl implements EnrollmentService {
 
-    private static Logger log = LoggerFactory.getLogger(EnrollmentServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(EnrollmentServiceImpl.class);
 
-    private DcUserDAO     dcUserDAO;
+    private DcUserDAO    dcUserDAO;
 
     /**
      * @param dcUser

@@ -38,12 +38,12 @@ public class SquadAttentionLocalCacheServiceTest extends DreamCubeServiceTestBas
 
         log.info("=================清空并创建缓存对象====================");
 
-        squadAttentionLocalCache.refresh();
+        //        squadAttentionLocalCache.refresh();
 
     }
 
     @SuppressWarnings("unchecked")
-    public void testQueryCache() {
+    public void ntestQueryCache() {
         List<AttentionCache> cacheList = (List<AttentionCache>) squadAttentionLocalCache
             .getAllCache();
 

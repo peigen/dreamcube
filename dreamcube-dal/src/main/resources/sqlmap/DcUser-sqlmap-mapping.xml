@@ -38,6 +38,7 @@
         <result property="gmtCreate" column="gmt_create" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
         <result property="gmtModify" column="gmt_modify" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
         <result property="status" column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="attention" column="attention" javaType="long" jdbcType="BIGINT" nullValue="0"/>
     </resultMap>
 
 

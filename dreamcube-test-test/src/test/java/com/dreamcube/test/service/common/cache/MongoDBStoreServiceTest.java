@@ -35,10 +35,14 @@ import com.mongodb.BasicDBObject;
  */
 public class MongoDBStoreServiceTest extends DreamCubeServiceTestBase {
 
+    public void testDummy() {
+
+    }
+
     /**
      * 初始化缓存对象
      */
-    public void testStoreCache() {
+    public void ntestStoreCache() {
         List<DcSquadDO> squadDOList = dcSquadDAO.load();
 
         print("清空缓存对象");
@@ -54,7 +58,7 @@ public class MongoDBStoreServiceTest extends DreamCubeServiceTestBase {
      * 查询缓存对象
      * @throws Exception 
      */
-    public void testQueryCache() throws Exception {
+    public void ntestQueryCache() throws Exception {
         print("查询缓存对象");
         List<?> cacheList = cacheService.getAllCacheObject(LocalCacheEnum.DC_SQUAD);
 
@@ -65,6 +69,8 @@ public class MongoDBStoreServiceTest extends DreamCubeServiceTestBase {
             transDCObject(object);
         }
     }
+
+    // private
 
     /**
      * @param obj

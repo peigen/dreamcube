@@ -92,6 +92,11 @@ public class DcUserDO {
 	 */
 	private String status;
 
+	/**
+	 * This property corresponds to db column <tt>attention</tt>.
+	 */
+	private long attention;
+
     //========== getters and setters ==========
 
     /**
@@ -326,5 +331,23 @@ public class DcUserDO {
      */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+    /**
+     * Getter method for property <tt>attention</tt>.
+     *
+     * @return property value of attention
+     */
+	public long getAttention() {
+		return attention;
+	}
+	
+	/**
+	 * Setter method for property <tt>attention</tt>.
+	 * 
+	 * @param attention value to be assigned to property attention
+     */
+	public void setAttention(long attention) {
+		this.attention = attention;
 	}
 }
