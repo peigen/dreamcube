@@ -85,3 +85,5 @@ INSERT INTO dc_squad
 (squad_name,squad_desc,axiser,status,gmt_create,gmt_modify,attention)
 VALUES('dreamcube_15','描述','peigen','DEV',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
 
+
+
