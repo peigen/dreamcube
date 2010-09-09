@@ -3,7 +3,7 @@ package com.dreamcube.enrollment.biz.service;
 import java.util.Date;
 import java.util.List;
 
-import com.dreamcube.core.dal.util.PageList;
+import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.enrollment.domain.DCUser;
 import com.dreamcube.core.enrollment.enums.DCUserStatusEnum;
 

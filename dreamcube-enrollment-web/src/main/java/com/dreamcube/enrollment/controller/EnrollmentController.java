@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dreamcube.core.common.tools.IntegerTool;
+import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.common.tools.StringTool;
-import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.enrollment.domain.DCUser;
 import com.dreamcube.enrollment.biz.service.EnrollmentService;
 import com.dreamcube.enrollment.form.UserForm;
@@ -60,9 +60,10 @@ public class EnrollmentController {
     public String doQuery(ModelMap modelMap, UserForm userForm) {
 
         PageList list = enrollmentService.queryUser(userForm.getLogonName(),
-            userForm.getNickName(), userForm.getCertNo(), userForm.getStatus(), userForm
-                .getGmtCreate(), userForm.getGmtModify(), IntegerTool.strToInt(userForm
-                .getPageSize()), IntegerTool.strToInt(userForm.getPageNum()));
+            userForm.getNickName(), userForm.getCertNo(), userForm.getStatus(),
+            userForm.getGmtCreate(), userForm.getGmtModify(),
+            IntegerTool.strToInt(userForm.getPageSize()),
+            IntegerTool.strToInt(userForm.getPageNum()));
 
         modelMap.addAttribute("userList", list);
         modelMap.addAttribute("user", userForm);

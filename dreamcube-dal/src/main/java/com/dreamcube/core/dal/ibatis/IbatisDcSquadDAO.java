@@ -4,20 +4,18 @@
  */
 package com.dreamcube.core.dal.ibatis;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
+import com.dreamcube.core.common.tools.PageList;
+import com.dreamcube.core.common.tools.Paginator;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
-
-// auto generated imports
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
-import org.springframework.dao.DataAccessException;
-import java.util.List;
-import java.util.Date;
-import com.dreamcube.core.dal.util.PageList;
-
-import java.util.Map;
-import java.util.HashMap;
-import com.dreamcube.core.dal.util.Paginator;
 
 /**
  * An ibatis based implementation of dao interface <tt>com.dreamcube.core.dal.daointerface.DcSquadDAO</tt>.
@@ -36,136 +34,139 @@ import com.dreamcube.core.dal.util.Paginator;
  */
 @SuppressWarnings("unchecked")
 public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadDAO {
-	/**
-	 *  Insert one <tt>DcSquadDO</tt> object to DB table <tt>dc_squad</tt>, return primary key
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify,attention) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)</tt>
-	 *
-	 *	@param dcSquad
-	 *	@return long
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Insert one <tt>DcSquadDO</tt> object to DB table <tt>dc_squad</tt>, return primary key
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>insert into dc_squad(squad_name,squad_desc,axiser,cubers,followers,investors,status,gmt_create,gmt_modify,attention) values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)</tt>
+     *
+     *	@param dcSquad
+     *	@return long
+     *	@throws DataAccessException
+     */
     public long insert(DcSquadDO dcSquad) throws DataAccessException {
-    	if (dcSquad == null) {
-    		throw new IllegalArgumentException("Can't insert a null data object into db.");
-    	}
-    	
+        if (dcSquad == null) {
+            throw new IllegalArgumentException("Can't insert a null data object into db.");
+        }
+
         getSqlMapClientTemplate().insert("MS-DC-SQUAD-INSERT", dcSquad);
 
         return dcSquad.getId();
     }
 
-	/**
-	 *  Query DB table <tt>dc_squad</tt> for records.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_squad</tt>
-	 *
-	 *	@return List<DcSquadDO>
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Query DB table <tt>dc_squad</tt> for records.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>select * from dc_squad</tt>
+     *
+     *	@return List<DcSquadDO>
+     *	@throws DataAccessException
+     */
     public List<DcSquadDO> load() throws DataAccessException {
 
         return getSqlMapClientTemplate().queryForList("MS-DC-SQUAD-LOAD", null);
 
     }
 
-	/**
-	 *  Query DB table <tt>dc_squad</tt> for records.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_squad where (id = ?)</tt>
-	 *
-	 *	@param id
-	 *	@return DcSquadDO
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Query DB table <tt>dc_squad</tt> for records.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>select * from dc_squad where (id = ?)</tt>
+     *
+     *	@param id
+     *	@return DcSquadDO
+     *	@throws DataAccessException
+     */
     public DcSquadDO loadById(long id) throws DataAccessException {
         Long param = new Long(id);
 
-        return (DcSquadDO) getSqlMapClientTemplate().queryForObject("MS-DC-SQUAD-LOAD-BY-ID", param);
+        return (DcSquadDO) getSqlMapClientTemplate()
+            .queryForObject("MS-DC-SQUAD-LOAD-BY-ID", param);
 
     }
 
-	/**
-	 *  Query DB table <tt>dc_squad</tt> for records.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_squad where (squad_name = ?)</tt>
-	 *
-	 *	@param squadName
-	 *	@return DcSquadDO
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Query DB table <tt>dc_squad</tt> for records.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>select * from dc_squad where (squad_name = ?)</tt>
+     *
+     *	@param squadName
+     *	@return DcSquadDO
+     *	@throws DataAccessException
+     */
     public DcSquadDO loadByName(String squadName) throws DataAccessException {
 
-        return (DcSquadDO) getSqlMapClientTemplate().queryForObject("MS-DC-SQUAD-LOAD-BY-NAME", squadName);
+        return (DcSquadDO) getSqlMapClientTemplate().queryForObject("MS-DC-SQUAD-LOAD-BY-NAME",
+            squadName);
 
     }
 
-	/**
-	 *  Update DB table <tt>dc_squad</tt>.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>update dc_squad set squad_name=?, squad_desc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
-	 *
-	 *	@param dcSquad
-	 *	@return int
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Update DB table <tt>dc_squad</tt>.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>update dc_squad set squad_name=?, squad_desc=?, axiser=?, cubers=?, followers=?, investors=?, status=?, gmt_modify=CURRENT_TIMESTAMP where (id = ?)</tt>
+     *
+     *	@param dcSquad
+     *	@return int
+     *	@throws DataAccessException
+     */
     public int update(DcSquadDO dcSquad) throws DataAccessException {
-    	if (dcSquad == null) {
-    		throw new IllegalArgumentException("Can't update by a null data object.");
-    	}
-
+        if (dcSquad == null) {
+            throw new IllegalArgumentException("Can't update by a null data object.");
+        }
 
         return getSqlMapClientTemplate().update("MS-DC-SQUAD-UPDATE", dcSquad);
     }
 
-	/**
-	 *  Delete records from DB table <tt>dc_squad</tt>.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>delete from dc_squad where (id = ?)</tt>
-	 *
-	 *	@param id
-	 *	@return int
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Delete records from DB table <tt>dc_squad</tt>.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>delete from dc_squad where (id = ?)</tt>
+     *
+     *	@param id
+     *	@return int
+     *	@throws DataAccessException
+     */
     public int deleteById(long id) throws DataAccessException {
         Long param = new Long(id);
 
         return getSqlMapClientTemplate().delete("MS-DC-SQUAD-DELETE-BY-ID", param);
     }
 
-	/**
-	 *  Query DB table <tt>dc_squad</tt> for records.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from dc_squad where ((squad_name = ?) AND (axiser = ?) AND (cubers = ?) AND (followers = ?) AND (investors = ?) AND (status = ?) AND (gmt_create = ?) AND (gmt_modify = ?))</tt>
-	 *
-	 *	@param squadName
-	 *	@param axiser
-	 *	@param cubers
-	 *	@param followers
-	 *	@param investors
-	 *	@param status
-	 *	@param gmtCreate
-	 *	@param gmtModify
-	 *	@param pageSize
-	 *	@param pageNum
-	 *	@return PageList
-	 *	@throws DataAccessException
-	 */	 
-    public PageList query(String squadName, String axiser, String cubers, String followers, String investors, String status, Date gmtCreate, Date gmtModify, int pageSize, int pageNum) throws DataAccessException {
+    /**
+     *  Query DB table <tt>dc_squad</tt> for records.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>select * from dc_squad where ((squad_name = ?) AND (axiser = ?) AND (cubers = ?) AND (followers = ?) AND (investors = ?) AND (status = ?) AND (gmt_create = ?) AND (gmt_modify = ?))</tt>
+     *
+     *	@param squadName
+     *	@param axiser
+     *	@param cubers
+     *	@param followers
+     *	@param investors
+     *	@param status
+     *	@param gmtCreate
+     *	@param gmtModify
+     *	@param pageSize
+     *	@param pageNum
+     *	@return PageList
+     *	@throws DataAccessException
+     */
+    public PageList query(String squadName, String axiser, String cubers, String followers,
+                          String investors, String status, Date gmtCreate, Date gmtModify,
+                          int pageSize, int pageNum) throws DataAccessException {
         Map param = new HashMap();
 
         param.put("squadName", squadName);
@@ -183,32 +184,33 @@ public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadD
         paginator.setItemsPerPage(pageSize);
         paginator.setPage(pageNum);
 
-        paginator.setItems(((Integer) getSqlMapClientTemplate().queryForObject("MS-DC-SQUAD-QUERY-COUNT-FOR-PAGING", param)).intValue());
-        
-        PageList  pageList = new PageList();
+        paginator.setItems(((Integer) getSqlMapClientTemplate().queryForObject(
+            "MS-DC-SQUAD-QUERY-COUNT-FOR-PAGING", param)).intValue());
+
+        PageList pageList = new PageList();
         pageList.setPaginator(paginator);
-        
+
         if (paginator.getBeginIndex() <= paginator.getItems()) {
             param.put("startRow", new Integer(paginator.getBeginIndex()));
             param.put("endRow", new Integer(paginator.getEndIndex()));
             pageList.addAll(getSqlMapClientTemplate().queryForList("MS-DC-SQUAD-QUERY", param));
         }
-        
+
         return pageList;
     }
 
-	/**
-	 *  Update DB table <tt>dc_squad</tt>.
-	 *
-	 *  <p>
-	 *  The sql statement for this operation is <br>
-	 *  <tt>update dc_squad set attention=? where (id = ?)</tt>
-	 *
-	 *	@param attention
-	 *	@param id
-	 *	@return int
-	 *	@throws DataAccessException
-	 */	 
+    /**
+     *  Update DB table <tt>dc_squad</tt>.
+     *
+     *  <p>
+     *  The sql statement for this operation is <br>
+     *  <tt>update dc_squad set attention=? where (id = ?)</tt>
+     *
+     *	@param attention
+     *	@param id
+     *	@return int
+     *	@throws DataAccessException
+     */
     public int updateAttention(long attention, long id) throws DataAccessException {
         Map param = new HashMap();
 

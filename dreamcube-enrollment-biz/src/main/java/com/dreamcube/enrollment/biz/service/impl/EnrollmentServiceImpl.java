@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
 import com.dreamcube.core.common.tools.MD5Tool;
+import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcUserDAO;
 import com.dreamcube.core.dal.dataobject.DcUserDO;
-import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.enrollment.domain.DCUser;
 import com.dreamcube.core.enrollment.enums.DCUserStatusEnum;
 import com.dreamcube.enrollment.biz.convert.UserConvert;
