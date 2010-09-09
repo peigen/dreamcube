@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
-import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 

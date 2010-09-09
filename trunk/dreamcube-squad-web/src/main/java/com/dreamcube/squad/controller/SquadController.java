@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dreamcube.core.common.tools.IntegerTool;
+import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.common.tools.StringTool;
-import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.squad.biz.service.SquadService;
 import com.dreamcube.squad.form.SquadForm;
@@ -67,10 +67,10 @@ public class SquadController {
     public String doQuery(ModelMap modelMap, SquadForm squadForm) {
 
         PageList pagelist = squadService.querySquad(squadForm.getSquadName(),
-            squadForm.getAxiser(), squadForm.getCubers(), squadForm.getFollowers(), squadForm
-                .getInvestors(), squadForm.getStatus(), squadForm.getGmtCreate(), squadForm
-                .getGmtModify(), IntegerTool.strToInt(squadForm.getPageSize()), IntegerTool
-                .strToInt(squadForm.getPageNum()));
+            squadForm.getAxiser(), squadForm.getCubers(), squadForm.getFollowers(),
+            squadForm.getInvestors(), squadForm.getStatus(), squadForm.getGmtCreate(),
+            squadForm.getGmtModify(), IntegerTool.strToInt(squadForm.getPageSize()),
+            IntegerTool.strToInt(squadForm.getPageNum()));
 
         modelMap.addAttribute("squadList", pagelist);
         modelMap.addAttribute("squad", squadForm);

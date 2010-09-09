@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
 import com.dreamcube.core.common.service.cache.entity.AttentionCache;
+import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.common.tools.StringTool;
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
-import com.dreamcube.core.dal.util.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 import com.dreamcube.squad.biz.convert.SquadConvert;

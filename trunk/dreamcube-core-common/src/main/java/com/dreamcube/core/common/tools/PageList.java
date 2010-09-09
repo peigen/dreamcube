@@ -1,4 +1,4 @@
-package com.dreamcube.core.dal.util;
+package com.dreamcube.core.common.tools;
 
 import java.util.ArrayList;
 import java.util.Collection;

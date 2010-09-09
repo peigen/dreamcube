@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.dreamcube.core.common.service.cache.entity.AttentionCache;
-import com.dreamcube.core.dal.util.PageList;
+import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.squad.domain.DCSquad;
 import com.dreamcube.core.squad.enums.DCSquadStatusEnum;
 
