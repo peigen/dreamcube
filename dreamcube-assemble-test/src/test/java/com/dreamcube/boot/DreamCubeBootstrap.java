@@ -55,10 +55,10 @@ public class DreamCubeBootstrap {
                            InvocationTargetException {
         // 读取配置文件
         Properties properties = new Properties();
-        properties.load(this.getClass().getClassLoader().getResourceAsStream(
-            "dreamcubeconfig.properties"));
-        URL propertiesURL = this.getClass().getClassLoader().getResource(
-            "dreamcubeconfig.properties");
+        properties.load(this.getClass().getClassLoader()
+            .getResourceAsStream("dreamcube-config.properties"));
+        URL propertiesURL = this.getClass().getClassLoader()
+            .getResource("dreamcube-config.properties");
         System.out.println(propertiesURL.toExternalForm());
 
         // 获取需要启动的端口
