@@ -13,10 +13,6 @@
     <!-- ===================================================================== -->
     <!--  以下是logger的定义                                                             -->
     <!-- ===================================================================== -->
-    <logger name="com.dreamcube.enrollment" additivity="false">
-		<level value="debug"/>
-        <appender-ref ref="STDOUT"/>
-	</logger>
 	<logger name="log4j.logger.com.ibatis" additivity="true">
 		<level value="debug"/>
 		<appender-ref ref="STDOUT"/>
