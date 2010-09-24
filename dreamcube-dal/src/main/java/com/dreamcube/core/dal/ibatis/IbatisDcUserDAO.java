@@ -14,6 +14,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.common.tools.Paginator;
+
 import com.dreamcube.core.dal.daointerface.DcUserDAO;
 import com.dreamcube.core.dal.dataobject.DcUserDO;
 
@@ -32,7 +33,7 @@ import com.dreamcube.core.dal.dataobject.DcUserDO;
  *
  * @author peigen
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class IbatisDcUserDAO extends SqlMapClientDaoSupport implements DcUserDAO {
     /**
      *  Insert one <tt>DcUserDO</tt> object to DB table <tt>dc_user</tt>, return primary key

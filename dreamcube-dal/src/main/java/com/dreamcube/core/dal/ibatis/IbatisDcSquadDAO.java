@@ -14,6 +14,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.dreamcube.core.common.tools.PageList;
 import com.dreamcube.core.common.tools.Paginator;
+
 import com.dreamcube.core.dal.daointerface.DcSquadDAO;
 import com.dreamcube.core.dal.dataobject.DcSquadDO;
 
@@ -32,7 +33,7 @@ import com.dreamcube.core.dal.dataobject.DcSquadDO;
  *
  * @author peigen
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class IbatisDcSquadDAO extends SqlMapClientDaoSupport implements DcSquadDAO {
     /**
      *  Insert one <tt>DcSquadDO</tt> object to DB table <tt>dc_squad</tt>, return primary key

@@ -27,7 +27,28 @@ import $importClass;
  *
 #parse("description-java.vm")
  */
-@SuppressWarnings("unchecked")
+##waring
+#set ($haveList=0)
+#set ($haveMap=0)
+#foreach($importClass in $table.daoImports) 
+	#if($importClass=="java.util.List")
+		#set ($haveList=1)
+	#elseif($importClass=="java.util.Map" || $importClass=="java.util.HashMap")
+		#set ($haveMap=1)
+		#set ($haveList=1)
+	#end
+#end
+#foreach($importClass in $table.ibatisImports) 
+	#if($importClass=="java.util.List")
+		#set ($haveList=1)
+	#elseif($importClass=="java.util.Map" || $importClass=="java.util.HashMap")
+		#set ($haveMap=1)
+		#set ($haveList=1)
+	#end
+#end
+#if($haveList==1 && $haveMap==1)@SuppressWarnings({ "unchecked", "rawtypes" })
+#elseif ($haveList==1)@SuppressWarnings("unchecked")
+#elseif ($haveMap==1)@SuppressWarnings("rawtypes") #end
 public class ${table.ibatisClassName} extends $base implements ${table.DAOClassName} {
 #foreach($operation in $table.operations)
 #parse("operation/op-${operation.templateSuffix}.vm") #parse("operation/opbody-${operation.templateSuffix}.vm")
