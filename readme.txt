@@ -27,4 +27,3 @@ mvn archetype:create -DgroupId=com.dreamcube -DartifactId=dreamcube-core-common 
 #!/bin/bash
 pkill mongodb
 /home/peigen/soft/java/mongodb/bin/mongod --dbpath /tmp/ --logpath /tmp/mongodb.log --logappend --port 1983
-
