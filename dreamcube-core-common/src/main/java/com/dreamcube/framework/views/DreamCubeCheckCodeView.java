@@ -1,6 +1,6 @@
 /**
  * Alipay.com Inc.
- * Copyright (c) 2005-2009 All Rights Reserved.
+ * Copyright (c) 2010-2011 All Rights Reserved.
  */
 package com.dreamcube.framework.views;
 

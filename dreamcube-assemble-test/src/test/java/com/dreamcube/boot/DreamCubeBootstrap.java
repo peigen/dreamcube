@@ -185,7 +185,7 @@ public class DreamCubeBootstrap {
         try {
             InetAddress addr = InetAddress.getLocalHost();
             hostname = addr.getHostName().toString();// 获得本机名称
-            if (hostname.equals("peigen-laptop")) {
+            if (hostname.equals("peigen-ThinkPad-L412")) {
 
                 hostname = properties.getProperty("peigen_latop_home");
 
