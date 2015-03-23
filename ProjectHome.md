@@ -1,0 +1,1 @@
+fast framwork with velocity+springmvc+ibatis
